@@ -1,0 +1,460 @@
+/* Gallery.module.css - ОНОВЛЕНА ВЕРСІЯ */
+
+/* Основні стилі секції */
+.section {
+  padding: 80px 0;
+}
+
+.gallery {
+  background: #ffffff; /* Білий фон */
+  position: relative;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Заголовок секції */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #111111; /* Темно-сірий */
+  margin: 0 0 20px;
+  line-height: 1.1;
+}
+
+.sectionDivider {
+  width: 80px;
+  height: 2px; /* Тонша лінія */
+  background: linear-gradient(90deg, #000000, #333333); /* Чорний градієнт */
+  margin: 0 auto 20px;
+}
+
+.sectionDescription {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #555555; /* Сірий */
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Горизонтальна галерея - СПРОЩЕНА ВЕРСІЯ */
+.horizontalGallery {
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  padding: 20px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.horizontalGallery::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontalGallery::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.horizontalGallery::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.horizontalGallery::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.horizontalGallery:active {
+  cursor: grabbing;
+}
+
+.galleryTrack {
+  display: inline-flex;
+  gap: 20px;
+  padding: 0 10px 15px;
+  min-width: min-content;
+}
+
+/* Картка галереї - СПРОЩЕНА */
+.galleryItem {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 12px; /* Менше закруглення */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* М'якіші тіні */
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Тонка рамка */
+}
+
+.galleryItem:hover {
+  transform: translateY(-5px); /* Менший ефект підйому */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.galleryItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galleryItem:hover img {
+  transform: scale(1.03); /* Менше збільшення */
+}
+
+/* Оверлей - СПРОЩЕНА ВЕРСІЯ */
+.galleryOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0); /* Прозорий за замовчуванням */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.galleryItem:hover .galleryOverlay {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.4); /* Темний оверлей тільки при наведенні */
+}
+
+.viewText {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 6px 16px;
+  background: rgba(0, 0, 0, 0.7); /* Напівпрозорий чорний */
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Тонка біла рамка */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.galleryItem:hover .viewText {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Індикатор скролу - СПРОЩЕНА ВЕРСІЯ */
+.scrollHint {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.scrollText {
+  font-size: 13px;
+  color: #888888;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 300;
+}
+
+/* Спрощена модалка - МІНІМАЛІСТИЧНА */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95); /* Темніший фон */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.simpleModal {
+  background: transparent;
+  max-width: 95vw;
+  max-height: 95vh;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Кнопка закриття - МІНІМАЛІСТИЧНА */
+.closeModalBtn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+.closeModalBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* Контейнер зображення */
+.modalImageContainer {
+  max-width: 95vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalImage {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Навігація - МІНІМАЛІСТИЧНА */
+.modalNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  color: white;
+}
+
+.navArrow {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navArrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.imageInfo {
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.7;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* АДАПТИВНІСТЬ */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .galleryItem {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* Планшети (до 768px) */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+  
+  .galleryItem {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .horizontalGallery {
+    padding: 15px 0;
+  }
+  
+  .modalNavigation {
+    gap: 15px;
+  }
+  
+  .navArrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Мобільні (до 576px) */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 30px;
+  }
+  
+  .galleryItem {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .viewText {
+    font-size: 13px;
+    padding: 5px 12px;
+  }
+  
+  .scrollText {
+    font-size: 12px;
+  }
+  
+  .closeModalBtn {
+    top: -35px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .modalImageContainer {
+    max-height: 80vh;
+  }
+}
+
+/* Дуже малі екрани (до 400px) */
+@media (max-width: 400px) {
+  .galleryItem {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .modalNavigation {
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .navArrow {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .imageInfo {
+    font-size: 12px;
+  }
+}
+
+/* Touch-пристрої */
+@media (hover: none) and (pointer: coarse) {
+  .galleryOverlay {
+    opacity: 0;
+  }
+  
+  .galleryItem:active .galleryOverlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .viewText {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .horizontalGallery::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .horizontalGallery {
+    scrollbar-width: none;
+  }
+}
+
+/* Додаткові ефекти */
+.horizontalGallery {
+  scroll-behavior: smooth;
+}
+
+/* Світла лінія для елегантності */
+.gallery::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+}
+
+/* Темна тема */
+@media (prefers-color-scheme: dark) {
+  .gallery {
+    background: #0a0a0a;
+  }
+  
+  .sectionTitle {
+    color: #ffffff;
+  }
+  
+  .sectionDescription {
+    color: #aaaaaa;
+  }
+  
+  .galleryItem {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .galleryItem:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .scrollText {
+    color: #888888;
+  }
+  
+  .horizontalGallery::-webkit-scrollbar-track {
+    background: #222;
+  }
+  
+  .horizontalGallery::-webkit-scrollbar-thumb {
+    background: #444;
+  }
+  
+  .horizontalGallery::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

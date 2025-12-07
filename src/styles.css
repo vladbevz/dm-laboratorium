@@ -5,7 +5,8 @@
 html,body,#root{height:100%}
 body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(--text);background:linear-gradient(180deg,#fbfdfc,#ffffff);-webkit-font-smoothing:antialiased}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
-/* Header */
+/*
+/* Header 
 .site-header {
   position: fixed;
   left: 0;
@@ -37,7 +38,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   position: relative;
 }
 
-/* Текстовий логотип */
+/* Текстовий логотип 
 .logo-text {
   display: flex;
   flex-direction: column;
@@ -78,7 +79,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   text-transform: uppercase;
 }
 
-/* Бургер-кнопка */
+/* Бургер-кнопка 
 .burger-btn {
   display: none;
   flex-direction: column;
@@ -118,7 +119,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Основне меню */
+/* Основне меню 
 .main-nav {
   display: flex;
   gap: 12px;
@@ -141,7 +142,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   color: #ffffff;
 }
 
-/* Phone button */
+/* Phone button 
 .phone {
   background: #ffffff;
   color: #111 !important;
@@ -171,7 +172,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   font-size: 16px;
 }
 
-/* Оверлей для мобільного меню */
+/* Оверлей для мобільного меню 
 .menu-overlay {
   position: fixed;
   top: 0;
@@ -184,7 +185,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   display: none;
 }
 
-/* АДАПТИВНІСТЬ */
+/* АДАПТИВНІСТЬ 
 
 /* Планшети (до 1024px) */
 @media (max-width: 1024px) {
@@ -207,7 +208,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   }
 }
 
-/* Планшети (до 768px) */
+/* Планшети (до 768px) 
 @media (max-width: 768px) {
   .burger-btn {
     display: flex;
@@ -265,7 +266,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   }
 }
 
-/* Мобільні (до 576px) */
+/* Мобільні (до 576px) 
 @media (max-width: 576px) {
   .container {
     padding: 0 15px;
@@ -301,7 +302,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   }
 }
 
-/* Дуже малі екрани (до 400px) */
+/* Дуже малі екрани (до 400px) 
 @media (max-width: 400px) {
   .logo-text {
     flex-direction: row;
@@ -338,7 +339,7 @@ body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(
   }
 }
 
-/* Запобігання скролу при відкритому меню */
+/* Запобігання скролу при відкритому меню 
 body.menu-open {
   overflow: hidden;
 }
@@ -356,7 +357,7 @@ body.menu-open {
   color: #111 !important;
 }
 
-/* Hero */
+/* Hero 
 .hero {
   position: relative;
   min-height: 100vh;
@@ -382,7 +383,7 @@ body.menu-open {
   z-index: 1;
 }
 
-/* Додатковий оверлей для кращого контрасту */
+/* Додатковий оверлей для кращого контрасту 
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -460,7 +461,7 @@ body.menu-open {
   transform: translateY(-1px);
 }
 
-/* Ефект ripple */
+/* Ефект ripple 
 .hero .btn::after {
   content: '';
   position: absolute;
@@ -479,9 +480,9 @@ body.menu-open {
   height: 300px;
 }
 
-/* АДАПТИВНІСТЬ */
+/* АДАПТИВНІСТЬ 
 
-/* Планшети (до 1024px) */
+/* Планшети (до 1024px) 
 @media (max-width: 1024px) {
   .hero {
     min-height: 90vh;
@@ -497,7 +498,7 @@ body.menu-open {
   }
 }
 
-/* Планшети (до 768px) */
+/* Планшети (до 768px) 
 @media (max-width: 768px) {
   .hero {
     min-height: 85vh;
@@ -531,7 +532,7 @@ body.menu-open {
   }
 }
 
-/* Мобільні (до 576px) */
+/* Мобільні (до 576px) 
 @media (max-width: 576px) {
   .hero {
     min-height: 80vh;
@@ -571,7 +572,7 @@ body.menu-open {
   }
 }
 
-/* Дуже малі екрани (до 400px) */
+/* Дуже малі екрани (до 400px) 
 @media (max-width: 400px) {
   .hero {
     min-height: 75vh;
@@ -592,14 +593,14 @@ body.menu-open {
   }
 }
 
-/* Підтримка високих екранів */
+/* Підтримка високих екранів 
 @media (min-height: 900px) {
   .hero {
     min-height: 85vh;
   }
 }
 
-/* Підтримка ретина-екранів */
+/* Підтримка ретина-екранів 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .hero-bg {
     background-size: cover;
@@ -607,14 +608,14 @@ body.menu-open {
   }
 }
 
-/* Темна тема */
+/* Темна тема 
 @media (prefers-color-scheme: dark) {
   .hero .btn {
     box-shadow: 0 8px 24px rgba(11, 107, 91, 0.4);
   }
 }
 
-/* Анімація для кнопки */
+/* Анімація для кнопки 
 @keyframes pulse {
   0% {
     box-shadow: 0 8px 24px rgba(11, 107, 91, 0.3);
@@ -636,7 +637,7 @@ body.menu-open {
 }
 
 
-/* Services Section */
+/* Services Section 
 .section {
   padding: 100px 0;
   position: relative;
@@ -648,7 +649,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* Декоративні елементи */
+/* Декоративні елементи 
 .services::before {
   content: '';
   position: absolute;
@@ -678,7 +679,7 @@ body.menu-open {
   z-index: 1;
 }
 
-/* Заголовок секції */
+/* Заголовок секції 
 .section-header {
   text-align: center;
   margin-bottom: 70px;
@@ -730,7 +731,7 @@ body.menu-open {
   line-height: 1.6;
 }
 
-/* Сітка послуг */
+/* Сітка послуг 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -769,7 +770,7 @@ body.menu-open {
   }
 }
 
-/* Іконка та номер */
+/* Іконка та номер 
 .card-icon {
   margin-bottom: 25px;
   display: flex;
@@ -785,7 +786,7 @@ body.menu-open {
   transition: color 0.3s ease;
 }
 
-/* Контент картки */
+/* Контент картки 
 .card-content {
   position: relative;
   z-index: 2;
@@ -808,7 +809,7 @@ body.menu-open {
   transition: color 0.3s ease;
 }
 
-/* Ефект при наведенні */
+/* Ефект при наведенні 
 .card-hover-effect {
   position: absolute;
   top: 0;
@@ -843,7 +844,7 @@ body.menu-open {
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* Декор на картці */
+/* Декор на картці 
 .service-card::before {
   content: '';
   position: absolute;
@@ -855,9 +856,9 @@ body.menu-open {
   z-index: 0;
 }
 
-/* АДАПТИВНІСТЬ */
+/* АДАПТИВНІСТЬ 
 
-/* Планшети (до 1024px) */
+/* Планшети (до 1024px) 
 @media (max-width: 1024px) {
   .section {
     padding: 80px 0;
@@ -877,7 +878,7 @@ body.menu-open {
   }
 }
 
-/* Планшети (до 768px) */
+/* Планшети (до 768px) 
 @media (max-width: 768px) {
   .section {
     padding: 70px 0;
@@ -909,7 +910,7 @@ body.menu-open {
   }
 }
 
-/* Мобільні (до 576px) */
+/* Мобільні (до 576px) 
 @media (max-width: 576px) {
   .section {
     padding: 60px 0;
@@ -957,7 +958,7 @@ body.menu-open {
   }
 }
 
-/* Дуже малі екрани (до 400px) */
+/* Дуже малі екрани (до 400px) 
 @media (max-width: 400px) {
   .section {
     padding: 50px 0;
@@ -980,7 +981,7 @@ body.menu-open {
   }
 }
 
-/* Підтримка темної теми */
+/* Підтримка темної теми 
 @media (prefers-color-scheme: dark) {
   .services {
     background: #111;
@@ -1016,7 +1017,7 @@ body.menu-open {
   }
 }
 
-/* Анімація для останніх карток */
+/* Анімація для останніх карток 
 .service-card:nth-child(odd) {
   animation-delay: calc(var(--delay) + 0.1s);
 }
@@ -1026,7 +1027,7 @@ body.menu-open {
 .stats{display:flex;gap:12px}
 .stats div{background:#fff;padding:14px;border-radius:10px;text-align:center;min-width:90px;box-shadow:0 8px 24px rgba(0,0,0,0.04)} */
 
-/* Gallery Section */
+/* Gallery Section 
 .section {
   padding: 80px 0;
 }
@@ -1042,7 +1043,7 @@ body.menu-open {
   padding: 0 20px;
 }
 
-/* Заголовок секції */
+/* Заголовок секції 
 .section-header {
   text-align: center;
   margin-bottom: 50px;
@@ -1072,18 +1073,18 @@ body.menu-open {
   line-height: 1.6;
 }
 
-/* Горизонтальна галерея */
+/* Горизонтальна галерея 
 .horizontal-gallery {
   overflow-x: auto;
   overflow-y: hidden;
   cursor: grab;
   padding: 20px 0 40px;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; /* Firefox 
 }
 
 .horizontal-gallery::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none; /* Chrome, Safari 
 }
 
 .horizontal-gallery:active {
@@ -1097,7 +1098,7 @@ body.menu-open {
   min-width: min-content;
 }
 
-/* Картка галереї */
+/* Картка галереї 
 .gallery-item {
   flex: 0 0 auto;
   width: 320px;
@@ -1157,7 +1158,7 @@ body.menu-open {
   transform: translateY(0);
 }
 
-/* Індикатор скролу */
+/* Індикатор скролу 
 .scroll-hint {
   text-align: center;
   margin-top: 20px;
@@ -1179,7 +1180,7 @@ body.menu-open {
   50% { opacity: 1; }
 }
 
-/* Спрощена модалка */
+/* Спрощена модалка 
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1285,7 +1286,7 @@ body.menu-open {
 
 /* АДАПТИВНІСТЬ */
 
-/* Планшети (до 1024px) */
+/* Планшети (до 1024px) 
 @media (max-width: 1024px) {
   .gallery-item {
     width: 280px;
@@ -1293,7 +1294,7 @@ body.menu-open {
   }
 }
 
-/* Планшети (до 768px) */
+/* Планшети (до 768px) 
 @media (max-width: 768px) {
   .section {
     padding: 60px 0;
@@ -1318,7 +1319,7 @@ body.menu-open {
   }
 }
 
-/* Мобільні (до 576px) */
+/* Мобільні (до 576px) 
 @media (max-width: 576px) {
   .container {
     padding: 0 15px;
@@ -1353,7 +1354,7 @@ body.menu-open {
   }
 }
 
-/* Дуже малі екрани (до 400px) */
+/* Дуже малі екрани (до 400px) 
 @media (max-width: 400px) {
   .gallery-item {
     width: 180px;
@@ -1374,7 +1375,7 @@ body.menu-open {
   }
 }
 
-/* Touch-пристрої */
+/* Touch-пристрої 
 @media (hover: none) and (pointer: coarse) {
   .gallery-overlay {
     opacity: 1;
@@ -1390,12 +1391,11 @@ body.menu-open {
   }
 }
 
-/* Додаткові ефекти */
+/* Додаткові ефекти 
 .horizontal-gallery {
   scroll-behavior: smooth;
 }
-
-/* Темна тема */
+/* Темна тема 
 @media (prefers-color-scheme: dark) {
   .gallery {
     background: #111;
@@ -1422,295 +1422,8 @@ body.menu-open {
 .team-list{display:flex;gap:12px;flex-wrap:wrap;list-style:none;padding:0;margin:0}
 .team-list li{background:#fff;padding:12px;border-radius:10px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,0.04)} */
 
-/* Testimonials Section */
-.testimonials {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  position: relative;
-  overflow: hidden;
-}
 
-.testimonials::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(11, 107, 91, 0.2), transparent);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Заголовок секції */
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-subtitle {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
-  color: #0b6b5b;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.section-subtitle::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 2px;
-  background: #0b6b5b;
-}
-
-.section-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
-  color: #222;
-  margin: 15px 0 20px;
-  line-height: 1.1;
-}
-
-.section-divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #0b6b5b, #0a5a4d);
-  margin: 0 auto 25px;
-  border-radius: 2px;
-}
-
-.section-description {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #666;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Обгортка слайдера */
-.testimonials-slider-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  margin: 0 auto;
-  max-width: 800px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-}
-
-/* Слайдер - ВАЖЛИВО: flex контейнер */
-.testimonials-slider {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%; /* Додаємо ширину 100% */
-}
-
-/* Слайд - ВАЖЛИВО: кожен слайд має бути 100% ширини */
-.testimonial-slide {
-  flex: 0 0 100%;
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-/* Картка відгуку */
-.testimonial-card {
-  background: white;
-  border-radius: 20px;
-  padding: 50px 40px;
-  height: 100%;
-  position: relative;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  box-sizing: border-box;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.1);
-}
-
-/* Іконка цитати */
-.quote-icon {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  color: rgba(11, 107, 91, 0.1);
-}
-
-/* Рейтинг */
-.rating {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 25px;
-}
-
-.star {
-  color: #ffc107;
-  font-size: 20px;
-  line-height: 1;
-}
-
-/* Текст відгуку */
-.testimonial-text {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  color: #444;
-  margin: 0 0 40px;
-  font-style: italic;
-  position: relative;
-  padding-left: 20px;
-}
-
-.testimonial-text::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #0b6b5b, #0a5a4d);
-  border-radius: 2px;
-}
-
-/* Автор відгуку */
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.author-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #0b6b5b, #0a5a4d);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.author-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.author-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #222;
-  margin: 0 0 4px;
-}
-
-.author-role {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
-}
-
-/* Керування слайдером */
-.slider-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  margin-top: 50px;
-}
-
-.slider-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid rgba(11, 107, 91, 0.2);
-  background: white;
-  color: #0b6b5b;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.slider-btn:hover {
-  background: #0b6b5b;
-  color: white;
-  border-color: #0b6b5b;
-  transform: scale(1.1);
-}
-
-.slider-btn:active {
-  transform: scale(0.95);
-}
-
-/* Пагінація */
-.slider-dots {
-  display: flex;
-  gap: 12px;
-}
-
-.slider-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
-}
-
-.slider-dot.active {
-  background: #0b6b5b;
-  transform: scale(1.4);
-}
-
-.slider-dot:hover {
-  background: rgba(11, 107, 91, 0.5);
-}
-
-/* АДАПТИВНІСТЬ */
-
-@media (max-width: 768px) {
-  .section-header {
-    margin-bottom: 40px;
-  }
-  
-  .testimonials-slider-wrapper {
-    max-width: 100%;
-  }
-  
-  .testimonial-card {
-    padding: 35px 30px;
-  }
-}
-
-@media (max-width: 576px) {
-  .testimonial-card {
-    padding: 30px 25px;
-  }
-  
-  .testimonial-text {
-    font-size: 1.1rem;
-  }
-}
-
-/* Contact Section */
+/* Contact Section 
 .contact {
   background: #fff;
   position: relative;
@@ -1727,7 +1440,7 @@ body.menu-open {
   background: linear-gradient(90deg, transparent, rgba(11, 107, 91, 0.2), transparent);
 }
 
-/* Заголовок секції */
+/* Заголовок секції 
 .section-header {
   text-align: center;
   margin-bottom: 60px;
@@ -1779,7 +1492,7 @@ body.menu-open {
   line-height: 1.6;
 }
 
-/* Контактна сітка */
+/* Контактна сітка 
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
@@ -1787,7 +1500,7 @@ body.menu-open {
   margin-top: 40px;
 }
 
-/* Картка з інформацією */
+/* Картка з інформацією 
 .contact-info-card {
   background: #f8f9fa;
   border-radius: 20px;
@@ -1816,7 +1529,7 @@ body.menu-open {
   border-radius: 2px;
 }
 
-/* Контактні елементи */
+/* Контактні елементи 
 .contact-item {
   display: flex;
   align-items: flex-start;
@@ -1894,7 +1607,7 @@ address {
   line-height: 1.6;
 }
 
-/* Години роботи */
+/* Години роботи 
 .working-hours {
   margin-top: 40px;
   padding-top: 30px;
@@ -1939,7 +1652,7 @@ address {
   border-radius: 6px;
 }
 
-/* Форма */
+/* Форма 
 .form-card {
   background: white;
   border-radius: 20px;
@@ -2075,7 +1788,7 @@ address {
   to { transform: rotate(360deg); }
 }
 
-/* Результат форми */
+/* Результат форми 
 .form-result {
   padding: 15px;
   border-radius: 10px;
@@ -2096,7 +1809,7 @@ address {
   border: 1px solid rgba(244, 67, 54, 0.3);
 }
 
-/* Мапа */
+/* Мапа 
 .map-card {
   background: #f8f9fa;
   border-radius: 20px;
@@ -2151,9 +1864,9 @@ address {
   margin: 0;
 }
 
-/* АДАПТИВНІСТЬ */
+/* АДАПТИВНІСТЬ 
 
-/* Планшети (до 1024px) */
+/* Планшети (до 1024px) 
 @media (max-width: 1024px) {
   .contact-grid {
     grid-template-columns: 1fr 1fr;
@@ -2169,7 +1882,7 @@ address {
   }
 }
 
-/* Планшети (до 768px) */
+/* Планшети (до 768px) 
 @media (max-width: 768px) {
   .section-header {
     margin-bottom: 40px;
@@ -2205,7 +1918,7 @@ address {
   }
 }
 
-/* Мобільні (до 576px) */
+/* Мобільні (до 576px) 
 @media (max-width: 576px) {
   .contact-grid {
     gap: 25px;
@@ -2244,7 +1957,7 @@ address {
   }
 }
 
-/* Дуже малі екрани (до 400px) */
+/* Дуже малі екрани (до 400px) 
 @media (max-width: 400px) {
   .form-card,
   .contact-info-card,
@@ -2268,7 +1981,7 @@ address {
   }
 }
 
-/* Підтримка темної теми */
+/* Підтримка темної теми 
 @media (prefers-color-scheme: dark) {
   .contact {
     background: #111;
@@ -2327,7 +2040,7 @@ address {
   }
 }
 
-/* Footer */
+/* Footer 
 .site-footer {
   background: #0e0e0e;
   color: #ffffff;
@@ -2352,7 +2065,7 @@ address {
   padding: 0 20px;
 }
 
-/* Контент футера */
+/* Контент футера 
 .footer-content {
   display: flex;
   flex-direction: column;
@@ -2361,7 +2074,7 @@ address {
   gap: 30px;
 }
 
-/* Логотип футера */
+/* Логотип футера 
 .footer-logo {
   display: flex;
   flex-direction: column;
@@ -2400,7 +2113,7 @@ address {
   margin-top: 6px;
 }
 
-/* Копірайт */
+/* Копірайт 
 .footer-copyright {
   display: flex;
   flex-direction: column;
@@ -2435,7 +2148,7 @@ address {
   50% { transform: scale(1.1); }
 }
 
-/* Посилання футера */
+/* Посилання футера 
 .footer-links {
   display: flex;
   align-items: center;
@@ -2466,9 +2179,9 @@ address {
   user-select: none;
 }
 
-/* АДАПТИВНІСТЬ */
+/* АДАПТИВНІСТЬ 
 
-/* Планшети (до 768px) */
+/* Планшети (до 768px) 
 @media (max-width: 768px) {
   .site-footer {
     padding: 50px 0 35px;
@@ -2499,8 +2212,7 @@ address {
     font-size: 13px;
   }
 }
-
-/* Мобільні (до 576px) */
+/* Мобільні (до 576px) 
 @media (max-width: 576px) {
   .site-footer {
     padding: 40px 0 30px;
@@ -2549,7 +2261,7 @@ address {
   }
 }
 
-/* Дуже малі екрани (до 400px) */
+/* Дуже малі екрани (до 400px) 
 @media (max-width: 400px) {
   .footer-links {
     flex-direction: column;
@@ -2570,7 +2282,7 @@ address {
   }
 }
 
-/* Темна тема (додатково) */
+/* Темна тема (додатково) 
 @media (prefers-color-scheme: dark) {
   .site-footer {
     background: #111111;
@@ -2581,7 +2293,7 @@ address {
   }
 }
 
-/* Ефект при скролі */
+/* Ефект при скролі 
 .site-footer {
   opacity: 0;
   animation: fadeInUp 0.8s ease 0.2s forwards;

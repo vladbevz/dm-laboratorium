@@ -5,19 +5,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: "dist",
-    sourcemap: false,
-    chunkSizeWarningLimit: 1600,
     rollupOptions: {
-      output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom"],
-          "animation-vendor": ["framer-motion"],
-          "icons-vendor": ["lucide-react"],
-        },
-      },
+      external: [],
     },
-  },
-  server: {
-    port: 3000,
   },
 });

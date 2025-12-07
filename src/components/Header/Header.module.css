@@ -1,0 +1,352 @@
+/* Header.module.css */
+
+/* Основні стилі */
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  background: #0e0e0e;
+  padding: 16px 0;
+  transition: background .35s ease, backdrop-filter .35s ease, box-shadow .35s;
+}
+
+.header.scrolled {
+  background: #181717;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+}
+
+/* Текстовий логотип */
+.logoText {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.logoText:hover {
+  transform: translateY(-2px);
+}
+
+.logoPart {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.logoPart::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+}
+
+.logoPartSub {
+  font-size: 12px;
+  font-weight: 300;
+  color: #cccccc;
+  letter-spacing: 3px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* Бургер-кнопка */
+.burgerBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+}
+
+.burgerBtn:hover {
+  transform: scale(1.1);
+}
+
+.burgerLine {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burgerBtn.active .burgerLine:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.burgerBtn.active .burgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerBtn.active .burgerLine:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Основне меню */
+.mainNav {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  margin-left: 24px;
+}
+
+.mainNav a {
+  color: #e8e8e8;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background .18s, transform .18s, color .18s;
+  font-weight: 500;
+}
+
+.mainNav a:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* Phone button */
+.phone {
+  background: #ffffff;
+  color: #111 !important;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+
+.phone:hover {
+  background: #e4e4e4;
+  transform: translateY(-2px);
+}
+
+.desktopPhone {
+  display: block;
+}
+
+.mobilePhone {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+/* Оверлей для мобільного меню */
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: none;
+}
+
+/* АДАПТИВНІСТЬ */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .logoPart {
+    font-size: 24px;
+  }
+  
+  .logoPartSub {
+    font-size: 11px;
+  }
+  
+  .mainNav {
+    gap: 8px;
+    margin-left: 16px;
+  }
+  
+  .mainNav a {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+}
+
+/* Планшети (до 768px) */
+@media (max-width: 768px) {
+  .burgerBtn {
+    display: flex;
+  }
+  
+  .mainNav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: #0e0e0e;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 100px 30px 30px;
+    margin: 0;
+    transition: right 0.4s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+  }
+  
+  .mainNav.open {
+    right: 0;
+  }
+  
+  .mainNav a {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  .mainNav a:hover {
+    background: #1a1a1a;
+    transform: translateX(5px);
+  }
+  
+  .desktopPhone {
+    display: none;
+  }
+  
+  .mobilePhone {
+    display: block;
+  }
+  
+  .menuOverlay {
+    display: block;
+  }
+  
+  .headerInner {
+    gap: 15px;
+  }
+}
+
+/* Мобільні (до 576px) */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .logoPart {
+    font-size: 22px;
+  }
+  
+  .logoPartSub {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  
+  .mainNav {
+    width: 280px;
+    padding: 90px 20px 20px;
+  }
+  
+  .phone {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .mobilePhone {
+    font-size: 15px;
+    padding: 14px;
+  }
+  
+  .burgerBtn {
+    width: 28px;
+    height: 20px;
+  }
+}
+
+/* Дуже малі екрани (до 400px) */
+@media (max-width: 400px) {
+  .logoText {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logoPart {
+    font-size: 20px;
+  }
+  
+  .logoPartSub {
+    font-size: 9px;
+    margin-top: 0;
+    letter-spacing: 1.5px;
+  }
+  
+  .mainNav {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .mainNav.open {
+    right: 0;
+  }
+  
+  .burgerBtn {
+    width: 26px;
+    height: 18px;
+  }
+  
+  .burgerLine {
+    height: 2.5px;
+  }
+}
+
+/* Запобігання скролу при відкритому меню */
+body.menuOpen {
+  overflow: hidden;
+}
+
+.header.scrolled .logoPart {
+  color: #f8f8f8;
+}
+
+.header.scrolled .logoPartSub {
+  color: #aaaaaa;
+}
+
+.header.scrolled .phone {
+  background: #e4e4e4;
+  color: #111 !important;
+}
