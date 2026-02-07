@@ -169,7 +169,7 @@ const Preloader = () => {
               lineHeight: 1.6,
             }}
           >
-            Nowoczesne laboratorium stomatologiczne
+            Nowoczesne laboratorium protetyczne
           </motion.p>
 
           {/* Прогрес бар з дорогим стилем */}

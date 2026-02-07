@@ -64,7 +64,7 @@ export default function Header() {
             <a href="#services" onClick={closeMenu}>Usługi</a>
             <a href="#about" onClick={closeMenu}>O nas</a>
             <a href="#gallery" onClick={closeMenu}>Galeria</a>
-            <a href="#contact" onClick={closeMenu}>Łączność</a>
+            <a href="#contact" onClick={closeMenu}>Kontakt</a>
             
             {/* Телефон в мобільному меню */}
             <a className={`${styles.phone} ${styles.mobilePhone}`} href="tel:+48577861595" onClick={closeMenu}>
