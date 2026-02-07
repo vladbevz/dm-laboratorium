@@ -1,7 +1,11 @@
 {
   "buildCommand": "npm run build",
+  "installCommand": "npm ci --no-audit",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
   "framework": "vite",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "regions": ["fra1"],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }

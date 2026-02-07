@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Важливо для правильних шляхів
+  base: "/",
   build: {
     outDir: "dist",
     assetsDir: "assets",
@@ -17,9 +17,23 @@ export default defineConfig({
           "lucide-react": ["lucide-react"],
         },
       },
+      // Явно укажите резолвер для lucide-react
+      external: [],
     },
   },
+  // Добавьте это для Vercel
+  optimizeDeps: {
+    include: ["lucide-react", "framer-motion"],
+    exclude: [],
+  },
+  // Разрешите все хосты для Vercel
   server: {
     host: true,
+    port: 3000,
+    strictPort: true,
+  },
+  preview: {
+    host: true,
+    port: 3000,
   },
 });
