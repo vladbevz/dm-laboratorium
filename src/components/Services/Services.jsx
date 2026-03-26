@@ -1,64 +1,67 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './Services.module.css';
 
-export default function Services() {
-  const sectionRef = useRef();
-  const cardsRef = useRef([]);
+const items = [
+  {
+    title: 'Precyzja i powtarzalność',
+    desc: 'Dzięki technologiom CAD/CAM każda praca jest wykonana z najwyższą dokładnością i idealną powtarzalnością.',
+  },
+  {
+    title: 'Wsparcie dla lekarzy',
+    desc: 'Stała komunikacja, konsultacje i szybka pomoc w trudnych przypadkach — jesteśmy partnerem, nie tylko dostawcą.',
+  },
+  {
+    title: 'Nowoczesne materiały',
+    desc: 'Pracujemy na sprawdzonych systemach i certyfikowanych materiałach, gwarantujących trwałość i estetykę.',
+  },
+  {
+    title: 'Terminowość',
+    desc: 'Szanujemy czas — Twój i pacjenta. Każde zlecenie realizujemy zgodnie z ustalonym harmonogramem.',
+  },
+];
 
-  const items = [
-    { title: 'Precyzja i powtarzalność', desc: 'Dzięki technologiom CAD/CAM każda praca jest wykonana z najwyższą dokładnością.' },
-    { title: 'Wsparcie dla lekarzy', desc: 'Stała komunikacja, konsultacje i szybka pomoc w trudnych przypadkach.' },
-    { title: 'Nowoczesne materiały', desc: 'Pracujemy na sprawdzonych systemach, gwarantujących trwałość i estetykę.' },
-    { title: 'Terminowość', desc: 'Szanujemy czas — Twój i pacjenta. Zawsze dotrzymujemy ustaleń.' },
-  ];
+export default function Services() {
+  const cardsRef = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-          }
+          if (entry.isIntersecting) entry.target.classList.add(styles.visible);
         });
       },
       { threshold: 0.1 }
     );
 
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
+    cardsRef.current.forEach((card) => { if (card) observer.observe(card); });
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="services" className={`${styles.section} ${styles.services}`} ref={sectionRef}>
+    <section id="services" className={styles.section}>
       <div className={styles.container}>
-        {/* Заголовок секції */}
         <div className={styles.sectionHeader}>
-          <span className={styles.sectionSubtitle}>Co oferujemy</span>
-          <h2 className={styles.sectionTitle}>Usługi</h2>
-          <div className={styles.sectionDivider}></div>
+          <div className={styles.sectionEyebrow}>Co oferujemy</div>
+          <h2 className={styles.sectionTitle}>
+            Nasze <strong>Usługi</strong>
+          </h2>
+          <div className={styles.sectionDivider} />
           <p className={styles.sectionDescription}>
             Kompleksowe rozwiązania w nowoczesnym laboratorium stomatologicznym
           </p>
         </div>
 
-        {/* Картки послуг */}
         <div className={styles.servicesGrid}>
-          {items.map((item, index) => (
+          {items.map((item, i) => (
             <div
+              key={i}
               className={styles.serviceCard}
-              key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-              style={{ '--delay': `${index * 0.1}s` }}
+              ref={(el) => (cardsRef.current[i] = el)}
             >
-            
-              <div className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDescription}>{item.desc}</p>
-              </div>
-              <div className={styles.cardHoverEffect}></div>
+              <span className={styles.cardNumber}>0{i + 1}</span>
+              <span className={styles.cardAccent} />
+              <h3 className={styles.cardTitle}>{item.title}</h3>
+              <p className={styles.cardDescription}>{item.desc}</p>
             </div>
           ))}
         </div>

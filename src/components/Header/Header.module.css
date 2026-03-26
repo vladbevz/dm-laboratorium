@@ -1,352 +1,243 @@
-/* Header.module.css */
+/* Header.module.css — PREMIUM REDESIGN */
 
-/* Основні стилі */
 .header {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 1000;
-  background: #0e0e0e;
-  padding: 16px 0;
-  transition: background .35s ease, backdrop-filter .35s ease, box-shadow .35s;
+  background: transparent;
+  padding: 20px 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header.scrolled {
-  background: #181717;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+  background: var(--bg-header);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 var(--gold-30), 0 8px 40px rgba(0, 0, 0, 0.7);
+  padding: 12px 0;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 32px;
 }
 
 .headerInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  position: relative;
+  gap: 24px;
 }
 
-/* Текстовий логотип */
+/* ── LOGO ── */
 .logoText {
   display: flex;
   flex-direction: column;
   text-decoration: none;
   line-height: 1;
-  transition: transform 0.3s ease;
   z-index: 1001;
+  transition: opacity 0.3s ease;
 }
 
-.logoText:hover {
-  transform: translateY(-2px);
-}
+.logoText:hover { opacity: 0.8; }
 
 .logoPart {
-  font-size: 28px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 2px;
+  font-family: var(--font-caps);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 6px;
   position: relative;
+  line-height: 1;
 }
 
 .logoPart::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -3px;
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.6), transparent);
 }
 
 .logoPartSub {
-  font-size: 12px;
-  font-weight: 300;
-  color: #cccccc;
-  letter-spacing: 3px;
-  margin-top: 4px;
+  font-family: var(--font-caps);
+  font-size: 8px;
+  font-weight: 400;
+  color: var(--gold-60);
+  letter-spacing: 7px;
+  margin-top: 8px;
   text-transform: uppercase;
 }
 
-/* Бургер-кнопка */
+/* ── BURGER ── */
 .burgerBtn {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  width: 26px;
+  height: 18px;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   z-index: 1001;
-  transition: transform 0.3s ease;
-}
-
-.burgerBtn:hover {
-  transform: scale(1.1);
 }
 
 .burgerLine {
   display: block;
   width: 100%;
-  height: 3px;
-  background: #ffffff;
-  border-radius: 2px;
+  height: 1.5px;
+  background: var(--gold);
   transition: all 0.3s ease;
 }
 
-.burgerBtn.active .burgerLine:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
+.burgerBtn.active .burgerLine:nth-child(1) { transform: translateY(8.25px) rotate(45deg); }
+.burgerBtn.active .burgerLine:nth-child(2) { opacity: 0; width: 0; }
+.burgerBtn.active .burgerLine:nth-child(3) { transform: translateY(-8.25px) rotate(-45deg); }
 
-.burgerBtn.active .burgerLine:nth-child(2) {
-  opacity: 0;
-}
-
-.burgerBtn.active .burgerLine:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
-
-/* Основне меню */
+/* ── NAV ── */
 .mainNav {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 2px;
   flex: 1;
-  margin-left: 24px;
+  margin-left: 40px;
 }
 
 .mainNav a {
-  color: #e8e8e8;
+  font-family: var(--font-caps);
+  color: var(--cream-50);
   text-decoration: none;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: background .18s, transform .18s, color .18s;
-  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.mainNav a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+  transform-origin: center;
 }
 
 .mainNav a:hover {
-  background: #1a1a1a;
-  transform: translateY(-2px);
-  color: #ffffff;
+  color: var(--gold);
 }
 
-/* Phone button */
-.phone {
-  background: #ffffff;
-  color: #111 !important;
-  padding: 10px 14px;
-  border-radius: 8px;
-  text-decoration: none;
+.mainNav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── CONTACT BUTTON ── */
+.contactBtn {
+  font-family: var(--font-caps);
+  font-size: 10px;
   font-weight: 600;
-  transition: background .2s, transform .2s;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--bg-0) !important;
+  text-decoration: none;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #C9A84C 0%, #E2C078 50%, #C9A84C 100%);
+  background-size: 200% 100%;
+  border-radius: 1px;
+  transition: all 0.35s ease;
   white-space: nowrap;
+  box-shadow: 0 2px 20px rgba(201, 168, 76, 0.25);
+  border: none;
+  cursor: pointer;
+  display: inline-block;
 }
 
-.phone:hover {
-  background: #e4e4e4;
-  transform: translateY(-2px);
+.contactBtn:hover {
+  background-position: 100% 0;
+  box-shadow: 0 4px 30px rgba(201, 168, 76, 0.45);
+  transform: translateY(-1px);
+  color: #0a0806 !important;
 }
 
-.desktopPhone {
-  display: block;
-}
-
-.mobilePhone {
+.desktopContact { display: block; }
+.mobileContact {
   display: none;
   width: 100%;
   text-align: center;
-  margin-top: 20px;
-  padding: 12px;
-  font-size: 16px;
+  margin-top: 24px;
+  padding: 14px;
+  font-size: 15px;
 }
 
-/* Оверлей для мобільного меню */
+/* ── OVERLAY ── */
 .menuOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
   z-index: 999;
-  display: none;
 }
 
-/* АДАПТИВНІСТЬ */
-
-/* Планшети (до 1024px) */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .logoPart {
-    font-size: 24px;
-  }
-  
-  .logoPartSub {
-    font-size: 11px;
-  }
-  
-  .mainNav {
-    gap: 8px;
-    margin-left: 16px;
-  }
-  
-  .mainNav a {
-    padding: 6px 8px;
-    font-size: 14px;
-  }
+  .mainNav { gap: 0; margin-left: 20px; }
+  .mainNav a { padding: 8px 10px; font-size: 14px; }
 }
 
-/* Планшети (до 768px) */
 @media (max-width: 768px) {
-  .burgerBtn {
-    display: flex;
-  }
-  
+  .burgerBtn { display: flex; }
+
   .mainNav {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
-    height: 100vh;
-    background: #0e0e0e;
+    top: 0; right: -100%;
+    width: 300px; height: 100vh;
+    background: #0D0304;
     flex-direction: column;
     align-items: flex-start;
     padding: 100px 30px 30px;
     margin: 0;
-    transition: right 0.4s ease;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+    box-shadow: -10px 0 60px rgba(0,0,0,0.5);
+    border-left: 1px solid rgba(201, 168, 76, 0.1);
     overflow-y: auto;
+    gap: 0;
   }
-  
-  .mainNav.open {
-    right: 0;
-  }
-  
+
+  .mainNav.open { right: 0; }
+
   .mainNav a {
     width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 6px;
-    margin-bottom: 5px;
-    text-align: left;
-  }
-  
-  .mainNav a:hover {
-    background: #1a1a1a;
-    transform: translateX(5px);
-  }
-  
-  .desktopPhone {
-    display: none;
-  }
-  
-  .mobilePhone {
-    display: block;
-  }
-  
-  .menuOverlay {
-    display: block;
-  }
-  
-  .headerInner {
-    gap: 15px;
-  }
-}
-
-/* Мобільні (до 576px) */
-@media (max-width: 576px) {
-  .container {
-    padding: 0 15px;
-  }
-  
-  .logoPart {
-    font-size: 22px;
-  }
-  
-  .logoPartSub {
-    font-size: 10px;
+    padding: 14px 0;
+    font-size: 18px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
     letter-spacing: 2px;
   }
-  
-  .mainNav {
-    width: 280px;
-    padding: 90px 20px 20px;
-  }
-  
-  .phone {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-  
-  .mobilePhone {
-    font-size: 15px;
-    padding: 14px;
-  }
-  
-  .burgerBtn {
-    width: 28px;
-    height: 20px;
-  }
+
+  .mainNav a::after { display: none; }
+
+  .desktopContact { display: none; }
+  .mobileContact { display: block; }
 }
 
-/* Дуже малі екрани (до 400px) */
-@media (max-width: 400px) {
-  .logoText {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .logoPart {
-    font-size: 20px;
-  }
-  
-  .logoPartSub {
-    font-size: 9px;
-    margin-top: 0;
-    letter-spacing: 1.5px;
-  }
-  
-  .mainNav {
-    width: 100%;
-    right: -100%;
-  }
-  
-  .mainNav.open {
-    right: 0;
-  }
-  
-  .burgerBtn {
-    width: 26px;
-    height: 18px;
-  }
-  
-  .burgerLine {
-    height: 2.5px;
-  }
+@media (max-width: 576px) {
+  .container { padding: 0 20px; }
+  .logoPart { font-size: 26px; }
+  .mainNav { width: 100%; }
 }
 
-/* Запобігання скролу при відкритому меню */
-body.menuOpen {
-  overflow: hidden;
-}
-
-.header.scrolled .logoPart {
-  color: #f8f8f8;
-}
-
-.header.scrolled .logoPartSub {
-  color: #aaaaaa;
-}
-
-.header.scrolled .phone {
-  background: #e4e4e4;
-  color: #111 !important;
-}
+body.menuOpen { overflow: hidden; }

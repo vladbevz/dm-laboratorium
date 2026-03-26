@@ -1,10 +1,46 @@
-:root{
-  --accent:#0b6b5b; --bg:#fff; --muted:#666; --text:#111;
+:root {
+  /* ── PALETTE ── */
+  --bg-0:       #040102;   /* footer - deepest */
+  --bg-1:       #080304;   /* hero, gallery */
+  --bg-2:       #0C0405;   /* services, contact */
+  --bg-3:       #100506;   /* about */
+  --bg-card:    #180709;   /* card surfaces */
+  --bg-card-h:  #200A0D;   /* card hover */
+  --bg-header:  rgba(8, 3, 4, 0.97);
+
+  /* ── GOLD ── */
+  --gold:        #C9A84C;
+  --gold-60:     rgba(201, 168, 76, 0.6);
+  --gold-30:     rgba(201, 168, 76, 0.3);
+  --gold-12:     rgba(201, 168, 76, 0.12);
+  --gold-06:     rgba(201, 168, 76, 0.06);
+
+  /* ── TEXT ── */
+  --cream:       #F5EED8;
+  --cream-80:    rgba(245, 238, 220, 0.8);
+  --cream-50:    rgba(245, 238, 220, 0.5);
+  --cream-30:    rgba(245, 238, 220, 0.3);
+  --cream-20:    rgba(245, 238, 220, 0.2);
+
+  /* ── WINE ACCENT ── */
+  --wine:        rgba(110, 18, 18, 0.25);
+
+  /* ── FONTS ── */
+  --font-serif:  'Cormorant Garamond', 'Georgia', serif;
+  --font-caps:   'Cinzel', 'Cormorant Garamond', 'Georgia', serif;
 }
-*{box-sizing:border-box}
-html,body,#root{height:100%}
-body{font-family:Inter,Montserrat,system-ui,Arial,sans-serif;margin:0;color:var(--text);background:linear-gradient(180deg,#fbfdfc,#ffffff);-webkit-font-smoothing:antialiased}
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  font-family: var(--font-serif);
+  margin: 0;
+  color: var(--cream);
+  background: var(--bg-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 /*
 /* Header 
 .site-header {

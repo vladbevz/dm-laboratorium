@@ -1,13 +1,13 @@
-/* Hero.module.css - ОНОВЛЕНА ВЕРСІЯ */
+/* Hero.module.css — PREMIUM REDESIGN */
 
-/* Основні стилі */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
   overflow: hidden;
+  background: var(--bg-1);
+  padding-top: 88px;
 }
 
 .heroBg {
@@ -15,45 +15,56 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  z-index: -1;
+  z-index: 0;
 }
 
+/* Dramatic dark overlay */
 .heroBg::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7); /* Темніший оверлей */
+  background: linear-gradient(
+    110deg,
+    rgba(4, 1, 2, 0.93) 0%,
+    rgba(8, 3, 4, 0.76) 55%,
+    rgba(4, 1, 2, 0.88) 100%
+  );
   z-index: 1;
 }
 
-/* Додатковий оверлей для кращого контрасту */
+/* Burgundy/gold vignette */
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(30, 30, 30, 0.5) 50%,
-    rgba(0, 0, 0, 0.9) 100%
-  ); /* Градієнт чорний-сірий-чорний */
   z-index: 2;
+  background:
+    radial-gradient(ellipse 75% 65% at 0% 100%, rgba(120, 18, 18, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 100% 0%, rgba(201, 168, 76, 0.07) 0%, transparent 55%);
+}
+
+/* Decorative horizontal rule */
+.heroRule {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.25), transparent);
+  z-index: 3;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 60px;
   width: 100%;
+  position: relative;
+  z-index: 4;
 }
 
 .heroInner {
-  max-width: 700px;
-  color: #fff;
+  max-width: 720px;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  position: relative;
-  z-index: 3;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .heroInner.isVisible {
@@ -61,252 +72,191 @@
   transform: translateY(0);
 }
 
+/* Eyebrow */
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+
+.heroInner.isVisible .heroEyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroEyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #C9A84C;
+}
+
+/* Heading */
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 1.1;
-  margin: 0 0 20px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.hero p {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  line-height: 1.6;
-  margin: 0 0 30px;
-  color: #f0f0f0; /* Світліший сірий */
-  max-width: 600px;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  line-height: 1.08;
+  margin: 0 0 24px;
   font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.9s ease 0.5s, transform 0.9s ease 0.5s;
 }
 
+.heroInner.isVisible h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Paragraph */
+.hero p {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.85;
+  margin: 0 0 48px;
+  color: var(--cream-50);
+  max-width: 520px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.9s ease 0.7s, transform 0.9s ease 0.7s;
+}
+
+.heroInner.isVisible p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTA Button */
 .btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%); /* Біло-сірий градієнт */
-  padding: 16px 32px;
-  color: #111111; /* Темно-сірий текст */
-  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #C9A84C 0%, #E2C078 50%, #C9A84C 100%);
+  background-size: 200% 100%;
+  padding: 16px 44px;
+  color: var(--bg-0);
+  border-radius: 1px;
   text-decoration: none;
+  font-family: var(--font-caps);
   font-weight: 600;
-  font-size: 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Тонка біла рамка */
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Чорні тіні */
-  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 32px rgba(201, 168, 76, 0.2);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: background-position 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, opacity 0.9s ease 0.9s;
+}
+
+.heroInner.isVisible .btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn:hover {
+  background-position: 100% 0;
+  box-shadow: 0 6px 40px rgba(201, 168, 76, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn::after {
+  content: '→';
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover::after { transform: translateX(4px); }
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 1s ease 1.4s;
+}
+
+.heroInner.isVisible ~ .scrollIndicator,
+.scrollIndicator.visible {
+  opacity: 1;
+}
+
+.scrollLine {
+  width: 40px;
+  height: 1px;
+  background: rgba(201, 168, 76, 0.4);
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.5px;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(135deg, #f5f5f5 0%, #d0d0d0 100%); /* Інший відтінок сірого */
-  color: #000000;
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.btn:active {
-  transform: translateY(-1px);
-}
-
-/* Ефект ripple - білий */
-.btn::after {
+.scrollLine::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1); /* Слабкий білий ripple */
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: #C9A84C;
+  animation: scrollAnim 2.5s ease-in-out infinite;
 }
 
-.btn:hover::after {
-  width: 300px;
-  height: 300px;
+@keyframes scrollAnim {
+  0% { left: -100%; }
+  50% { left: 0%; }
+  100% { left: 100%; }
 }
 
-/* АДАПТИВНІСТЬ */
+.scrollText {
+  font-family: var(--font-caps);
+  font-size: 9px;
+  color: var(--gold-60);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
 
-/* Планшети (до 1024px) */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .hero {
-    min-height: 90vh;
-    padding: 100px 0 60px;
-  }
-  
-  .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-  }
-  
-  .hero p {
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-  }
+  .container { padding: 0 40px; }
+  .scrollIndicator { left: 40px; }
 }
 
-/* Планшети (до 768px) */
 @media (max-width: 768px) {
-  .hero {
-    min-height: 85vh;
-    padding: 80px 0 40px;
-  }
-  
-  .heroInner {
-    max-width: 100%;
-    text-align: center;
-  }
-  
-  .hero h1 {
-    font-size: clamp(2rem, 4.5vw, 2.8rem);
-    margin-bottom: 16px;
-  }
-  
-  .hero p {
-    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-    margin-bottom: 25px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .btn {
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-  
-  .heroBg::before {
-    background: rgba(0, 0, 0, 0.7);
-  }
+  .hero { min-height: 90vh; padding-top: 72px; }
+  .container { padding: 0 28px; }
+  .heroInner { max-width: 100%; }
+  .hero p { max-width: 100%; }
+  .scrollIndicator { left: 28px; bottom: 28px; }
 }
 
-/* Мобільні (до 576px) */
 @media (max-width: 576px) {
-  .hero {
-    min-height: 80vh;
-    padding: 70px 0 30px;
-  }
-  
-  .container {
-    padding: 0 15px;
-  }
-  
-  .hero h1 {
-    font-size: clamp(1.8rem, 4vw, 2.2rem);
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  
-  .hero p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
-  
-  .btn {
-    padding: 13px 24px;
-    font-size: 0.95rem;
-    width: 100%;
-    max-width: 280px;
-  }
-  
-  .heroOverlay {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(40, 40, 40, 0.6) 50%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
-  }
-}
-
-/* Дуже малі екрани (до 400px) */
-@media (max-width: 400px) {
-  .hero {
-    min-height: 75vh;
-    padding: 60px 0 20px;
-  }
-  
-  .hero h1 {
-    font-size: 1.7rem;
-  }
-  
-  .hero p {
-    font-size: 0.95rem;
-  }
-  
-  .btn {
-    padding: 12px 20px;
-    font-size: 0.9rem;
-  }
-}
-
-/* Підтримка високих екранів */
-@media (min-height: 900px) {
-  .hero {
-    min-height: 85vh;
-  }
-}
-
-/* Підтримка ретина-екранів */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .heroBg {
-    background-size: cover;
-    background-attachment: fixed;
-  }
-}
-
-/* Анімація для кнопки - СІРА ВЕРСІЯ */
-@keyframes pulse {
-  0% {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-  50% {
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
-  }
-  100% {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-}
-
-.btn {
-  animation: pulse 3s infinite;
-}
-
-.btn:hover {
-  animation: none;
-}
-
-/* Додатковий ефект для дорогого вигляду */
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-}
-
-/* Ховер ефект для тексту */
-.hero h1,
-.hero p {
-  transition: color 0.3s ease;
-}
-
-.hero h1:hover {
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-/* Поліпшений градієнт для оверлею на мобільних */
-@media (max-width: 768px) {
-  .heroOverlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(20, 20, 20, 0.7) 50%,
-      rgba(0, 0, 0, 0.95) 100%
-    );
-  }
+  .hero { min-height: 85vh; padding-top: 64px; }
+  .container { padding: 0 20px; }
+  .hero h1 { font-size: 2.6rem; }
+  .btn { padding: 14px 28px; font-size: 12px; width: 100%; max-width: 280px; justify-content: center; }
+  .scrollIndicator { display: none; }
 }

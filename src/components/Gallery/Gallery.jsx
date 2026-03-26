@@ -1,4 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import n3 from '../../assets/images/IMG_7947.JPEG';
+import n4 from '../../assets/images/IMG_7948.JPEG';
+import n5 from '../../assets/images/IMG_7949.JPEG';
+import n6 from '../../assets/images/IMG_7951.JPEG';
+import n7 from '../../assets/images/IMG_7952.JPEG';
+import n8 from '../../assets/images/IMG_7969.JPEG';
+import n9 from '../../assets/images/IMG_7970.JPEG';
+import n10 from '../../assets/images/IMG_7971.JPEG';
+import n11 from '../../assets/images/IMG_7975.JPEG';
+import n12 from '../../assets/images/IMG_7976.JPEG';
 import g1 from '../../assets/images/gallery-1.webp';
 import g2 from '../../assets/images/gallery-2.webp';
 import g3 from '../../assets/images/gallery-3.webp';
@@ -14,155 +24,173 @@ import g12 from '../../assets/images/gallery-12.webp';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Gallery.module.css';
 
-export default function Gallery() {
-  const images = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12];
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const galleryRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+const images = [n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12];
 
-  // Відкриття модалки
-  const openModal = (index) => {
-    setCurrentIndex(index);
-    setIsModalOpen(true);
+// How many images visible at once (approx)
+const ITEMS_PER_PAGE = 3;
+const ITEM_WIDTH = 336; // 320px + 16px gap
+
+export default function Gallery() {
+  const [trackOffset, setTrackOffset] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalIndex, setModalIndex] = useState(0);
+  const maxOffset = -(images.length - ITEMS_PER_PAGE) * ITEM_WIDTH;
+
+  // Touch/drag
+  const dragStart = useRef(null);
+  const trackRef = useRef(null);
+
+  const slideNext = useCallback(() => {
+    setTrackOffset(prev => Math.max(prev - ITEM_WIDTH * ITEMS_PER_PAGE, maxOffset));
+  }, [maxOffset]);
+
+  const slidePrev = useCallback(() => {
+    setTrackOffset(prev => Math.min(prev + ITEM_WIDTH * ITEMS_PER_PAGE, 0));
+  }, []);
+
+  const goToPage = (page) => {
+    const newOffset = -page * ITEM_WIDTH * ITEMS_PER_PAGE;
+    setTrackOffset(Math.max(Math.min(newOffset, 0), maxOffset));
+  };
+
+  const currentPage = Math.round(-trackOffset / (ITEM_WIDTH * ITEMS_PER_PAGE));
+  const totalPages = Math.ceil(images.length / ITEMS_PER_PAGE);
+
+  // Modal controls
+  const openModal = (i) => {
+    setModalIndex(i);
+    setModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
 
-  // Закриття модалки
   const closeModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = 'auto';
+    setModalOpen(false);
+    document.body.style.overflow = '';
   };
 
-  // Наступне фото
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+  const modalNext = () => setModalIndex(prev => (prev + 1) % images.length);
+  const modalPrev = () => setModalIndex(prev => (prev - 1 + images.length) % images.length);
 
-  // Попереднє фото
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  // Клавіатурні скорочення
+  // Keyboard
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!isModalOpen) return;
+    const onKey = (e) => {
+      if (!modalOpen) return;
       if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') modalNext();
+      if (e.key === 'ArrowLeft') modalPrev();
     };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modalOpen]);
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen]);
+  useEffect(() => () => { document.body.style.overflow = ''; }, []);
 
-  // Drag для горизонтального скролу
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - galleryRef.current.offsetLeft);
-    setScrollLeft(galleryRef.current.scrollLeft);
+  // Touch support
+  const handleTouchStart = (e) => { dragStart.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    if (dragStart.current === null) return;
+    const diff = dragStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? slideNext() : slidePrev();
+    dragStart.current = null;
   };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - galleryRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    galleryRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  // Очищення
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
 
   return (
     <>
-      <section id="gallery" className={`${styles.section} ${styles.gallery}`}>
+      <section id="gallery" className={styles.section}>
         <div className={styles.container}>
-          {/* Заголовок секції */}
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Galeria prac</h2>
-            <div className={styles.sectionDivider}></div>
-            <p className={styles.sectionDescription}>
-              Zobacz efekty naszej precyzyjnej pracy
-            </p>
+            <div className={styles.sectionHeaderLeft}>
+              <div className={styles.sectionEyebrow}>Nasze realizacje</div>
+              <h2 className={styles.sectionTitle}>
+                Galeria <em>prac</em>
+              </h2>
+            </div>
+
+            <div className={styles.galleryControls}>
+              <button
+                className={styles.arrowBtn}
+                onClick={slidePrev}
+                aria-label="Poprzednie"
+                disabled={trackOffset === 0}
+              >
+                <ChevronLeft />
+              </button>
+              <button
+                className={styles.arrowBtn}
+                onClick={slideNext}
+                aria-label="Następne"
+                disabled={trackOffset <= maxOffset}
+              >
+                <ChevronRight />
+              </button>
+            </div>
           </div>
 
-          {/* Горизонтальна галерея зі скролом */}
-          <div 
-            className={styles.horizontalGallery}
-            ref={galleryRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
+          {/* Track */}
+          <div
+            className={styles.galleryViewport}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
-            <div className={styles.galleryTrack}>
+            <div
+              ref={trackRef}
+              className={styles.galleryTrack}
+              style={{ transform: `translateX(${trackOffset}px)` }}
+            >
               {images.map((src, i) => (
-                <div 
-                  className={styles.galleryItem} 
+                <div
                   key={i}
+                  className={styles.galleryItem}
                   onClick={() => openModal(i)}
                 >
-                  <img 
-                    src={src} 
-                    alt={`Praca ${i + 1}`}
-                    loading="lazy"
-                  />
+                  <img src={src} alt={`Praca ${i + 1}`} loading="lazy" />
                   <div className={styles.galleryOverlay}>
-                    <span className={styles.viewText}>Zobacz</span>
+                    <span className={styles.viewLabel}>Zobacz</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Індикатор скролу */}
-          <div className={styles.scrollHint}>
-            <span className={styles.scrollText}>← Przeciągnij, aby zobaczyć więcej →</span>
+          {/* Progress dots */}
+          <div className={styles.progressDots}>
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                className={`${styles.dot} ${i === currentPage ? styles.active : ''}`}
+                onClick={() => goToPage(i)}
+                aria-label={`Strona ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Спрощена модалка */}
-      {isModalOpen && (
+      {/* Modal */}
+      {modalOpen && (
         <div className={styles.modalOverlay} onClick={closeModal}>
-          <div className={styles.simpleModal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeModalBtn} onClick={closeModal}>
-              <X size={24} />
+          <div className={styles.modalInner} onClick={e => e.stopPropagation()}>
+            <button className={styles.modalClose} onClick={closeModal}>
+              <X size={16} />
             </button>
-            
-            <div className={styles.modalImageContainer}>
-              <img 
-                src={images[currentIndex]} 
-                alt={`Praca ${currentIndex + 1}`}
+
+            <div className={styles.modalImageWrap}>
+              <img
+                src={images[modalIndex]}
+                alt={`Praca ${modalIndex + 1}`}
                 className={styles.modalImage}
               />
             </div>
 
-            <div className={styles.modalNavigation}>
-              <button className={`${styles.navArrow} ${styles.prevArrow}`} onClick={prevImage}>
-                <ChevronLeft size={32} />
+            <div className={styles.modalNav}>
+              <button className={styles.modalNavBtn} onClick={modalPrev}>
+                <ChevronLeft size={20} />
               </button>
-              <span className={styles.imageInfo}>
-                {currentIndex + 1} / {images.length}
+              <span className={styles.modalCounter}>
+                {modalIndex + 1} / {images.length}
               </span>
-              <button className={`${styles.navArrow} ${styles.nextArrow}`} onClick={nextImage}>
-                <ChevronRight size={32} />
+              <button className={styles.modalNavBtn} onClick={modalNext}>
+                <ChevronRight size={20} />
               </button>
             </div>
           </div>

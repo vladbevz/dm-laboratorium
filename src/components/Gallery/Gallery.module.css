@@ -1,460 +1,330 @@
-/* Gallery.module.css - ОНОВЛЕНА ВЕРСІЯ */
+/* Gallery.module.css — PREMIUM REDESIGN */
 
-/* Основні стилі секції */
 .section {
-  padding: 80px 0;
+  padding: 120px 0;
+  background: var(--bg-1);
+  position: relative;
+  overflow: hidden;
 }
 
-.gallery {
-  background: #ffffff; /* Білий фон */
-  position: relative;
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 168, 76, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 100%, rgba(110, 18, 18, 0.1) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Заголовок секції */
+/* ── HEADER ── */
 .sectionHeader {
-  text-align: center;
-  margin-bottom: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+  gap: 32px;
+}
+
+.sectionHeaderLeft { flex: 1; }
+
+.sectionEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 16px;
+}
+
+.sectionEyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: #C9A84C;
 }
 
 .sectionTitle {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
-  color: #111111; /* Темно-сірий */
-  margin: 0 0 20px;
-  line-height: 1.1;
-}
-
-.sectionDivider {
-  width: 80px;
-  height: 2px; /* Тонша лінія */
-  background: linear-gradient(90deg, #000000, #333333); /* Чорний градієнт */
-  margin: 0 auto 20px;
-}
-
-.sectionDescription {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #555555; /* Сірий */
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
   font-weight: 300;
+  color: var(--cream);
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 1px;
 }
 
-/* Горизонтальна галерея - СПРОЩЕНА ВЕРСІЯ */
-.horizontalGallery {
-  overflow-x: auto;
-  overflow-y: hidden;
-  cursor: grab;
-  padding: 20px 0;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
+.sectionTitle em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
 }
 
-.horizontalGallery::-webkit-scrollbar {
-  height: 6px;
+/* ── ARROW CONTROLS ── */
+.galleryControls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-.horizontalGallery::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
+.arrowBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: rgba(201, 168, 76, 0.05);
+  color: #C9A84C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
 }
 
-.horizontalGallery::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
+.arrowBtn:hover {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: #C9A84C;
+  transform: scale(1.05);
 }
 
-.horizontalGallery::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.arrowBtn:active { transform: scale(0.97); }
+
+.arrowBtn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
 }
 
-.horizontalGallery:active {
-  cursor: grabbing;
+/* ── GALLERY TRACK ── */
+.galleryViewport {
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
 }
 
 .galleryTrack {
-  display: inline-flex;
-  gap: 20px;
-  padding: 0 10px 15px;
-  min-width: min-content;
+  display: flex;
+  gap: 16px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
-/* Картка галереї - СПРОЩЕНА */
+/* ── ITEM ── */
 .galleryItem {
   flex: 0 0 auto;
-  width: 300px;
-  height: 300px;
-  border-radius: 12px; /* Менше закруглення */
+  width: 320px;
+  height: 380px;
+  border-radius: 2px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* М'якіші тіні */
-  border: 1px solid rgba(0, 0, 0, 0.05); /* Тонка рамка */
+  transition: transform 0.4s ease;
 }
 
-.galleryItem:hover {
-  transform: translateY(-5px); /* Менший ефект підйому */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  border-color: rgba(0, 0, 0, 0.1);
-}
+.galleryItem:hover { transform: translateY(-6px); }
 
 .galleryItem img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
+  display: block;
 }
 
-.galleryItem:hover img {
-  transform: scale(1.03); /* Менше збільшення */
-}
+.galleryItem:hover img { transform: scale(1.06); }
 
-/* Оверлей - СПРОЩЕНА ВЕРСІЯ */
 .galleryOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0); /* Прозорий за замовчуванням */
+  background: linear-gradient(
+    to top,
+    rgba(8, 6, 4, 0.85) 0%,
+    rgba(8, 6, 4, 0.3) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+
+.galleryItem:hover .galleryOverlay { opacity: 1; }
+
+.viewLabel {
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.galleryItem:hover .galleryOverlay {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.4); /* Темний оверлей тільки при наведенні */
-}
-
-.viewText {
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  padding: 6px 16px;
-  background: rgba(0, 0, 0, 0.7); /* Напівпрозорий чорний */
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Тонка біла рамка */
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.3s ease;
-}
-
-.galleryItem:hover .viewText {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Індикатор скролу - СПРОЩЕНА ВЕРСІЯ */
-.scrollHint {
-  text-align: center;
-  margin-top: 20px;
-  padding: 10px;
-}
-
-.scrollText {
-  font-size: 13px;
-  color: #888888;
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
-  font-weight: 300;
 }
 
-/* Спрощена модалка - МІНІМАЛІСТИЧНА */
+.viewLabel::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: #C9A84C;
+}
+
+/* Progress dots */
+.progressDots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+}
+
+.dot {
+  width: 24px;
+  height: 2px;
+  background: rgba(201, 168, 76, 0.2);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.dot.active {
+  background: #C9A84C;
+  width: 40px;
+}
+
+/* ── MODAL ── */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.95); /* Темніший фон */
+  background: rgba(4, 3, 2, 0.97);
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  animation: fadeIn 0.2s ease;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.simpleModal {
-  background: transparent;
-  max-width: 95vw;
-  max-height: 95vh;
+.modalInner {
   position: relative;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Кнопка закриття - МІНІМАЛІСТИЧНА */
-.closeModalBtn {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  max-width: 90vw;
+  max-height: 90vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  z-index: 10;
-  backdrop-filter: blur(5px);
+  animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.closeModalBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(90deg);
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Контейнер зображення */
-.modalImageContainer {
-  max-width: 95vw;
-  max-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modalImageWrap {
+  position: relative;
+  max-width: 85vw;
+  max-height: 80vh;
+  border: 1px solid rgba(201, 168, 76, 0.12);
 }
 
 .modalImage {
   max-width: 100%;
-  max-height: 85vh;
+  max-height: 80vh;
   object-fit: contain;
-  border-radius: 4px;
+  display: block;
 }
 
-/* Навігація - МІНІМАЛІСТИЧНА */
-.modalNavigation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-  color: white;
+/* Gold border glow */
+.modalImageWrap::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), transparent, rgba(201,168,76,0.15));
+  z-index: -1;
 }
 
-.navArrow {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 44px;
-  height: 44px;
+.modalClose {
+  position: absolute;
+  top: -48px; right: 0;
+  width: 36px; height: 36px;
   border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: transparent;
+  color: rgba(245, 238, 220, 0.6);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modalClose:hover {
+  border-color: #C9A84C;
+  color: #C9A84C;
+  transform: rotate(90deg);
+}
+
+.modalNav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.modalNavBtn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  background: rgba(201, 168, 76, 0.05);
+  color: #C9A84C;
   cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
   transition: all 0.2s ease;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.navArrow:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-  border-color: rgba(255, 255, 255, 0.3);
+.modalNavBtn:hover {
+  border-color: #C9A84C;
+  background: rgba(201, 168, 76, 0.12);
 }
 
-.imageInfo {
-  font-size: 14px;
-  font-weight: 300;
-  opacity: 0.7;
+.modalCounter {
+  font-family: var(--font-caps);
+  font-size: 12px;
+  color: var(--cream-30);
+  letter-spacing: 3px;
   min-width: 60px;
   text-align: center;
 }
 
-/* АДАПТИВНІСТЬ */
-
-/* Планшети (до 1024px) */
-@media (max-width: 1024px) {
-  .galleryItem {
-    width: 280px;
-    height: 280px;
-  }
-}
-
-/* Планшети (до 768px) */
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 0;
-  }
-  
-  .sectionTitle {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-  }
-  
-  .galleryItem {
-    width: 240px;
-    height: 240px;
-  }
-  
-  .horizontalGallery {
-    padding: 15px 0;
-  }
-  
-  .modalNavigation {
-    gap: 15px;
-  }
-  
-  .navArrow {
-    width: 40px;
-    height: 40px;
-  }
+  .section { padding: 80px 0; }
+  .sectionHeader { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 36px; }
+  .galleryItem { width: 260px; height: 300px; }
 }
 
-/* Мобільні (до 576px) */
 @media (max-width: 576px) {
-  .container {
-    padding: 0 15px;
-  }
-  
-  .sectionHeader {
-    margin-bottom: 30px;
-  }
-  
-  .galleryItem {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .viewText {
-    font-size: 13px;
-    padding: 5px 12px;
-  }
-  
-  .scrollText {
-    font-size: 12px;
-  }
-  
-  .closeModalBtn {
-    top: -35px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .modalImageContainer {
-    max-height: 80vh;
-  }
-}
-
-/* Дуже малі екрани (до 400px) */
-@media (max-width: 400px) {
-  .galleryItem {
-    width: 180px;
-    height: 180px;
-  }
-  
-  .modalNavigation {
-    gap: 10px;
-    margin-top: 15px;
-  }
-  
-  .navArrow {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .imageInfo {
-    font-size: 12px;
-  }
-}
-
-/* Touch-пристрої */
-@media (hover: none) and (pointer: coarse) {
-  .galleryOverlay {
-    opacity: 0;
-  }
-  
-  .galleryItem:active .galleryOverlay {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.4);
-  }
-  
-  .viewText {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  .horizontalGallery::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .horizontalGallery {
-    scrollbar-width: none;
-  }
-}
-
-/* Додаткові ефекти */
-.horizontalGallery {
-  scroll-behavior: smooth;
-}
-
-/* Світла лінія для елегантності */
-.gallery::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
-}
-
-/* Темна тема */
-@media (prefers-color-scheme: dark) {
-  .gallery {
-    background: #0a0a0a;
-  }
-  
-  .sectionTitle {
-    color: #ffffff;
-  }
-  
-  .sectionDescription {
-    color: #aaaaaa;
-  }
-  
-  .galleryItem {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.05);
-  }
-  
-  .galleryItem:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .scrollText {
-    color: #888888;
-  }
-  
-  .horizontalGallery::-webkit-scrollbar-track {
-    background: #222;
-  }
-  
-  .horizontalGallery::-webkit-scrollbar-thumb {
-    background: #444;
-  }
-  
-  .horizontalGallery::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  .section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+  .galleryItem { width: 220px; height: 260px; }
+  .galleryControls { gap: 8px; }
+  .arrowBtn { width: 40px; height: 40px; }
 }
