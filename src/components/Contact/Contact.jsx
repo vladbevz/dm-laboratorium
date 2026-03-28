@@ -29,6 +29,15 @@ export default function Contact() {
     setFiles(prev => prev.filter((_, i) => i !== index));
   };
 
+  const fileToBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () =>
+        resolve({ name: file.name, content: reader.result.split(',')[1] });
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -41,36 +50,36 @@ export default function Contact() {
     }
 
     try {
-      // Use FormData to support file uploads
-      const data = new FormData();
-      data.append('name', formData.name);
-      data.append('phone', formData.phone);
-      data.append('email', formData.email);
-      data.append('message', formData.message);
-      data.append('_subject', `Nowa wiadomość od ${formData.name} - D&M Laboratorium`);
-      files.forEach(file => data.append('attachment', file));
+      const attachments = await Promise.all(files.map(fileToBase64));
 
-      const response = await fetch('https://formspree.io/f/mdkqlojp', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+          attachments,
+        }),
       });
 
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: 'Dziękujemy! Wiadomość wysłana. Skontaktujemy się wkrótce.',
+          message: 'Dziękujemy! Wiadomość wysłana. Sprawdź skrzynkę email — wysłaliśmy potwierdzenie.',
         });
         setFormData({ name: '', phone: '', email: '', message: '' });
         setFiles([]);
         if (fileInputRef.current) fileInputRef.current.value = '';
       } else {
-        throw new Error('Failed');
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error || 'Failed');
       }
-    } catch {
+    } catch (err) {
       setSubmitStatus({
         type: 'error',
-        message: 'Wystąpił błąd. Proszę spróbować ponownie lub zadzwonić.',
+        message: err.message || 'Wystąpił błąd. Proszę spróbować ponownie lub zadzwonić.',
       });
     } finally {
       setIsSubmitting(false);
