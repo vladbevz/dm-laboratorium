@@ -15,7 +15,21 @@ import g13 from '../../assets/images/15_Projekt bez nazwy.webp';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Gallery.module.css';
 
-const images = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13];
+const images = [
+  { src: g1,  alt: 'Korona cyrkonowa CAD/CAM — D&M Laboratorium Słubice' },
+  { src: g2,  alt: 'Most protetyczny na implantach — pracownia D&M Słubice' },
+  { src: g3,  alt: 'Licówki porcelanowe — estetyczna protetyka D&M Laboratorium' },
+  { src: g4,  alt: 'Korona pełnoceramiczna — precyzyjna praca protetyczna' },
+  { src: g5,  alt: 'Proteza szkieletowa — D&M Laboratorium Słubice' },
+  { src: g6,  alt: 'Uzupełnienie protetyczne CAD/CAM — D&M Laboratorium' },
+  { src: g7,  alt: 'Korona na implancie — cyfrowa pracownia protetyczna Słubice' },
+  { src: g8,  alt: 'Mosty cyrkonowe — nowoczesna protetyka D&M Laboratorium' },
+  { src: g9,  alt: 'Proteza całkowita akrylowa — D&M Laboratorium Słubice' },
+  { src: g10, alt: 'Licówka ceramiczna — estetyczne uzupełnienie protetyczne' },
+  { src: g11, alt: 'Korony teleskopowe — precyzyjna protetyka D&M Słubice' },
+  { src: g12, alt: 'Uzupełnienie implantoprotetyczne — D&M Laboratorium' },
+  { src: g13, alt: 'Indywidualne łączniki implantologiczne — D&M Laboratorium Słubice' },
+];
 
 // How many images visible at once (approx)
 const ITEMS_PER_PAGE = 3;
@@ -128,13 +142,13 @@ export default function Gallery() {
               className={styles.galleryTrack}
               style={{ transform: `translateX(${trackOffset}px)` }}
             >
-              {images.map((src, i) => (
+              {images.map(({ src, alt }, i) => (
                 <div
                   key={i}
                   className={styles.galleryItem}
                   onClick={() => openModal(i)}
                 >
-                  <img src={src} alt={`Praca ${i + 1}`} loading="lazy" />
+                  <img src={src} alt={alt} loading="lazy" />
                   <div className={styles.galleryOverlay}>
                     <span className={styles.viewLabel}>Zobacz</span>
                   </div>
@@ -167,8 +181,8 @@ export default function Gallery() {
 
             <div className={styles.modalImageWrap}>
               <img
-                src={images[modalIndex]}
-                alt={`Praca ${modalIndex + 1}`}
+                src={images[modalIndex].src}
+                alt={images[modalIndex].alt}
                 className={styles.modalImage}
               />
             </div>
