@@ -1,30 +1,21 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import n3 from '../../assets/images/IMG_7947.JPEG';
-import n4 from '../../assets/images/IMG_7948.JPEG';
-import n5 from '../../assets/images/IMG_7949.JPEG';
-import n6 from '../../assets/images/IMG_7951.JPEG';
-import n7 from '../../assets/images/IMG_7952.JPEG';
-import n8 from '../../assets/images/IMG_7969.JPEG';
-import n9 from '../../assets/images/IMG_7970.JPEG';
-import n10 from '../../assets/images/IMG_7971.JPEG';
-import n11 from '../../assets/images/IMG_7975.JPEG';
-import n12 from '../../assets/images/IMG_7976.JPEG';
-import g1 from '../../assets/images/gallery-1.webp';
-import g2 from '../../assets/images/gallery-2.webp';
-import g3 from '../../assets/images/gallery-3.webp';
-import g4 from '../../assets/images/gallery-4.webp';
-import g5 from '../../assets/images/gallery-5.webp';
-import g6 from '../../assets/images/gallery-6.webp';
-import g7 from '../../assets/images/gallery-7.webp';
-import g8 from '../../assets/images/gallery-8.webp';
-import g9 from '../../assets/images/gallery-9.webp';
-import g10 from '../../assets/images/gallery-10.webp';
-import g11 from '../../assets/images/gallery-11.webp';
-import g12 from '../../assets/images/gallery-12.webp';
+import g1  from '../../assets/images/1_Projekt bez nazwy.webp';
+import g2  from '../../assets/images/2_Projekt bez nazwy.webp';
+import g3  from '../../assets/images/3_Projekt bez nazwy.webp';
+import g4  from '../../assets/images/4_Projekt bez nazwy.webp';
+import g5  from '../../assets/images/5_Projekt bez nazwy.webp';
+import g6  from '../../assets/images/6_Projekt bez nazwy.webp';
+import g7  from '../../assets/images/7_Projekt bez nazwy.webp';
+import g8  from '../../assets/images/8_Projekt bez nazwy.webp';
+import g9  from '../../assets/images/9_Projekt bez nazwy.webp';
+import g10 from '../../assets/images/10_Projekt bez nazwy.webp';
+import g11 from '../../assets/images/12_Projekt bez nazwy.webp';
+import g12 from '../../assets/images/13_Projekt bez nazwy.webp';
+import g13 from '../../assets/images/15_Projekt bez nazwy.webp';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Gallery.module.css';
 
-const images = [n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12];
+const images = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13];
 
 // How many images visible at once (approx)
 const ITEMS_PER_PAGE = 3;

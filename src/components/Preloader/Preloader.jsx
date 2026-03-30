@@ -120,7 +120,7 @@ export default function Preloader() {
               style={{
                 display: 'block',
                 fontFamily: "'Cinzel', 'Cormorant Garamond', 'Georgia', serif",
-                fontSize: 'clamp(0.65rem, 2vw, 0.85rem)',
+                fontSize: 'clamp(0.9rem, 2.5vw, 1.15rem)',
                 fontWeight: 400,
                 letterSpacing: '8px',
                 color: 'rgba(201,168,76,0.55)',
@@ -138,8 +138,8 @@ export default function Preloader() {
             transition={{ duration: 0.8, delay: 1.3, ease: 'easeOut' }}
             style={{
               fontFamily: "'Cinzel', 'Cormorant Garamond', 'Georgia', serif",
-              fontSize: 'clamp(0.65rem, 1.8vw, 0.8rem)',
-              color: 'rgba(245,238,220,0.28)',
+              fontSize: 'clamp(0.8rem, 1.8vw, 0.95rem)',
+              color: 'rgba(245,238,220,0.32)',
               fontWeight: 400,
               letterSpacing: '4px',
               marginTop: '32px',
