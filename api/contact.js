@@ -3,6 +3,15 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 const ADMIN_EMAIL = 'dm.laboratorium.pl@gmail.com';
 const FROM = process.env.RESEND_FROM || 'D&M Laboratorium <onboarding@resend.dev>';
+const MAX_ATTACH_MB = 4;
+
+// Escape user input before inserting into HTML email
+const esc = (s) =>
+  String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,7 +21,15 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
+  if (!req.body) return res.status(400).json({ error: 'Brak danych' });
+
   const { name, phone, email, message, attachments = [] } = req.body;
+
+  // Guard against oversized attachments (base64 ≈ 1.33× binary)
+  const totalBytes = attachments.reduce((s, a) => s + (a.content?.length ?? 0) * 0.75, 0);
+  if (totalBytes > MAX_ATTACH_MB * 1024 * 1024) {
+    return res.status(413).json({ error: `Łączny rozmiar załączników przekracza ${MAX_ATTACH_MB} MB` });
+  }
 
   if (!name?.trim() || !phone?.trim()) {
     return res.status(400).json({ error: 'Imię i telefon są wymagane' });
@@ -83,10 +100,10 @@ function adminEmailHtml({ name, phone, email, message }) {
         <tr>
           <td style="padding:8px 24px 24px;">
             <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #f0ebe0;border-radius:1px;overflow:hidden;">
-              ${row('Imię', name)}
-              ${row('Telefon', `<a href="tel:${phone}" style="color:#C9A84C;text-decoration:none;">${phone}</a>`)}
-              ${email ? row('Email', `<a href="mailto:${email}" style="color:#C9A84C;text-decoration:none;">${email}</a>`) : ''}
-              ${message ? row('Wiadomość', message.replace(/\n/g, '<br>')) : ''}
+              ${row('Imię', esc(name))}
+              ${row('Telefon', `<a href="tel:${esc(phone)}" style="color:#C9A84C;text-decoration:none;">${esc(phone)}</a>`)}
+              ${email ? row('Email', `<a href="mailto:${esc(email)}" style="color:#C9A84C;text-decoration:none;">${esc(email)}</a>`) : ''}
+              ${message ? row('Wiadomość', esc(message).replace(/\n/g, '<br>')) : ''}
             </table>
           </td>
         </tr>
@@ -130,7 +147,7 @@ function clientEmailHtml({ name }) {
           <td style="padding:48px 48px 40px;text-align:center;">
             <p style="margin:0 0 6px;font-family:Georgia,serif;font-size:11px;color:#C9A84C;letter-spacing:4px;text-transform:uppercase;">Potwierdzenie</p>
             <h1 style="margin:12px 0 24px;font-family:Georgia,serif;font-size:26px;font-weight:300;color:#1a1208;line-height:1.3;">
-              Dziękujemy,<br><em style="font-style:italic;color:#C9A84C;">${name}</em>
+              Dziękujemy,<br><em style="font-style:italic;color:#C9A84C;">${esc(name)}</em>
             </h1>
             <div style="width:40px;height:1px;background:#C9A84C;margin:0 auto 28px;opacity:0.3;"></div>
             <p style="margin:0 0 16px;font-family:Georgia,serif;font-size:16px;color:#555;line-height:1.8;font-weight:300;">

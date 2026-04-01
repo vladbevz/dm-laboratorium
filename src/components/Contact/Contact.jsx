@@ -79,7 +79,9 @@ export default function Contact() {
     } catch (err) {
       setSubmitStatus({
         type: 'error',
-        message: err.message || 'Wystąpił błąd. Proszę spróbować ponownie lub zadzwonić.',
+        message: err.message?.includes('MB')
+          ? err.message
+          : 'Wystąpił błąd. Proszę spróbować ponownie lub zadzwonić.',
       });
     } finally {
       setIsSubmitting(false);
