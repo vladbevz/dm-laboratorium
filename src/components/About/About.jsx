@@ -1,21 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
-import photoDaria from '../../assets/photo_2026-05-05_21-20-27.jpg';
-import photoMonika from '../../assets/photo_2026-05-05_21-20-29.jpg';
+import photoMariya from '../../assets/photo_2026-05-05_21-20-27.jpg';
+import photoDasha from '../../assets/photo_2026-05-05_21-20-29.jpg';
 
 const team = [
   {
-    photo: photoDaria,
-    name: 'D.',
-    role: 'Współzałożycielka & Technik dentystyczny',
-    bio: 'Specjalistka w zakresie protetyki stałej i ceramiki. Pasjonatka estetyki i precyzji — każdą pracę traktuje jak dzieło sztuki.',
-  },
-  {
-    photo: photoMonika,
-    name: 'M.',
+    photo: photoDasha,
+    name: 'Dasha',
     role: 'Współzałożycielka & Technik dentystyczny',
     bio: 'Ekspertka od protez ruchomych i szkieletowych. Łączy tradycyjne rzemiosło z nowoczesnymi technikami cyfrowymi.',
+  },
+  {
+    photo: photoMariya,
+    name: 'Mariya',
+    role: 'Współzałożycielka & Technik dentystyczny',
+    bio: 'Specjalistka w zakresie protetyki stałej i ceramiki. Pasjonatka estetyki i precyzji — każdą pracę traktuje jak dzieło sztuki.',
   },
 ];
 
