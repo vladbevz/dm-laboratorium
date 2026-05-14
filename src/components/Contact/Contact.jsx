@@ -127,7 +127,7 @@ export default function Contact() {
                 label: 'Instagram',
                 content: (
                   <a
-                    href="https://www.instagram.com/d_m_labolatorium"
+                    href="https://www.instagram.com/d_m_laboratorium"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`${styles.contactValue} ${styles.socialLink}`}
