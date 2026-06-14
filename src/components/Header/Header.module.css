@@ -52,6 +52,7 @@
   letter-spacing: 6px;
   position: relative;
   line-height: 1;
+  align-self: center;
 }
 
 .logoPart::after {

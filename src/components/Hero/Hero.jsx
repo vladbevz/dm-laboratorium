@@ -4,7 +4,6 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
   const contentRef = useRef();
-  const [scrollVisible, setScrollVisible] = useState(false);
   const [photoVisible, setPhotoVisible] = useState(false);
 
   const scrollToContact = (e) => {
@@ -18,7 +17,6 @@ export default function Hero() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add(styles.isVisible);
-          setTimeout(() => setScrollVisible(true), 1400);
           setTimeout(() => setPhotoVisible(true), 300);
         }
       });
@@ -57,11 +55,6 @@ export default function Hero() {
             Skontaktuj się
           </a>
         </div>
-      </div>
-
-      <div className={`${styles.scrollIndicator} ${scrollVisible ? styles.visible : ''}`}>
-        <span className={styles.scrollLine} />
-        <span className={styles.scrollText}>Przewiń</span>
       </div>
     </section>
   );

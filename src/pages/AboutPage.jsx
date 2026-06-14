@@ -38,7 +38,6 @@ export default function AboutPage() {
         eyebrow="Kim jesteśmy"
         title="O nas"
         subtitle="D&M Laboratorium to nowoczesna pracownia protetyczna prowadzona przez dwie pasjonatki — Darynę i Marię Saiko."
-        breadcrumb="O nas"
         photo={heroPhoto}
         photoPosition="center 25%"
       />
@@ -75,18 +74,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Lab photos placeholder */}
+      {/* Before / After */}
       <section className={`${styles.section} ${styles.sectionDark}`}>
         <div className={styles.container}>
-          <div className={styles.sectionEyebrow}>Nasze laboratorium</div>
-          <h2 className={styles.sectionTitle}>Miejsce, gdzie powstają <em>prace</em></h2>
+          <div className={styles.sectionEyebrow}>Efekty naszej pracy</div>
+          <h2 className={styles.sectionTitle}>Jak zmieniamy <em>uśmiechy</em></h2>
           <div className={styles.sectionDivider} />
-          <div className={styles.labGrid}>
+          <div className={styles.beforeAfterGrid}>
             {[1, 2, 3].map((n) => (
-              <div key={n} className={styles.photoPlaceholder}>
-                <span className={styles.placeholderIcon}>+</span>
-                <span className={styles.placeholderText}>Zdjęcie laboratorium</span>
-              </div>
+              <motion.div
+                key={n}
+                className={styles.beforeAfterCard}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: n * 0.1, ease: [0.4, 0, 0.2, 1] }}
+                viewport={{ once: true }}
+              >
+                <div className={styles.beforeAfterImgWrap}>
+                  <img
+                    src={`/src/assets/images/before-after-${n}.webp`}
+                    alt={`Transformacja ${n}`}
+                    className={styles.beforeAfterImg}
+                  />
+                </div>
+                <div className={styles.beforeAfterLabel}>
+                  <span>Przed</span>
+                  <span className={styles.labelDivider} />
+                  <span>Po</span>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>

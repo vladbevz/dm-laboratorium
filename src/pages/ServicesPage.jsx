@@ -31,7 +31,6 @@ export default function ServicesPage() {
         eyebrow="Co oferujemy"
         title="Usługi Protetyczne"
         subtitle="Kompleksowe rozwiązania protetyczne wykonywane z najwyższą precyzją. Wybierz kategorię, aby poznać szczegółową ofertę."
-        breadcrumb="Usługi"
         photo={heroPhoto}
         photoPosition="center 20%"
       />
@@ -84,10 +83,6 @@ export default function ServicesPage() {
                               </li>
                             ))}
                           </ul>
-                          <div className={styles.photoPlaceholder}>
-                            <span className={styles.placeholderIcon}>+</span>
-                            <span className={styles.placeholderText}>Zdjęcie</span>
-                          </div>
                         </div>
                       </motion.div>
                     )}

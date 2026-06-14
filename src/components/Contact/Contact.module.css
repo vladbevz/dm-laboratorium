@@ -162,7 +162,7 @@
   display: block;
   font-family: 'Georgia', serif;
   font-size: 15px;
-  color: rgba(245, 238, 220, 0.75);
+  color: var(--cream-80);
   text-decoration: none;
   transition: color 0.2s ease;
   line-height: 1.5;
@@ -255,7 +255,7 @@ address { font-style: normal; }
 
 .formInput::placeholder,
 .formTextarea::placeholder {
-  color: rgba(245, 238, 220, 0.2);
+  color: var(--cream-30);
 }
 
 .formInput:focus,
@@ -327,7 +327,7 @@ address { font-style: normal; }
 
 .fileText {
   font-size: 13px;
-  color: rgba(245, 238, 220, 0.35);
+  color: var(--cream-50);
   font-family: 'Georgia', serif;
   transition: color 0.25s ease;
 }
@@ -388,7 +388,7 @@ address { font-style: normal; }
 
 .fileHint {
   font-size: 11px;
-  color: rgba(245, 238, 220, 0.2);
+  color: var(--cream-30);
   margin-top: 6px;
   font-family: var(--font-serif);
   letter-spacing: 0.3px;
@@ -404,7 +404,7 @@ address { font-style: normal; }
 
 .formNote {
   font-size: 12px;
-  color: rgba(245, 238, 220, 0.2);
+  color: var(--cream-30);
   font-family: 'Georgia', serif;
 }
 
@@ -510,7 +510,7 @@ address { font-style: normal; }
 
 .mapNote {
   font-size: 13px;
-  color: rgba(245, 238, 220, 0.3);
+  color: var(--cream-50);
   line-height: 1.7;
   margin: 0;
   font-family: 'Georgia', serif;

@@ -11,7 +11,6 @@ export default function ContactPage() {
         eyebrow="Napisz do nas"
         title="Kontakt"
         subtitle="Chętnie odpowiemy na pytania i omówimy szczegóły współpracy."
-        breadcrumb="Kontakt"
         photo={heroPhoto}
       />
       <Contact />

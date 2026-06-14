@@ -1,0 +1,29 @@
+.section {
+  background: var(--bg-2);
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--gold-12);
+  border-bottom: 1px solid var(--gold-12);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 44px;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  font-family: var(--font-caps);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+}

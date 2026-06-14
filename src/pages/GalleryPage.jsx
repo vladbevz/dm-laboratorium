@@ -30,7 +30,6 @@ export default function GalleryPage() {
         eyebrow="Nasze realizacje"
         title="Galeria"
         subtitle="Wybrane prace wykonane w D&M Laboratorium. Każda realizacja to połączenie precyzji technicznej i estetyki."
-        breadcrumb="Galeria"
         photo={heroPhoto}
       />
 
@@ -59,13 +58,6 @@ export default function GalleryPage() {
               </motion.div>
             ))}
 
-            {/* Placeholder slots for client photos */}
-            {[1, 2, 3].map((n) => (
-              <div key={`ph-${n}`} className={`${styles.item} ${styles.placeholder}`}>
-                <span className={styles.placeholderIcon}>+</span>
-                <span className={styles.placeholderText}>Zdjęcie</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
