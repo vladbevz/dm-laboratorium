@@ -1,34 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header/Header.jsx';
-import Hero from './components/Hero/Hero.jsx';
-import Services from './components/Services/Services.jsx';
-import About from './components/About/About.jsx';
-import Gallery from './components/Gallery/Gallery.jsx';
-import Contact from './components/Contact/Contact.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import Preloader from './components/Preloader/Preloader.jsx';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage.jsx';
+import ServicesPage from './pages/ServicesPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
+import GalleryPage from './pages/GalleryPage.jsx';
+import ContactPage from './pages/ContactPage.jsx';
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) return <Preloader />;
-
   return (
-    <div>
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <About />
-        <Gallery />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/uslugi" element={<ServicesPage />} />
+        <Route path="/o-nas" element={<AboutPage />} />
+        <Route path="/galeria" element={<GalleryPage />} />
+        <Route path="/kontakt" element={<ContactPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
