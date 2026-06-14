@@ -248,7 +248,7 @@
     position: relative;
     top: auto; right: auto;
     width: 100%;
-    height: clamp(280px, 55vw, 420px);
+    height: clamp(360px, 70vw, 520px);
     transform: translateY(-16px);
   }
   .heroPhotoWrap.photoVisible { transform: translateY(0); }
@@ -267,7 +267,7 @@
   .container { padding: 0 20px; }
   .heroInner { padding: 32px 0 40px; }
   .hero h1 { font-size: 2.4rem; }
-  .heroPhotoWrap { height: clamp(220px, 60vw, 320px); }
+  .heroPhotoWrap { height: clamp(300px, 70vw, 440px); }
   .btn { padding: 14px 28px; font-size: 12px; width: 100%; max-width: 280px; justify-content: center; }
   .scrollIndicator { display: none; }
 }

@@ -146,6 +146,22 @@
   gap: 6px;
 }
 
+.legal {
+  margin: 0;
+}
+
+.legalLink {
+  font-family: var(--font-caps);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream-30);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legalLink:hover { color: var(--gold); }
+
 .heartIcon {
   color: #C9A84C;
   fill: none;

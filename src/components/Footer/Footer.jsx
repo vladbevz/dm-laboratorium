@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -38,6 +39,9 @@ export default function Footer() {
             </p>
             <p className={styles.note}>
               Stworzone z <Heart size={12} className={styles.heartIcon} /> dla perfekcyjnych uśmiechów
+            </p>
+            <p className={styles.legal}>
+              <Link to="/polityka-prywatnosci" className={styles.legalLink}>Polityka Prywatności</Link>
             </p>
           </div>
 
