@@ -34,32 +34,28 @@ export default function Hero() {
       </div>
       <div className={styles.heroRule} />
 
+      <div className={`${styles.heroPhotoWrap} ${photoVisible ? styles.photoVisible : ''}`}>
+        <img
+          src={heroTeam}
+          alt="Dasha i Mariya — założycielki D&M Laboratorium"
+          className={styles.heroPhoto}
+        />
+        <div className={styles.photoFade} />
+      </div>
+
       <div className={styles.container}>
-        <div className={styles.heroGrid}>
-
-          <div className={styles.heroInner} ref={contentRef}>
-            <h1>
-              Nowoczesne <em>cyfrowe</em><br />
-              laboratorium protetyczne
-            </h1>
-            <p>
-              Tworzymy protetykę, która łączy funkcję, estetykę i niezawodność.
-              Precyzja CAD/CAM w każdej pracy.
-            </p>
-            <a className={styles.btn} href="#contact" onClick={scrollToContact}>
-              Skontaktuj się
-            </a>
-          </div>
-
-          <div className={`${styles.heroPhotoWrap} ${photoVisible ? styles.photoVisible : ''}`}>
-            <img
-              src={heroTeam}
-              alt="Dasha i Mariya — założycielki D&M Laboratorium"
-              className={styles.heroPhoto}
-            />
-            <div className={styles.photoAccent} />
-          </div>
-
+        <div className={styles.heroInner} ref={contentRef}>
+          <h1>
+            Nowoczesne <em>cyfrowe</em><br />
+            laboratorium protetyczne
+          </h1>
+          <p>
+            Tworzymy protetykę, która łączy funkcję, estetykę i niezawodność.
+            Precyzja CAD/CAM w każdej pracy.
+          </p>
+          <a className={styles.btn} href="#contact" onClick={scrollToContact}>
+            Skontaktuj się
+          </a>
         </div>
       </div>
 
