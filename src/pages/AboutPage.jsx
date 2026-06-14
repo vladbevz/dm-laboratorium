@@ -5,6 +5,9 @@ import PageHero from '../components/PageHero/PageHero.jsx';
 import heroPhoto from '../assets/images/o-nas-hero.webp';
 import photoDasha from '../assets/images/dasha.webp';
 import photoMariya from '../assets/images/mariya.webp';
+import beforeAfter1 from '../assets/images/before-after-1.webp';
+import beforeAfter2 from '../assets/images/before-after-2.webp';
+import beforeAfter3 from '../assets/images/before-after-3.webp';
 import styles from './AboutPage.module.css';
 
 const team = [
@@ -92,7 +95,7 @@ export default function AboutPage() {
               >
                 <div className={styles.beforeAfterImgWrap}>
                   <img
-                    src={`/src/assets/images/before-after-${n}.webp`}
+                    src={[beforeAfter1, beforeAfter2, beforeAfter3][n - 1]}
                     alt={`Transformacja ${n}`}
                     className={styles.beforeAfterImg}
                   />

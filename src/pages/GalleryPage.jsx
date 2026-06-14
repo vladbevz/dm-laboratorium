@@ -5,7 +5,9 @@ import PageHero from '../components/PageHero/PageHero.jsx';
 import heroPhoto from '../assets/images/galeria-hero.webp';
 import styles from './GalleryPage.module.css';
 
-const images = [
+const imageModules = import.meta.glob('../assets/images/*Projekt*.webp', { eager: true });
+
+const imageOrder = [
   '4_Projekt bez nazwy.webp',
   '7_Projekt bez nazwy.webp',
   '6_Projekt bez nazwy.webp',
@@ -20,6 +22,10 @@ const images = [
   '2_Projekt bez nazwy.webp',
   '1_Projekt bez nazwy.webp',
 ];
+
+const images = imageOrder
+  .map(name => imageModules[`../assets/images/${name}`]?.default)
+  .filter(Boolean);
 
 export default function GalleryPage() {
   const [lightbox, setLightbox] = useState(null);
@@ -47,7 +53,7 @@ export default function GalleryPage() {
                 onClick={() => setLightbox(i)}
               >
                 <img
-                  src={`/src/assets/images/${img}`}
+                  src={img}
                   alt={`Realizacja ${i + 1}`}
                   className={styles.img}
                   loading="lazy"
@@ -67,7 +73,7 @@ export default function GalleryPage() {
         <div className={styles.lightbox} onClick={() => setLightbox(null)}>
           <button className={styles.lightboxClose} onClick={() => setLightbox(null)}>✕</button>
           <img
-            src={`/src/assets/images/${images[lightbox]}`}
+            src={images[lightbox]}
             alt=""
             className={styles.lightboxImg}
             onClick={(e) => e.stopPropagation()}
