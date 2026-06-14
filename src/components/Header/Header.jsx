@@ -53,7 +53,7 @@ export default function Header() {
         <div className={styles.headerInner}>
 
           {/* Logo */}
-          <Link className={styles.logoText} to="/" onClick={closeMenu}>
+          <Link className={styles.logoText} to="/" onClick={() => { closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             <span className={styles.logoPart}>D&M</span>
             <span className={styles.logoPartSub}>Laboratorium</span>
           </Link>
