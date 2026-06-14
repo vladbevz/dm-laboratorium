@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import styles from './PrivacyPage.module.css';
 
 export default function PrivacyPage() {
+  useEffect(() => { document.title = 'Polityka Prywatności | D&M Laboratorium'; }, []);
   return (
     <PageLayout>
       <div className={styles.page}>

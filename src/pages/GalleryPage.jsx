@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
@@ -29,6 +29,8 @@ const images = imageOrder
 
 export default function GalleryPage() {
   const [lightbox, setLightbox] = useState(null);
+
+  useEffect(() => { document.title = 'Galeria Realizacji — Efekty Naszej Pracy | D&M Laboratorium'; }, []);
 
   return (
     <PageLayout>

@@ -12,6 +12,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'D&M Laboratorium | Pracownia Protetyczna dla Gabinetów w Całej Polsce';
     const timer = setTimeout(() => setIsLoading(false), 3500);
     return () => clearTimeout(timer);
   }, []);

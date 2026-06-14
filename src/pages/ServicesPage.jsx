@@ -16,6 +16,10 @@ export default function ServicesPage() {
   };
 
   useEffect(() => {
+    document.title = 'Usługi Protetyczne — Korony, Mosty, Protezy | D&M Laboratorium';
+  }, []);
+
+  useEffect(() => {
     if (location.hash) {
       const slug = location.hash.replace('#', '');
       setOpenItems((prev) => ({ ...prev, [slug]: true }));

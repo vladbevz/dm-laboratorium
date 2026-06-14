@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
@@ -34,7 +34,9 @@ const values = [
   { title: 'Partnerstwo', desc: 'Stała komunikacja i wsparcie dla gabinetów stomatologicznych.' },
 ];
 
+
 export default function AboutPage() {
+  useEffect(() => { document.title = 'O nas — Techniki i Zespół | D&M Laboratorium'; }, []);
   return (
     <PageLayout>
       <PageHero
