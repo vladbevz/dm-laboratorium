@@ -14,37 +14,13 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
 }
 
-.heroBgImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-
-/* Directional overlay — left side dark for text legibility, right opens up for photo */
-.heroBg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(4, 1, 2, 0.90) 0%,
-    rgba(4, 1, 2, 0.65) 40%,
-    rgba(4, 1, 2, 0.28) 70%,
-    rgba(4, 1, 2, 0.18) 100%
-  );
-  z-index: 1;
-}
-
-/* Burgundy/gold vignette */
+/* Atmospheric brand gradients — no photo background */
 .heroOverlay {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   background:
     radial-gradient(ellipse 75% 65% at 0% 100%, rgba(120, 18, 18, 0.35) 0%, transparent 65%),
     radial-gradient(ellipse 55% 50% at 100% 0%, rgba(201, 168, 76, 0.07) 0%, transparent 55%);
@@ -68,8 +44,18 @@
   z-index: 4;
 }
 
+/* ── TWO-COLUMN GRID ── */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  min-height: calc(100vh - 88px);
+  padding: 60px 0;
+}
+
+/* ── TEXT COLUMN ── */
 .heroInner {
-  max-width: 720px;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 1s ease, transform 1s ease;
@@ -80,40 +66,10 @@
   transform: translateY(0);
 }
 
-/* Eyebrow */
-.heroEyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--font-caps);
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  margin-bottom: 28px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
-}
-
-.heroInner.isVisible .heroEyebrow {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.heroEyebrow::before {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: #C9A84C;
-}
-
 /* Heading */
 .hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 6vw, 5.4rem);
+  font-size: clamp(2.6rem, 4.5vw, 4.4rem);
   line-height: 1.08;
   margin: 0 0 24px;
   font-weight: 300;
@@ -138,11 +94,10 @@
 /* Paragraph */
 .hero p {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   line-height: 1.85;
   margin: 0 0 48px;
   color: var(--cream-50);
-  max-width: 520px;
   font-weight: 300;
   letter-spacing: 0.5px;
   opacity: 0;
@@ -198,6 +153,38 @@
 
 .btn:hover::after { transform: translateX(4px); }
 
+/* ── PHOTO COLUMN ── */
+.heroPhotoWrap {
+  position: relative;
+  height: clamp(420px, 60vh, 640px);
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 1.1s ease 0.4s, transform 1.1s ease 0.4s;
+}
+
+.heroPhotoWrap.photoVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.heroPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Gold accent line on the left edge of the photo */
+.photoAccent {
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: -1px;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, #C9A84C 30%, #C9A84C 70%, transparent);
+}
+
 /* Scroll indicator */
 .scrollIndicator {
   position: absolute;
@@ -211,7 +198,6 @@
   transition: opacity 1s ease 1.4s;
 }
 
-.heroInner.isVisible ~ .scrollIndicator,
 .scrollIndicator.visible {
   opacity: 1;
 }
@@ -250,31 +236,41 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .container { padding: 0 40px; }
+  .heroGrid { gap: 48px; }
   .scrollIndicator { left: 40px; }
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: 90vh; padding-top: 72px; }
+  .hero { min-height: auto; padding-top: 72px; }
   .container { padding: 0 28px; }
-  .heroInner { max-width: 100%; }
-  .hero p { max-width: 100%; }
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px 0 60px;
+    min-height: auto;
+  }
+  .heroPhotoWrap {
+    height: clamp(280px, 50vw, 420px);
+    order: -1; /* photo above text on tablet */
+    transform: translateY(-16px);
+  }
+  .heroPhotoWrap.photoVisible {
+    transform: translateY(0);
+  }
+  .photoAccent {
+    top: auto; bottom: -1px; left: 12%; right: 12%;
+    width: auto; height: 2px;
+    background: linear-gradient(90deg, transparent, #C9A84C 30%, #C9A84C 70%, transparent);
+  }
   .scrollIndicator { left: 28px; bottom: 28px; }
 }
 
 @media (max-width: 576px) {
-  .hero { min-height: 85vh; padding-top: 64px; }
+  .hero { padding-top: 64px; }
   .container { padding: 0 20px; }
-  .hero h1 { font-size: 2.6rem; }
+  .heroGrid { gap: 32px; padding: 36px 0 48px; }
+  .hero h1 { font-size: 2.4rem; }
+  .heroPhotoWrap { height: clamp(220px, 55vw, 340px); }
   .btn { padding: 14px 28px; font-size: 12px; width: 100%; max-width: 280px; justify-content: center; }
   .scrollIndicator { display: none; }
-  /* On mobile text spans full width — switch to top-down gradient */
-  .heroBg::before {
-    background: linear-gradient(
-      180deg,
-      rgba(4, 1, 2, 0.82) 0%,
-      rgba(4, 1, 2, 0.60) 55%,
-      rgba(4, 1, 2, 0.45) 100%
-    );
-  }
-  .heroBgImg { object-position: center top; }
 }
