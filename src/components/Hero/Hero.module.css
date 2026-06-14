@@ -13,30 +13,14 @@
 .heroBg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
   z-index: 0;
 }
 
-/* Dramatic dark overlay */
-.heroBg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    110deg,
-    rgba(4, 1, 2, 0.93) 0%,
-    rgba(8, 3, 4, 0.76) 55%,
-    rgba(4, 1, 2, 0.88) 100%
-  );
-  z-index: 1;
-}
-
-/* Burgundy/gold vignette */
+/* Atmospheric brand gradients — no photo background */
 .heroOverlay {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   background:
     radial-gradient(ellipse 75% 65% at 0% 100%, rgba(120, 18, 18, 0.35) 0%, transparent 65%),
     radial-gradient(ellipse 55% 50% at 100% 0%, rgba(201, 168, 76, 0.07) 0%, transparent 55%);
@@ -60,8 +44,10 @@
   z-index: 4;
 }
 
+/* ── TEXT ── */
 .heroInner {
-  max-width: 720px;
+  max-width: 580px;
+  padding: 80px 0;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 1s ease, transform 1s ease;
@@ -72,40 +58,10 @@
   transform: translateY(0);
 }
 
-/* Eyebrow */
-.heroEyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--font-caps);
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  margin-bottom: 28px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
-}
-
-.heroInner.isVisible .heroEyebrow {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.heroEyebrow::before {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: #C9A84C;
-}
-
 /* Heading */
 .hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 6vw, 5.4rem);
+  font-size: clamp(2.6rem, 4.5vw, 4.4rem);
   line-height: 1.08;
   margin: 0 0 24px;
   font-weight: 300;
@@ -130,11 +86,10 @@
 /* Paragraph */
 .hero p {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   line-height: 1.85;
   margin: 0 0 48px;
   color: var(--cream-50);
-  max-width: 520px;
   font-weight: 300;
   letter-spacing: 0.5px;
   opacity: 0;
@@ -190,6 +145,45 @@
 
 .btn:hover::after { transform: translateX(4px); }
 
+/* ── PHOTO — full height, right half ── */
+.heroPhotoWrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 1.1s ease 0.4s, transform 1.1s ease 0.4s;
+}
+
+.heroPhotoWrap.photoVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.heroPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Gradient fade on the left edge — blends photo into dark background */
+.photoFade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--bg-1) 0%,
+    rgba(4, 1, 2, 0.55) 25%,
+    rgba(4, 1, 2, 0.10) 55%,
+    transparent 100%
+  );
+}
+
 /* Scroll indicator */
 .scrollIndicator {
   position: absolute;
@@ -203,7 +197,6 @@
   transition: opacity 1s ease 1.4s;
 }
 
-.heroInner.isVisible ~ .scrollIndicator,
 .scrollIndicator.visible {
   opacity: 1;
 }
@@ -242,21 +235,39 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .container { padding: 0 40px; }
+  .heroPhotoWrap { width: 50%; }
   .scrollIndicator { left: 40px; }
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: 90vh; padding-top: 72px; }
+  .hero { min-height: auto; padding-top: 72px; display: block; }
   .container { padding: 0 28px; }
-  .heroInner { max-width: 100%; }
-  .hero p { max-width: 100%; }
+  .heroInner { max-width: 100%; padding: 40px 0 48px; }
+  /* Photo: back to normal flow, full width, fixed height above text */
+  .heroPhotoWrap {
+    position: relative;
+    top: auto; right: auto;
+    width: 100%;
+    height: clamp(280px, 55vw, 420px);
+    transform: translateY(-16px);
+  }
+  .heroPhotoWrap.photoVisible { transform: translateY(0); }
+  .photoFade {
+    background: linear-gradient(
+      180deg,
+      transparent 50%,
+      rgba(4, 1, 2, 0.7) 100%
+    );
+  }
   .scrollIndicator { left: 28px; bottom: 28px; }
 }
 
 @media (max-width: 576px) {
-  .hero { min-height: 85vh; padding-top: 64px; }
+  .hero { padding-top: 64px; }
   .container { padding: 0 20px; }
-  .hero h1 { font-size: 2.6rem; }
+  .heroInner { padding: 32px 0 40px; }
+  .hero h1 { font-size: 2.4rem; }
+  .heroPhotoWrap { height: clamp(220px, 60vw, 320px); }
   .btn { padding: 14px 28px; font-size: 12px; width: 100%; max-width: 280px; justify-content: center; }
   .scrollIndicator { display: none; }
 }

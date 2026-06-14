@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import heroImg from '../../assets/images/hero-placeholder.webp';
+import heroTeam from '../../assets/images/hero-team.webp';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   const contentRef = useRef();
   const [scrollVisible, setScrollVisible] = useState(false);
+  const [photoVisible, setPhotoVisible] = useState(false);
 
   const scrollToContact = (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ export default function Hero() {
         if (entry.isIntersecting) {
           entry.target.classList.add(styles.isVisible);
           setTimeout(() => setScrollVisible(true), 1400);
+          setTimeout(() => setPhotoVisible(true), 300);
         }
       });
     }, { threshold: 0.2 });
@@ -27,10 +29,19 @@ export default function Hero() {
 
   return (
     <section className={styles.hero} id="hero">
-      <div className={styles.heroBg} style={{ backgroundImage: `url(${heroImg})` }}>
+      <div className={styles.heroBg}>
         <div className={styles.heroOverlay} />
       </div>
       <div className={styles.heroRule} />
+
+      <div className={`${styles.heroPhotoWrap} ${photoVisible ? styles.photoVisible : ''}`}>
+        <img
+          src={heroTeam}
+          alt="Dasha i Mariya — założycielki D&M Laboratorium"
+          className={styles.heroPhoto}
+        />
+        <div className={styles.photoFade} />
+      </div>
 
       <div className={styles.container}>
         <div className={styles.heroInner} ref={contentRef}>
@@ -38,12 +49,10 @@ export default function Hero() {
             Nowoczesne <em>cyfrowe</em><br />
             laboratorium protetyczne
           </h1>
-
           <p>
             Tworzymy protetykę, która łączy funkcję, estetykę i niezawodność.
             Precyzja CAD/CAM w każdej pracy.
           </p>
-
           <a className={styles.btn} href="#contact" onClick={scrollToContact}>
             Skontaktuj się
           </a>
