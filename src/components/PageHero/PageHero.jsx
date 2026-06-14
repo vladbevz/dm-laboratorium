@@ -2,10 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PageHero.module.css';
 
-export default function PageHero({ eyebrow, title, subtitle, breadcrumb }) {
+export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo }) {
   return (
     <section className={styles.pageHero}>
-      <div className={styles.bg} />
+      {photo && (
+        <div className={styles.photoBg}>
+          <img src={photo} alt="" className={styles.photoBgImg} aria-hidden="true" />
+          <div className={styles.photoOverlay} />
+        </div>
+      )}
+      <div className={styles.atmoOverlay} />
+      <div className={styles.rule} />
+
       <div className={styles.container}>
         {breadcrumb && (
           <nav className={styles.breadcrumb}>
@@ -18,7 +26,6 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb }) {
         <h1 className={styles.title}>{title}</h1>
         {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
       </div>
-      <div className={styles.rule} />
     </section>
   );
 }

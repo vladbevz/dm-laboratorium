@@ -1,25 +1,70 @@
 .pageHero {
   position: relative;
-  padding: 120px 0 80px;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   background: var(--bg-1);
+  padding-top: 88px;
+}
+
+/* ── PHOTO ── */
+.photoBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
 }
 
-.bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 5% 110%, rgba(110, 18, 18, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 95% -10%, rgba(201, 168, 76, 0.06) 0%, transparent 55%);
-  pointer-events: none;
+.photoBgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
+/* Same directional overlay as main hero */
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(4, 1, 2, 0.92) 0%,
+    rgba(4, 1, 2, 0.68) 40%,
+    rgba(4, 1, 2, 0.30) 70%,
+    rgba(4, 1, 2, 0.20) 100%
+  );
+}
+
+/* Brand atmospheric gradients */
+.atmoOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 80% at 0% 100%, rgba(120, 18, 18, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 100% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 55%);
+}
+
+/* Gold rule */
+.rule {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.25), transparent);
+  z-index: 3;
+}
+
+/* ── CONTENT ── */
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 60px 60px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  width: 100%;
 }
 
 .breadcrumb {
@@ -55,6 +100,9 @@
 }
 
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
   font-family: var(--font-caps);
   font-size: 10px;
   font-weight: 500;
@@ -62,15 +110,12 @@
   text-transform: uppercase;
   letter-spacing: 6px;
   margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .eyebrow::before {
   content: '';
   display: block;
-  width: 32px;
+  width: 40px;
   height: 1px;
   background: #C9A84C;
 }
@@ -83,34 +128,40 @@
   margin: 0 0 20px;
   line-height: 1.08;
   letter-spacing: 1px;
+  max-width: 700px;
 }
 
 .subtitle {
   font-family: var(--font-serif);
   font-size: 1.05rem;
   color: var(--cream-50);
-  max-width: 560px;
+  max-width: 520px;
   line-height: 1.85;
   font-weight: 300;
   letter-spacing: 0.5px;
   margin: 0;
 }
 
-.rule {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .container { padding: 60px 40px; }
 }
 
 @media (max-width: 768px) {
-  .pageHero { padding: 100px 0 60px; }
-  .container { padding: 0 28px; }
+  .pageHero { min-height: 50vh; padding-top: 72px; }
+  .container { padding: 48px 28px; }
   .title { font-size: 2.6rem; }
+  .photoOverlay {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 1, 2, 0.82) 0%,
+      rgba(4, 1, 2, 0.62) 100%
+    );
+  }
 }
 
 @media (max-width: 576px) {
-  .pageHero { padding: 88px 0 48px; }
-  .container { padding: 0 20px; }
+  .pageHero { min-height: 45vh; padding-top: 64px; }
+  .container { padding: 40px 20px; }
   .title { font-size: 2.2rem; }
 }

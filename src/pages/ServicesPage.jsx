@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
+import heroPhoto from '../assets/images/uslugi-hero.webp';
 import { services } from '../data/services';
 import styles from './ServicesPage.module.css';
 
@@ -31,6 +32,7 @@ export default function ServicesPage() {
         title="Usługi Protetyczne"
         subtitle="Kompleksowe rozwiązania protetyczne wykonywane z najwyższą precyzją. Wybierz kategorię, aby poznać szczegółową ofertę."
         breadcrumb="Usługi"
+        photo={heroPhoto}
       />
 
       <section className={styles.section}>

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
+import heroPhoto from '../assets/images/o-nas-hero.webp';
 import photoDasha from '../assets/images/dasha.webp';
 import photoMariya from '../assets/images/mariya.webp';
 import styles from './AboutPage.module.css';
@@ -38,6 +39,7 @@ export default function AboutPage() {
         title="O nas"
         subtitle="D&M Laboratorium to nowoczesna pracownia protetyczna prowadzona przez dwie pasjonatki — Darynę i Marię Saiko."
         breadcrumb="O nas"
+        photo={heroPhoto}
       />
 
       {/* Team */}

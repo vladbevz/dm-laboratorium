@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
+import heroPhoto from '../assets/images/galeria-hero.webp';
 import styles from './GalleryPage.module.css';
 
 const images = [
@@ -30,6 +31,7 @@ export default function GalleryPage() {
         title="Galeria"
         subtitle="Wybrane prace wykonane w D&M Laboratorium. Każda realizacja to połączenie precyzji technicznej i estetyki."
         breadcrumb="Galeria"
+        photo={heroPhoto}
       />
 
       <section className={styles.section}>
