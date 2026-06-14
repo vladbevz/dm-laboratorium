@@ -60,6 +60,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .teamCard {
@@ -74,9 +76,7 @@
 
 .photo {
   width: 100%;
-  max-height: 520px;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
   display: block;
 }
 
