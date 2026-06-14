@@ -1,0 +1,116 @@
+.pageHero {
+  position: relative;
+  padding: 120px 0 80px;
+  background: var(--bg-1);
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 5% 110%, rgba(110, 18, 18, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 95% -10%, rgba(201, 168, 76, 0.06) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.breadcrumbLink {
+  font-family: var(--font-caps);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-60);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover { color: var(--gold); }
+
+.breadcrumbSep {
+  color: var(--gold-30);
+  font-size: 10px;
+}
+
+.breadcrumbCurrent {
+  font-family: var(--font-caps);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cream-30);
+}
+
+.eyebrow {
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: #C9A84C;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-weight: 300;
+  color: var(--cream);
+  margin: 0 0 20px;
+  line-height: 1.08;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--cream-50);
+  max-width: 560px;
+  line-height: 1.85;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.rule {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+}
+
+@media (max-width: 768px) {
+  .pageHero { padding: 100px 0 60px; }
+  .container { padding: 0 28px; }
+  .title { font-size: 2.6rem; }
+}
+
+@media (max-width: 576px) {
+  .pageHero { padding: 88px 0 48px; }
+  .container { padding: 0 20px; }
+  .title { font-size: 2.2rem; }
+}

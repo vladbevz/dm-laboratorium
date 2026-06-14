@@ -144,6 +144,14 @@
   transform: scaleX(1);
 }
 
+.activeLink {
+  color: var(--gold) !important;
+}
+
+.activeLink::after {
+  transform: scaleX(1) !important;
+}
+
 /* ── CONTACT BUTTON ── */
 .contactBtn {
   font-family: var(--font-caps);

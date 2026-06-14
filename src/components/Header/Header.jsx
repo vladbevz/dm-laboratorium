@@ -1,19 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 export default function Header() {
   const headerRef = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
   const closeMenu = () => setIsMenuOpen(false);
-
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    closeMenu();
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   useEffect(() => {
     const el = headerRef.current;
@@ -40,11 +35,16 @@ export default function Header() {
     document.body.classList.toggle('menuOpen', isMenuOpen);
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    closeMenu();
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const navLinks = [
-    { href: '#services', label: 'Usługi' },
-    { href: '#about', label: 'O nas' },
-    { href: '#gallery', label: 'Galeria' },
-    { href: '#contact', label: 'Kontakt' },
+    { to: '/uslugi', label: 'Usługi' },
+    { to: '/o-nas', label: 'O nas' },
+    { to: '/galeria', label: 'Galeria' },
+    { to: '/kontakt', label: 'Kontakt' },
   ];
 
   return (
@@ -53,10 +53,10 @@ export default function Header() {
         <div className={styles.headerInner}>
 
           {/* Logo */}
-          <a className={styles.logoText} href="#" onClick={closeMenu}>
+          <Link className={styles.logoText} to="/" onClick={closeMenu}>
             <span className={styles.logoPart}>D&M</span>
             <span className={styles.logoPartSub}>Laboratorium</span>
-          </a>
+          </Link>
 
           {/* Burger */}
           <button
@@ -71,35 +71,33 @@ export default function Header() {
 
           {/* Nav */}
           <nav className={`${styles.mainNav} ${isMenuOpen ? styles.open : ''}`}>
-            {navLinks.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={(e) => {
-                  if (href === '#contact') return scrollToContact(e);
-                  closeMenu();
-                }}
+            {navLinks.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className={location.pathname === to ? styles.activeLink : ''}
+                onClick={closeMenu}
               >
                 {label}
-              </a>
+              </Link>
             ))}
-            <a
+            <Link
               className={`${styles.contactBtn} ${styles.mobileContact}`}
-              href="#contact"
-              onClick={scrollToContact}
+              to="/kontakt"
+              onClick={closeMenu}
             >
               Skontaktuj się
-            </a>
+            </Link>
           </nav>
 
           {/* Desktop contact button */}
-          <a
+          <Link
             className={`${styles.contactBtn} ${styles.desktopContact}`}
-            href="#contact"
-            onClick={scrollToContact}
+            to="/kontakt"
+            onClick={closeMenu}
           >
             Skontaktuj się
-          </a>
+          </Link>
 
         </div>
       </div>

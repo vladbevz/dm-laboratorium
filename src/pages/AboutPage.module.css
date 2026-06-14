@@ -1,0 +1,201 @@
+.section {
+  padding: 100px 0;
+  background: var(--bg-3);
+}
+
+.sectionDark {
+  background: var(--bg-2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.sectionEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 16px;
+}
+
+.sectionEyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: #C9A84C;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--cream);
+  margin: 0 0 20px;
+  line-height: 1.1;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.sectionDivider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  margin-bottom: 60px;
+}
+
+/* Team */
+.teamGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.teamCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.photoWrap {
+  height: 420px;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.memberRole {
+  font-family: var(--font-caps);
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.memberName {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 1px;
+}
+
+.memberDivider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-60);
+  margin: 16px 0;
+}
+
+.memberBio {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--cream-50);
+  line-height: 1.85;
+  margin: 0;
+}
+
+/* Lab */
+.labGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Values */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gold-12);
+  border: 1px solid var(--gold-12);
+}
+
+.valueCard {
+  background: var(--bg-card);
+  padding: 40px 32px;
+}
+
+.valueAccent {
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 24px;
+}
+
+.valueTitle {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin: 0 0 12px;
+}
+
+.valueDesc {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--cream-50);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Placeholders */
+.photoPlaceholder {
+  height: 260px;
+  background: var(--bg-card);
+  border: 1px dashed var(--gold-30);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.placeholderIcon {
+  font-size: 2rem;
+  color: var(--gold-30);
+}
+
+.placeholderText {
+  font-family: var(--font-caps);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cream-20);
+}
+
+@media (max-width: 1024px) {
+  .valuesGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 60px 0; }
+  .container { padding: 0 28px; }
+  .teamGrid { grid-template-columns: 1fr; gap: 40px; }
+  .labGrid { grid-template-columns: 1fr 1fr; }
+  .valuesGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  .container { padding: 0 20px; }
+  .labGrid { grid-template-columns: 1fr; }
+  .photoWrap { height: 320px; }
+}

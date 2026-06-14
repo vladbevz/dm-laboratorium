@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Services.module.css';
 import { services } from '../../data/services';
@@ -42,7 +43,13 @@ export default function Services() {
                   onClick={() => toggle(category.slug)}
                   aria-expanded={isOpen}
                 >
-                  <span className={styles.accordionTitle}>{category.title}</span>
+                  <Link
+                    to={`/uslugi#${category.slug}`}
+                    className={styles.accordionTitleLink}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {category.title}
+                  </Link>
                   <motion.span
                     className={styles.accordionIcon}
                     animate={{ rotate: isOpen ? 45 : 0 }}
@@ -75,6 +82,12 @@ export default function Services() {
               </motion.div>
             );
           })}
+        </div>
+
+        <div className={styles.ctaWrap}>
+          <Link to="/uslugi" className={styles.ctaBtn}>
+            Pełna oferta usług →
+          </Link>
         </div>
 
       </div>
