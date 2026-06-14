@@ -8,15 +8,33 @@
   padding-top: 88px;
 }
 
-/* ── PHOTO ── */
-.photoBg {
+/* ── ATMOSPHERIC BACKGROUND ── */
+.heroBg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
 }
 
-.photoBgImg {
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 75% 65% at 0% 100%, rgba(120, 18, 18, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 100% 0%, rgba(201, 168, 76, 0.07) 0%, transparent 55%);
+}
+
+/* ── PHOTO — right side, full height ── */
+.heroPhotoWrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroPhoto {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -24,32 +42,21 @@
   display: block;
 }
 
-/* Same directional overlay as main hero */
-.photoOverlay {
+/* Left-edge gradient blends photo into dark background */
+.photoFade {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    105deg,
-    rgba(4, 1, 2, 0.92) 0%,
-    rgba(4, 1, 2, 0.68) 40%,
-    rgba(4, 1, 2, 0.30) 70%,
-    rgba(4, 1, 2, 0.20) 100%
+    90deg,
+    var(--bg-1) 0%,
+    rgba(4, 1, 2, 0.55) 25%,
+    rgba(4, 1, 2, 0.10) 55%,
+    transparent 100%
   );
 }
 
-/* Brand atmospheric gradients */
-.atmoOverlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 80% at 0% 100%, rgba(120, 18, 18, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 100% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 55%);
-}
-
 /* Gold rule */
-.rule {
+.heroRule {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 1px;
@@ -63,7 +70,7 @@
   margin: 0 auto;
   padding: 60px 60px;
   position: relative;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
 }
 
@@ -128,14 +135,14 @@
   margin: 0 0 20px;
   line-height: 1.08;
   letter-spacing: 1px;
-  max-width: 700px;
+  max-width: 600px;
 }
 
 .subtitle {
   font-family: var(--font-serif);
   font-size: 1.05rem;
   color: var(--cream-50);
-  max-width: 520px;
+  max-width: 480px;
   line-height: 1.85;
   font-weight: 300;
   letter-spacing: 0.5px;
@@ -145,23 +152,35 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .container { padding: 60px 40px; }
+  .heroPhotoWrap { width: 50%; }
 }
 
 @media (max-width: 768px) {
-  .pageHero { min-height: 50vh; padding-top: 72px; }
-  .container { padding: 48px 28px; }
-  .title { font-size: 2.6rem; }
-  .photoOverlay {
+  .pageHero {
+    min-height: auto;
+    padding-top: 72px;
+    display: block;
+  }
+  .container { padding: 40px 28px; }
+  /* Photo: back to normal flow, full width, fixed height above text */
+  .heroPhotoWrap {
+    position: relative;
+    top: auto; right: auto;
+    width: 100%;
+    height: clamp(260px, 55vw, 400px);
+  }
+  .photoFade {
     background: linear-gradient(
       180deg,
-      rgba(4, 1, 2, 0.82) 0%,
-      rgba(4, 1, 2, 0.62) 100%
+      transparent 50%,
+      rgba(4, 1, 2, 0.7) 100%
     );
   }
 }
 
 @media (max-width: 576px) {
-  .pageHero { min-height: 45vh; padding-top: 64px; }
-  .container { padding: 40px 20px; }
+  .pageHero { padding-top: 64px; }
+  .container { padding: 32px 20px; }
   .title { font-size: 2.2rem; }
+  .heroPhotoWrap { height: clamp(220px, 60vw, 320px); }
 }
