@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PageHero.module.css';
 
-export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo }) {
+export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo, photoPosition = 'center' }) {
   const contentRef = useRef();
   const [photoVisible, setPhotoVisible] = useState(false);
 
@@ -29,7 +29,7 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo }
 
       {photo && (
         <div className={`${styles.heroPhotoWrap} ${photoVisible ? styles.photoVisible : ''}`}>
-          <img src={photo} alt="" className={styles.heroPhoto} aria-hidden="true" />
+          <img src={photo} alt="" className={styles.heroPhoto} style={{ objectPosition: photoPosition }} aria-hidden="true" />
           <div className={styles.photoFade} />
         </div>
       )}
