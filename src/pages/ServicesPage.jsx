@@ -33,7 +33,7 @@ export default function ServicesPage() {
         subtitle="Kompleksowe rozwiązania protetyczne wykonywane z najwyższą precyzją. Wybierz kategorię, aby poznać szczegółową ofertę."
         breadcrumb="Usługi"
         photo={heroPhoto}
-        photoPosition="center top"
+        photoPosition="center 40px"
       />
 
       <section className={styles.section}>
