@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import heroImg from '../../assets/images/hero-placeholder.webp';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -27,7 +26,13 @@ export default function Hero() {
 
   return (
     <section className={styles.hero} id="hero">
-      <div className={styles.heroBg} style={{ backgroundImage: `url(${heroImg})` }}>
+      <div className={styles.heroBg}>
+        <img
+          src="/images/hero-team.jpg"
+          alt=""
+          className={styles.heroBgImg}
+          aria-hidden="true"
+        />
         <div className={styles.heroOverlay} />
       </div>
       <div className={styles.heroRule} />

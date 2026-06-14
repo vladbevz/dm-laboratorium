@@ -13,21 +13,29 @@
 .heroBg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
   z-index: 0;
+  overflow: hidden;
 }
 
-/* Dramatic dark overlay */
+.heroBgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Directional overlay — left side dark for text legibility, right opens up for photo */
 .heroBg::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    110deg,
-    rgba(4, 1, 2, 0.93) 0%,
-    rgba(8, 3, 4, 0.76) 55%,
-    rgba(4, 1, 2, 0.88) 100%
+    105deg,
+    rgba(4, 1, 2, 0.90) 0%,
+    rgba(4, 1, 2, 0.65) 40%,
+    rgba(4, 1, 2, 0.28) 70%,
+    rgba(4, 1, 2, 0.18) 100%
   );
   z-index: 1;
 }
@@ -259,4 +267,14 @@
   .hero h1 { font-size: 2.6rem; }
   .btn { padding: 14px 28px; font-size: 12px; width: 100%; max-width: 280px; justify-content: center; }
   .scrollIndicator { display: none; }
+  /* On mobile text spans full width — switch to top-down gradient */
+  .heroBg::before {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 1, 2, 0.82) 0%,
+      rgba(4, 1, 2, 0.60) 55%,
+      rgba(4, 1, 2, 0.45) 100%
+    );
+  }
+  .heroBgImg { object-position: center top; }
 }
