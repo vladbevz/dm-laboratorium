@@ -40,7 +40,7 @@ export default function AboutPage() {
         subtitle="D&M Laboratorium to nowoczesna pracownia protetyczna prowadzona przez dwie pasjonatki — Darynę i Marię Saiko."
         breadcrumb="O nas"
         photo={heroPhoto}
-        photoPosition="center top"
+        photoPosition="center 25%"
       />
 
       {/* Team */}
