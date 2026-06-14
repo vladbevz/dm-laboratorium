@@ -1,49 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Services.module.css';
-
-const items = [
-  {
-    title: 'Precyzja i powtarzalność',
-    desc: 'Dzięki technologiom CAD/CAM każda praca jest wykonana z najwyższą dokładnością i idealną powtarzalnością.',
-  },
-  {
-    title: 'Wsparcie dla lekarzy',
-    desc: 'Stała komunikacja, konsultacje i szybka pomoc w trudnych przypadkach — jesteśmy partnerem, nie tylko dostawcą.',
-  },
-  {
-    title: 'Nowoczesne materiały',
-    desc: 'Pracujemy na sprawdzonych systemach i certyfikowanych materiałach, gwarantujących trwałość i estetykę.',
-  },
-  {
-    title: 'Terminowość',
-    desc: 'Szanujemy czas — Twój i pacjenta. Każde zlecenie realizujemy zgodnie z ustalonym harmonogramem.',
-  },
-];
+import { services } from '../../data/services';
 
 export default function Services() {
-  const cardsRef = useRef([]);
+  const [openItems, setOpenItems] = useState({});
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add(styles.visible);
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    cardsRef.current.forEach((card) => { if (card) observer.observe(card); });
-    return () => observer.disconnect();
-  }, []);
+  const toggle = (slug) => {
+    setOpenItems((prev) => ({ ...prev, [slug]: !prev[slug] }));
+  };
 
   return (
     <section id="services" className={styles.section}>
       <div className={styles.container}>
+
         <div className={styles.sectionHeader}>
           <div className={styles.sectionEyebrow}>Co oferujemy</div>
           <h2 className={styles.sectionTitle}>
-            Nasze <strong>Usługi</strong>
+            Usługi <strong>Protetyczne</strong>
           </h2>
           <div className={styles.sectionDivider} />
           <p className={styles.sectionDescription}>
@@ -51,20 +25,58 @@ export default function Services() {
           </p>
         </div>
 
-        <div className={styles.servicesGrid}>
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className={styles.serviceCard}
-              ref={(el) => (cardsRef.current[i] = el)}
-            >
-              <span className={styles.cardNumber}>0{i + 1}</span>
-              <span className={styles.cardAccent} />
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.cardDescription}>{item.desc}</p>
-            </div>
-          ))}
+        <div className={styles.accordionList}>
+          {services.map((category, i) => {
+            const isOpen = !!openItems[category.slug];
+            return (
+              <motion.div
+                key={category.slug}
+                className={styles.accordionItem}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.04, ease: [0.4, 0, 0.2, 1] }}
+                viewport={{ once: true }}
+              >
+                <button
+                  className={`${styles.accordionHeader} ${isOpen ? styles.accordionHeaderOpen : ''}`}
+                  onClick={() => toggle(category.slug)}
+                  aria-expanded={isOpen}
+                >
+                  <span className={styles.accordionTitle}>{category.title}</span>
+                  <motion.span
+                    className={styles.accordionIcon}
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  >
+                    +
+                  </motion.span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <ul className={styles.servicesList}>
+                        {category.items.map((item, j) => (
+                          <li key={j} className={styles.serviceItem}>
+                            <span className={styles.bullet}>•</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );
