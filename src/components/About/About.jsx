@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
-import photoMariya from '../../assets/photo_2026-05-05_21-20-27.jpg';
-import photoDasha from '../../assets/photo_2026-05-05_21-20-29.jpg';
+import photoMariya from '../../assets/images/mariya.webp';
+import photoDasha from '../../assets/images/dasha.webp';
 
 const team = [
   {
