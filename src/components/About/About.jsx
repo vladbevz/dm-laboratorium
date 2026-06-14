@@ -9,7 +9,7 @@ const team = [
     photo: photoDasha,
     name: 'Dasha',
     role: 'Współzałożycielka & Technik dentystyczny',
-    bio: 'Ekspertka od protez ruchomych i szkieletowych. Łączy tradycyjne rzemiosło z nowoczesnymi technikami cyfrowymi.',
+    bio: 'Tworzy estetyczne i funkcjonalne rozwiązania protetyczne. Łączy cyfrową precyzję z indywidualnym podejściem do każdego przypadku.',
   },
   {
     photo: photoMariya,
