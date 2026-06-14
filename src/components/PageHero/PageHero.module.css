@@ -1,6 +1,6 @@
 .pageHero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 88px);
   display: flex;
   align-items: center;
   overflow: hidden;
