@@ -50,7 +50,7 @@ export default function AboutPage() {
       {/* Team */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.sectionEyebrow}>Nasz zespół</div>
+          <div className={styles.sectionEyebrow}>POZNAJ NAS</div>
           <h2 className={styles.sectionTitle}>Nasz <em>zespół</em></h2>
           <div className={styles.sectionDivider} />
 
