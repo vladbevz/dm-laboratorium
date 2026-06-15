@@ -18,7 +18,7 @@ export default function PrivacyPage() {
               z siedzibą przy ul. Wojska Polskiego 148/1, 69-100 Słubice, Polska.
             </p>
             <p>
-              NIP: <span className={styles.placeholder}>[NIP]</span> &nbsp;|&nbsp;
+              NIP: <span className={styles.placeholder}>5981661943</span> &nbsp;|&nbsp;
               REGON: <span className={styles.placeholder}>[REGON]</span>
             </p>
             <p>

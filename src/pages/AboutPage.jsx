@@ -15,7 +15,7 @@ const team = [
     photo: photoDasha,
     name: 'Dasha',
     fullName: 'Daryna Saiko',
-    role: 'Współzałożycielka & Technik dentystyczny',
+    role: 'Współzałożycielka & Technik dentystyczny, Higienistka stomatologiczna',
     bio: 'Tworzy estetyczne i funkcjonalne rozwiązania protetyczne. Łączy cyfrową precyzję z indywidualnym podejściem do każdego przypadku.',
   },
   {
@@ -50,7 +50,7 @@ export default function AboutPage() {
       {/* Team */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.sectionEyebrow}>Założycielki</div>
+          <div className={styles.sectionEyebrow}>Nasz zespół</div>
           <h2 className={styles.sectionTitle}>Nasz <em>zespół</em></h2>
           <div className={styles.sectionDivider} />
 

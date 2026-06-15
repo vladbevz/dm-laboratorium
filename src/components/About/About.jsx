@@ -62,7 +62,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          Założycielki
+          Nasz zespół
         </motion.div>
 
         <div className={styles.teamGrid}>

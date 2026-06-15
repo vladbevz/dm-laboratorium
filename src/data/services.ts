@@ -12,10 +12,9 @@ export const services: ServiceCategory[] = [
       "Korony pełnoceramiczne",
       "Inlay / Onlay / Overlay E.max",
       "Most Maryland cyrkonowy",
-      "Korona licowana na podbudowie metalowej",
-      "Korona licowana na podbudowie cyrkonowej",
+      "Korony licowane na podbudowie metalowej",
+      "Korony licowane na podbudowie cyrkonowej",
       "Indywidualna charakteryzacja",
-      "Zmiana koloru",
       "Gingiva"
     ]
   },
@@ -24,7 +23,6 @@ export const services: ServiceCategory[] = [
     title: "IMPLANTOPROTETYKA",
     items: [
       "Korony pełnoceramiczne na implantach",
-      "Korony tymczasowe PMMA na implantach",
       "Mosty pełnoceramiczne na implantach",
       "Prace pełnołukowe All-on-X",
       "Odbudowy na multiunitach"
