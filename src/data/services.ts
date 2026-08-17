@@ -2,6 +2,7 @@ export interface ServiceCategory {
   slug: string;
   title: string;
   items: string[];
+  dedicatedPage?: string;
 }
 
 export const services: ServiceCategory[] = [
@@ -39,6 +40,7 @@ export const services: ServiceCategory[] = [
   {
     slug: "protezy",
     title: "PROTEZY",
+    dedicatedPage: "/protezy",
     items: [
       "Protezy całkowite akrylowe",
       "Protezy całkowite charakteryzowane",
@@ -98,6 +100,7 @@ export const services: ServiceCategory[] = [
   {
     slug: "naprawa-protez",
     title: "NAPRAWA PROTEZ",
+    dedicatedPage: "/naprawa-protez",
     items: [
       "Polerowanie i czyszczenie protezy",
       "Dostawienie elementu do protezy (ząb/klamra) + każdy następny element",

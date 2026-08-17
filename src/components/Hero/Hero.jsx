@@ -45,11 +45,11 @@ export default function Hero() {
         <div className={styles.heroInner} ref={contentRef}>
           <h1>
             Nowoczesne <em>cyfrowe</em><br />
-            laboratorium protetyczne
+            laboratorium protetyczne w Słubicach
           </h1>
           <p>
-            Tworzymy protetykę, która łączy funkcję, estetykę i niezawodność.
-            Precyzja CAD/CAM w każdej pracy.
+            Protezy, korony i mosty łączące funkcję, estetykę i niezawodność.
+            Precyzja CAD/CAM w każdej pracy — zaufany protetyk w Słubicach, współpraca z gabinetami w całej Polsce.
           </p>
           <a className={styles.btn} href="#contact" onClick={scrollToContact}>
             Skontaktuj się

@@ -44,7 +44,7 @@ export default function Services() {
                   aria-expanded={isOpen}
                 >
                   <Link
-                    to={`/uslugi#${category.slug}`}
+                    to={category.dedicatedPage ?? `/uslugi#${category.slug}`}
                     className={styles.accordionTitleLink}
                     onClick={(e) => e.stopPropagation()}
                   >

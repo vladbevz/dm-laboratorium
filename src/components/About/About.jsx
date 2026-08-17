@@ -76,7 +76,12 @@ export default function About() {
               viewport={{ once: true }}
             >
               <div className={styles.photoFrame}>
-                <img src={member.photo} alt={member.name} className={styles.memberPhoto} />
+                <img
+                  src={member.photo}
+                  alt={`${member.name} — ${member.role}, D&M Laboratorium Słubice`}
+                  className={styles.memberPhoto}
+                  loading="lazy"
+                />
                 <div className={styles.photoOverlay} />
               </div>
               <div className={styles.memberInfo}>

@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
+import Seo from '../components/Seo/Seo.jsx';
 import heroPhoto from '../assets/images/o-nas-hero.webp';
 import photoDasha from '../assets/images/dasha.webp';
 import photoMariya from '../assets/images/mariya.webp';
@@ -36,9 +37,13 @@ const values = [
 
 
 export default function AboutPage() {
-  useEffect(() => { document.title = 'O nas — Techniki i Zespół | D&M Laboratorium'; }, []);
   return (
     <PageLayout>
+      <Seo
+        title="O nas — Laboratorium Protetyczne Słubice | D&M Laboratorium"
+        description="Poznaj D&M Laboratorium — pracownię protetyczną w Słubicach prowadzoną przez Darynę i Marię Saiko. Protetyk Słubice z doświadczeniem w CAD/CAM, ceramice i protetyce implantologicznej."
+        path="/o-nas"
+      />
       <PageHero
         eyebrow="Kim jesteśmy"
         title="O nas"
@@ -65,7 +70,12 @@ export default function AboutPage() {
                 viewport={{ once: true }}
               >
                 <div className={styles.photoWrap}>
-                  <img src={member.photo} alt={member.fullName} className={styles.photo} />
+                  <img
+                    src={member.photo}
+                    alt={`${member.fullName} — ${member.role}, D&M Laboratorium Słubice`}
+                    className={styles.photo}
+                    loading="lazy"
+                  />
                 </div>
                 <div className={styles.memberInfo}>
                   <div className={styles.memberRole}>{member.role}</div>
@@ -98,8 +108,9 @@ export default function AboutPage() {
                 <div className={styles.beforeAfterImgWrap}>
                   <img
                     src={[beforeAfter1, beforeAfter2, beforeAfter3][n - 1]}
-                    alt={`Transformacja ${n}`}
+                    alt={`Transformacja protetyczna przed i po ${n} — D&M Laboratorium Słubice`}
                     className={styles.beforeAfterImg}
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.beforeAfterLabel}>

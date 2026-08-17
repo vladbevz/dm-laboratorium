@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PageLayout from '../components/Layout/PageLayout.jsx';
+import Seo from '../components/Seo/Seo.jsx';
 import styles from './PrivacyPage.module.css';
 
 export default function PrivacyPage() {
-  useEffect(() => { document.title = 'Polityka Prywatności | D&M Laboratorium'; }, []);
   return (
     <PageLayout>
+      <Seo
+        title="Polityka Prywatności | D&M Laboratorium"
+        description="Polityka prywatności D&M Laboratorium — zasady przetwarzania danych osobowych, cookies i RODO."
+        path="/polityka-prywatnosci"
+        noindex
+      />
       <div className={styles.page}>
         <div className={styles.container}>
           <h1 className={styles.title}>Polityka Prywatności</h1>

@@ -7,12 +7,12 @@ import Gallery from '../components/Gallery/Gallery.jsx';
 import Contact from '../components/Contact/Contact.jsx';
 import Footer from '../components/Footer/Footer.jsx';
 import Preloader from '../components/Preloader/Preloader.jsx';
+import Seo from '../components/Seo/Seo.jsx';
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    document.title = 'D&M Laboratorium | Pracownia Protetyczna dla Gabinetów w Całej Polsce';
     const timer = setTimeout(() => setIsLoading(false), 3500);
     return () => clearTimeout(timer);
   }, []);
@@ -21,6 +21,11 @@ export default function HomePage() {
 
   return (
     <div>
+      <Seo
+        title="D&M Laboratorium — Pracownia Protetyczna Słubice | Protezy, Korony, Mosty CAD/CAM"
+        description="D&M Laboratorium — pracownia protetyczna w Słubicach (woj. lubuskie), współpracująca z gabinetami stomatologicznymi w całej Polsce. Protezy całkowite, naprawa protez, korony i mosty CAD/CAM."
+        path="/"
+      />
       <Header />
       <main>
         <Hero />

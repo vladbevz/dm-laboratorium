@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
+import Seo from '../components/Seo/Seo.jsx';
 import heroPhoto from '../assets/images/galeria-hero.webp';
 import styles from './GalleryPage.module.css';
 
@@ -34,10 +35,13 @@ const images = imageOrder
 export default function GalleryPage() {
   const [lightbox, setLightbox] = useState(null);
 
-  useEffect(() => { document.title = 'Galeria Realizacji — Efekty Naszej Pracy | D&M Laboratorium'; }, []);
-
   return (
     <PageLayout>
+      <Seo
+        title="Galeria Realizacji Protetycznych Słubice | D&M Laboratorium"
+        description="Zobacz realizacje pracowni protetycznej D&M Laboratorium w Słubicach — korony, mosty, protezy i prace implantoprotetyczne wykonane z precyzją CAD/CAM."
+        path="/galeria"
+      />
       <PageHero
         eyebrow="Nasze realizacje"
         title="Galeria"
@@ -60,7 +64,7 @@ export default function GalleryPage() {
               >
                 <img
                   src={img}
-                  alt={`Realizacja ${i + 1}`}
+                  alt={`Realizacja protetyczna ${i + 1} — D&M Laboratorium Słubice`}
                   className={styles.img}
                   loading="lazy"
                 />

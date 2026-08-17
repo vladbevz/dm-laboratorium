@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
+import Seo from '../components/Seo/Seo.jsx';
 import heroPhoto from '../assets/images/uslugi-hero.webp';
 import { services } from '../data/services';
 import styles from './ServicesPage.module.css';
@@ -16,10 +17,6 @@ export default function ServicesPage() {
   };
 
   useEffect(() => {
-    document.title = 'Usługi Protetyczne — Korony, Mosty, Protezy | D&M Laboratorium';
-  }, []);
-
-  useEffect(() => {
     if (location.hash) {
       const slug = location.hash.replace('#', '');
       setOpenItems((prev) => ({ ...prev, [slug]: true }));
@@ -31,6 +28,11 @@ export default function ServicesPage() {
 
   return (
     <PageLayout>
+      <Seo
+        title="Usługi Protetyczne Słubice — Korony, Protezy, Naprawa Protez | D&M Laboratorium"
+        description="Pełna oferta pracowni protetycznej D&M Laboratorium Słubice: korony i mosty CAD/CAM, protezy całkowite, implantoprotetyka, naprawa protez. Współpraca z gabinetami w regionie lubuskim i całej Polsce."
+        path="/uslugi"
+      />
       <PageHero
         eyebrow="Co oferujemy"
         title="Usługi Protetyczne"
@@ -87,6 +89,11 @@ export default function ServicesPage() {
                               </li>
                             ))}
                           </ul>
+                          {category.dedicatedPage && (
+                            <Link to={category.dedicatedPage} className={styles.dedicatedLink}>
+                              Zobacz szczegółową ofertę →
+                            </Link>
+                          )}
                         </div>
                       </motion.div>
                     )}
