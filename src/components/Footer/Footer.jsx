@@ -6,11 +6,6 @@ import styles from './Footer.module.css';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const scrollTo = (e, id) => {
-    e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -24,13 +19,13 @@ export default function Footer() {
           <div className={styles.footerDivider} />
 
           <nav className={styles.links}>
-            <a href="#services" className={styles.link} onClick={e => scrollTo(e, 'services')}>Usługi</a>
+            <Link to="/uslugi" className={styles.link}>Usługi</Link>
             <span className={styles.separator}>◆</span>
-            <a href="#about" className={styles.link} onClick={e => scrollTo(e, 'about')}>O nas</a>
+            <Link to="/o-nas" className={styles.link}>O nas</Link>
             <span className={styles.separator}>◆</span>
-            <a href="#gallery" className={styles.link} onClick={e => scrollTo(e, 'gallery')}>Galeria</a>
+            <Link to="/galeria" className={styles.link}>Galeria</Link>
             <span className={styles.separator}>◆</span>
-            <a href="#contact" className={styles.link} onClick={e => scrollTo(e, 'contact')}>Kontakt</a>
+            <Link to="/kontakt" className={styles.link}>Kontakt</Link>
           </nav>
 
           <div className={styles.copyright}>

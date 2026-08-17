@@ -21,6 +21,10 @@ const imageOrder = [
   '15_Projekt bez nazwy.webp',
   '2_Projekt bez nazwy.webp',
   '1_Projekt bez nazwy.webp',
+  '16_Projekt bez nazwy.webp',
+  '17_Projekt bez nazwy.webp',
+  '18_Projekt bez nazwy.webp',
+  '19_Projekt bez nazwy.webp',
 ];
 
 const images = imageOrder
