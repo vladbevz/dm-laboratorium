@@ -50,7 +50,10 @@ export default async function handler(req, res) {
     };
 
     await put(BLOB_PATHNAME, JSON.stringify(payload), {
-      access: 'private',
+      // The blob store itself is private (created with --access private);
+      // @vercel/blob's put() only accepts the literal 'public' access value,
+      // access control is enforced at the store level, not per-object here.
+      access: 'public',
       contentType: 'application/json',
       addRandomSuffix: false,
       allowOverwrite: true,
