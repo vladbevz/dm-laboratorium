@@ -1,0 +1,239 @@
+.section {
+  padding: 130px 0;
+  position: relative;
+  background: var(--bg-0);
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 90% 10%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 90%, rgba(110, 18, 18, 0.14) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HEADER ── */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.sectionEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+.sectionEyebrow::before,
+.sectionEyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C);
+}
+
+.sectionEyebrow::after {
+  background: linear-gradient(90deg, #C9A84C, transparent);
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--cream);
+  margin: 0 0 24px;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.sectionDivider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  margin: 0 auto 24px;
+}
+
+.sectionDescription {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--cream-50);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.85;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.aggregateRating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.aggregateText {
+  font-family: var(--font-caps);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--cream-50);
+}
+
+/* ── STARS ── */
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.starFilled {
+  fill: var(--gold);
+  color: var(--gold);
+}
+
+.starEmpty {
+  fill: none;
+  color: var(--gold-30);
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-12);
+  border-radius: 2px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatarFallback {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--gold-12);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-caps);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.authorName {
+  font-family: var(--font-caps);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--cream-80);
+  margin-bottom: 4px;
+}
+
+.reviewText {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--cream-50);
+  line-height: 1.7;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.reviewTime {
+  font-family: var(--font-caps);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--cream-20);
+  text-transform: uppercase;
+}
+
+/* ── CTA ── */
+.ctaWrap {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-caps);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  padding: 14px 40px;
+  border: 1px solid var(--gold-30);
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+
+.ctaBtn:hover {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 992px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 0; }
+  .sectionHeader { margin-bottom: 44px; }
+  .grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
+@media (max-width: 576px) {
+  .section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+  .sectionTitle { font-size: 2.4rem; }
+  .card { padding: 22px; }
+}
