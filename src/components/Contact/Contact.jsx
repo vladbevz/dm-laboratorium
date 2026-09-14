@@ -2,7 +2,73 @@ import React, { useState, useRef } from 'react';
 import { Instagram, Mail, Phone, MapPin, Send, Paperclip, X } from 'lucide-react';
 import styles from './Contact.module.css';
 
-export default function Contact() {
+const STRINGS = {
+  pl: {
+    eyebrow: 'Skontaktuj się z nami',
+    title: <>Nawiążmy <em>współpracę</em></>,
+    description: 'Masz pytania? Chętnie omówimy szczegóły i odpowiemy na każde zapytanie',
+    infoTitle: 'Dane kontaktowe',
+    labels: { phone: 'Telefon', email: 'Email', address: 'Adres', instagram: 'Instagram' },
+    addressValue: <>Wojska Polskiego 148/1<br />Słubice, 69-100, Polska</>,
+    formTitle: 'Wyślij wiadomość',
+    formSubtitle: 'Odpowiemy najszybciej jak to możliwe',
+    nameLabel: 'Imię i nazwisko *',
+    namePlaceholder: 'Jan Kowalski',
+    phoneLabel: 'Telefon *',
+    phonePlaceholder: '+48 123 456 789',
+    emailLabel: 'Email',
+    emailPlaceholder: 'jan@example.com',
+    messageLabel: 'Wiadomość',
+    messagePlaceholder: 'Opisz swoją sprawę...',
+    fileLabel: 'Załączniki',
+    fileEmpty: 'Załącz dokumenty lub zdjęcia',
+    fileMore: 'Dodaj kolejne pliki',
+    fileRemove: 'Usuń plik',
+    fileHint: 'PDF, DOC, JPG, PNG, STL — maks. 10 MB',
+    requiredNote: '* Pola wymagane',
+    sending: 'Wysyłanie',
+    send: 'Wyślij',
+    validationError: 'Proszę wypełnić wymagane pola (Imię i Telefon)',
+    genericError: 'Wystąpił błąd. Proszę spróbować ponownie lub zadzwonić.',
+    successMessage: 'Dziękujemy! Wiadomość wysłana. Sprawdź skrzynkę email — wysłaliśmy potwierdzenie.',
+    mapTitle: 'Lokalizacja',
+    mapNote: <>Znajdujemy się w centrum Słubic,<br />z łatwym dojazdem i parkingiem.</>,
+  },
+  de: {
+    eyebrow: 'Kontaktieren Sie uns',
+    title: <>Lassen Sie uns <em>zusammenarbeiten</em></>,
+    description: 'Haben Sie Fragen? Wir besprechen gerne alle Details und beantworten jede Anfrage.',
+    infoTitle: 'Kontaktdaten',
+    labels: { phone: 'Telefon', email: 'E-Mail', address: 'Adresse', instagram: 'Instagram' },
+    addressValue: <>Wojska Polskiego 148/1<br />Słubice, 69-100, Polen</>,
+    formTitle: 'Nachricht senden',
+    formSubtitle: 'Wir antworten so schnell wie möglich',
+    nameLabel: 'Name *',
+    namePlaceholder: 'Max Mustermann',
+    phoneLabel: 'Telefon *',
+    phonePlaceholder: '+49 170 1234567',
+    emailLabel: 'E-Mail',
+    emailPlaceholder: 'max@beispiel.de',
+    messageLabel: 'Nachricht',
+    messagePlaceholder: 'Beschreiben Sie Ihr Anliegen...',
+    fileLabel: 'Anhänge',
+    fileEmpty: 'Dokumente oder Fotos anhängen',
+    fileMore: 'Weitere Dateien hinzufügen',
+    fileRemove: 'Datei entfernen',
+    fileHint: 'PDF, DOC, JPG, PNG, STL — max. 10 MB',
+    requiredNote: '* Pflichtfelder',
+    sending: 'Wird gesendet',
+    send: 'Senden',
+    validationError: 'Bitte füllen Sie die Pflichtfelder aus (Name und Telefon)',
+    genericError: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder rufen Sie uns an.',
+    successMessage: 'Vielen Dank! Ihre Nachricht wurde gesendet. Bitte prüfen Sie Ihr E-Mail-Postfach — wir haben eine Bestätigung gesendet.',
+    mapTitle: 'Standort',
+    mapNote: <>Wir befinden uns im Zentrum von Słubice,<br />mit guter Erreichbarkeit und Parkmöglichkeiten.</>,
+  },
+};
+
+export default function Contact({ lang = 'pl' }) {
+  const t = STRINGS[lang] ?? STRINGS.pl;
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -44,7 +110,7 @@ export default function Contact() {
     setSubmitStatus({ type: '', message: '' });
 
     if (!formData.name.trim() || !formData.phone.trim()) {
-      setSubmitStatus({ type: 'error', message: 'Proszę wypełnić wymagane pola (Imię i Telefon)' });
+      setSubmitStatus({ type: 'error', message: t.validationError });
       setIsSubmitting(false);
       return;
     }
@@ -67,7 +133,7 @@ export default function Contact() {
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: 'Dziękujemy! Wiadomość wysłana. Sprawdź skrzynkę email — wysłaliśmy potwierdzenie.',
+          message: t.successMessage,
         });
         setFormData({ name: '', phone: '', email: '', message: '' });
         setFiles([]);
@@ -81,7 +147,7 @@ export default function Contact() {
         type: 'error',
         message: err.message?.includes('MB')
           ? err.message
-          : 'Wystąpił błąd. Proszę spróbować ponownie lub zadzwonić.',
+          : t.genericError,
       });
     } finally {
       setIsSubmitting(false);
@@ -93,13 +159,13 @@ export default function Contact() {
       <div className={styles.container}>
 
         <div className={styles.sectionHeader}>
-          <div className={styles.sectionEyebrow}>Skontaktuj się z nami</div>
+          <div className={styles.sectionEyebrow}>{t.eyebrow}</div>
           <h2 className={styles.sectionTitle}>
-            Nawiążmy <em>współpracę</em>
+            {t.title}
           </h2>
           <div className={styles.sectionDivider} />
           <p className={styles.sectionDescription}>
-            Masz pytania? Chętnie omówimy szczegóły i odpowiemy na każde zapytanie
+            {t.description}
           </p>
         </div>
 
@@ -107,24 +173,23 @@ export default function Contact() {
 
           {/* ── INFO ── */}
           <div className={styles.contactInfoCard}>
-            <h3 className={styles.infoTitle}>Dane kontaktowe</h3>
+            <h3 className={styles.infoTitle}>{t.infoTitle}</h3>
 
             {[
-              { icon: <Phone size={18} />, label: 'Telefon', content: <a href="tel:+48577861595" className={styles.contactValue}>+48 577 861 595</a> },
-              { icon: <Mail size={18} />, label: 'Email', content: <a href="mailto:dm.laboratorium.pl@gmail.com" className={styles.contactValue}>dm.laboratorium.pl@gmail.com</a> },
+              { icon: <Phone size={18} />, label: t.labels.phone, content: <a href="tel:+48577861595" className={styles.contactValue}>+48 577 861 595</a> },
+              { icon: <Mail size={18} />, label: t.labels.email, content: <a href="mailto:dm.laboratorium.pl@gmail.com" className={styles.contactValue}>dm.laboratorium.pl@gmail.com</a> },
               {
                 icon: <MapPin size={18} />,
-                label: 'Adres',
+                label: t.labels.address,
                 content: (
                   <address className={styles.contactValue}>
-                    Wojska Polskiego 148/1<br />
-                    Słubice, 69-100, Polska
+                    {t.addressValue}
                   </address>
                 )
               },
               {
                 icon: <Instagram size={18} />,
-                label: 'Instagram',
+                label: t.labels.instagram,
                 content: (
                   <a
                     href="https://www.instagram.com/d_m_laboratorium"
@@ -150,52 +215,52 @@ export default function Contact() {
 
           {/* ── FORM ── */}
           <div className={styles.formCard}>
-            <h3 className={styles.formTitle}>Wyślij wiadomość</h3>
-            <p className={styles.formSubtitle}>Odpowiemy najszybciej jak to możliwe</p>
+            <h3 className={styles.formTitle}>{t.formTitle}</h3>
+            <p className={styles.formSubtitle}>{t.formSubtitle}</p>
 
             <form onSubmit={handleSubmit} className={styles.contactForm}>
               <div className={styles.formGroup}>
-                <label htmlFor="name" className={styles.formLabel}>Imię i nazwisko *</label>
+                <label htmlFor="name" className={styles.formLabel}>{t.nameLabel}</label>
                 <input
                   id="name" name="name" type="text" required
                   value={formData.name} onChange={handleChange}
-                  className={styles.formInput} placeholder="Jan Kowalski"
+                  className={styles.formInput} placeholder={t.namePlaceholder}
                 />
               </div>
 
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <label htmlFor="phone" className={styles.formLabel}>Telefon *</label>
+                  <label htmlFor="phone" className={styles.formLabel}>{t.phoneLabel}</label>
                   <input
                     id="phone" name="phone" type="tel" required
                     value={formData.phone} onChange={handleChange}
-                    className={styles.formInput} placeholder="+48 123 456 789"
+                    className={styles.formInput} placeholder={t.phonePlaceholder}
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.formLabel}>Email</label>
+                  <label htmlFor="email" className={styles.formLabel}>{t.emailLabel}</label>
                   <input
                     id="email" name="email" type="email"
                     value={formData.email} onChange={handleChange}
-                    className={styles.formInput} placeholder="jan@example.com"
+                    className={styles.formInput} placeholder={t.emailPlaceholder}
                   />
                 </div>
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="message" className={styles.formLabel}>Wiadomość</label>
+                <label htmlFor="message" className={styles.formLabel}>{t.messageLabel}</label>
                 <textarea
                   id="message" name="message"
                   value={formData.message} onChange={handleChange}
                   className={styles.formTextarea}
-                  placeholder="Opisz swoją sprawę..."
+                  placeholder={t.messagePlaceholder}
                   rows="4"
                 />
               </div>
 
               {/* File attachment */}
               <div className={styles.fileUploadGroup}>
-                <label className={styles.fileUploadLabel}>Załączniki</label>
+                <label className={styles.fileUploadLabel}>{t.fileLabel}</label>
                 <div className={styles.fileInputWrapper}>
                   <input
                     ref={fileInputRef}
@@ -208,7 +273,7 @@ export default function Contact() {
                   <div className={styles.fileInputDisplay}>
                     <Paperclip size={16} className={styles.fileIcon} />
                     <span className={styles.fileText}>
-                      {files.length === 0 ? 'Załącz dokumenty lub zdjęcia' : 'Dodaj kolejne pliki'}
+                      {files.length === 0 ? t.fileEmpty : t.fileMore}
                     </span>
                   </div>
                 </div>
@@ -222,7 +287,7 @@ export default function Contact() {
                           type="button"
                           className={styles.fileRemoveBtn}
                           onClick={() => removeFile(i)}
-                          aria-label="Usuń plik"
+                          aria-label={t.fileRemove}
                         >
                           <X size={12} />
                         </button>
@@ -230,15 +295,15 @@ export default function Contact() {
                     ))}
                   </ul>
                 )}
-                <span className={styles.fileHint}>PDF, DOC, JPG, PNG, STL — maks. 10 MB</span>
+                <span className={styles.fileHint}>{t.fileHint}</span>
               </div>
 
               <div className={styles.formFooter}>
-                <p className={styles.formNote}>* Pola wymagane</p>
+                <p className={styles.formNote}>{t.requiredNote}</p>
                 <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
                   {isSubmitting
-                    ? <span className={styles.btnLoading}>Wysyłanie</span>
-                    : <><Send size={14} /><span>Wyślij</span></>
+                    ? <span className={styles.btnLoading}>{t.sending}</span>
+                    : <><Send size={14} /><span>{t.send}</span></>
                   }
                 </button>
               </div>
@@ -253,7 +318,7 @@ export default function Contact() {
 
           {/* ── MAP ── */}
           <div className={styles.mapCard}>
-            <h3 className={styles.mapTitle}>Lokalizacja</h3>
+            <h3 className={styles.mapTitle}>{t.mapTitle}</h3>
             <div className={styles.mapWrapper}>
               <iframe
                 title="D&M Laboratorium"
@@ -264,8 +329,7 @@ export default function Contact() {
               />
             </div>
             <p className={styles.mapNote}>
-              Znajdujemy się w centrum Słubic,<br />
-              z łatwym dojazdem i parkingiem.
+              {t.mapNote}
             </p>
           </div>
 

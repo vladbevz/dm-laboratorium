@@ -15,31 +15,55 @@ import g13 from '../../assets/images/15_Projekt bez nazwy.webp';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Gallery.module.css';
 
-const images = [
-  { src: g1,  alt: 'Korona cyrkonowa CAD/CAM — D&M Laboratorium Słubice' },
-  { src: g2,  alt: 'Most protetyczny na implantach — pracownia D&M Słubice' },
-  { src: g3,  alt: 'Licówki porcelanowe — estetyczna protetyka D&M Laboratorium' },
-  { src: g4,  alt: 'Korona pełnoceramiczna — precyzyjna praca protetyczna' },
-  { src: g5,  alt: 'Proteza szkieletowa — D&M Laboratorium Słubice' },
-  { src: g6,  alt: 'Uzupełnienie protetyczne CAD/CAM — D&M Laboratorium' },
-  { src: g7,  alt: 'Korona na implancie — cyfrowa pracownia protetyczna Słubice' },
-  { src: g8,  alt: 'Mosty cyrkonowe — nowoczesna protetyka D&M Laboratorium' },
-  { src: g9,  alt: 'Proteza całkowita akrylowa — D&M Laboratorium Słubice' },
-  { src: g10, alt: 'Licówka ceramiczna — estetyczne uzupełnienie protetyczne' },
-  { src: g11, alt: 'Korony teleskopowe — precyzyjna protetyka D&M Słubice' },
-  { src: g12, alt: 'Uzupełnienie implantoprotetyczne — D&M Laboratorium' },
-  { src: g13, alt: 'Indywidualne łączniki implantologiczne — D&M Laboratorium Słubice' },
-];
+const images = {
+  pl: [
+    { src: g1,  alt: 'Korona cyrkonowa CAD/CAM — D&M Laboratorium Słubice' },
+    { src: g2,  alt: 'Most protetyczny na implantach — pracownia D&M Słubice' },
+    { src: g3,  alt: 'Licówki porcelanowe — estetyczna protetyka D&M Laboratorium' },
+    { src: g4,  alt: 'Korona pełnoceramiczna — precyzyjna praca protetyczna' },
+    { src: g5,  alt: 'Proteza szkieletowa — D&M Laboratorium Słubice' },
+    { src: g6,  alt: 'Uzupełnienie protetyczne CAD/CAM — D&M Laboratorium' },
+    { src: g7,  alt: 'Korona na implancie — cyfrowa pracownia protetyczna Słubice' },
+    { src: g8,  alt: 'Mosty cyrkonowe — nowoczesna protetyka D&M Laboratorium' },
+    { src: g9,  alt: 'Proteza całkowita akrylowa — D&M Laboratorium Słubice' },
+    { src: g10, alt: 'Licówka ceramiczna — estetyczne uzupełnienie protetyczne' },
+    { src: g11, alt: 'Korony teleskopowe — precyzyjna protetyka D&M Słubice' },
+    { src: g12, alt: 'Uzupełnienie implantoprotetyczne — D&M Laboratorium' },
+    { src: g13, alt: 'Indywidualne łączniki implantologiczne — D&M Laboratorium Słubice' },
+  ],
+  de: [
+    { src: g1,  alt: 'Zirkonkrone CAD/CAM — D&M Laboratorium Słubice' },
+    { src: g2,  alt: 'Implantatgetragene Brücke — Dentallabor D&M Słubice' },
+    { src: g3,  alt: 'Porzellanveneers — ästhetische Zahntechnik von D&M Laboratorium' },
+    { src: g4,  alt: 'Vollkeramikkrone — präzise zahntechnische Arbeit' },
+    { src: g5,  alt: 'Modellgussprothese — D&M Laboratorium Słubice' },
+    { src: g6,  alt: 'CAD/CAM-Zahnersatz — D&M Laboratorium' },
+    { src: g7,  alt: 'Implantatkrone — digitales Dentallabor Słubice' },
+    { src: g8,  alt: 'Zirkonbrücken — moderne Zahntechnik von D&M Laboratorium' },
+    { src: g9,  alt: 'Acryl-Vollprothese — D&M Laboratorium Słubice' },
+    { src: g10, alt: 'Keramikveneer — ästhetischer Zahnersatz' },
+    { src: g11, alt: 'Teleskopkronen — präzise Zahntechnik von D&M Słubice' },
+    { src: g12, alt: 'Implantatprothetischer Zahnersatz — D&M Laboratorium' },
+    { src: g13, alt: 'Individuelle Implantat-Abutments — D&M Laboratorium Słubice' },
+  ],
+};
+
+const UI = {
+  pl: { eyebrow: 'Nasze realizacje', titlePrefix: 'Galeria', titleEm: 'prac', prev: 'Poprzednie', next: 'Następne', view: 'Zobacz', page: (n) => `Strona ${n}` },
+  de: { eyebrow: 'Unsere Arbeiten', titlePrefix: 'Galerie', titleEm: 'unserer Arbeiten', prev: 'Zurück', next: 'Weiter', view: 'Ansehen', page: (n) => `Seite ${n}` },
+};
 
 // How many images visible at once (approx)
 const ITEMS_PER_PAGE = 3;
 const ITEM_WIDTH = 336; // 320px + 16px gap
 
-export default function Gallery() {
+export default function Gallery({ lang = 'pl' }) {
   const [trackOffset, setTrackOffset] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
-  const maxOffset = -(images.length - ITEMS_PER_PAGE) * ITEM_WIDTH;
+  const t = UI[lang] ?? UI.pl;
+  const galleryImages = images[lang] ?? images.pl;
+  const maxOffset = -(galleryImages.length - ITEMS_PER_PAGE) * ITEM_WIDTH;
 
   // Touch/drag
   const dragStart = useRef(null);
@@ -59,7 +83,7 @@ export default function Gallery() {
   };
 
   const currentPage = Math.round(-trackOffset / (ITEM_WIDTH * ITEMS_PER_PAGE));
-  const totalPages = Math.ceil(images.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(galleryImages.length / ITEMS_PER_PAGE);
 
   // Modal controls
   const openModal = (i) => {
@@ -73,8 +97,8 @@ export default function Gallery() {
     document.body.style.overflow = '';
   };
 
-  const modalNext = () => setModalIndex(prev => (prev + 1) % images.length);
-  const modalPrev = () => setModalIndex(prev => (prev - 1 + images.length) % images.length);
+  const modalNext = () => setModalIndex(prev => (prev + 1) % galleryImages.length);
+  const modalPrev = () => setModalIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length);
 
   // Keyboard
   useEffect(() => {
@@ -105,9 +129,9 @@ export default function Gallery() {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionHeaderLeft}>
-              <div className={styles.sectionEyebrow}>Nasze realizacje</div>
+              <div className={styles.sectionEyebrow}>{t.eyebrow}</div>
               <h2 className={styles.sectionTitle}>
-                Galeria <em>prac</em>
+                {t.titlePrefix} <em>{t.titleEm}</em>
               </h2>
             </div>
 
@@ -115,7 +139,7 @@ export default function Gallery() {
               <button
                 className={styles.arrowBtn}
                 onClick={slidePrev}
-                aria-label="Poprzednie"
+                aria-label={t.prev}
                 disabled={trackOffset === 0}
               >
                 <ChevronLeft />
@@ -123,7 +147,7 @@ export default function Gallery() {
               <button
                 className={styles.arrowBtn}
                 onClick={slideNext}
-                aria-label="Następne"
+                aria-label={t.next}
                 disabled={trackOffset <= maxOffset}
               >
                 <ChevronRight />
@@ -142,7 +166,7 @@ export default function Gallery() {
               className={styles.galleryTrack}
               style={{ transform: `translateX(${trackOffset}px)` }}
             >
-              {images.map(({ src, alt }, i) => (
+              {galleryImages.map(({ src, alt }, i) => (
                 <div
                   key={i}
                   className={styles.galleryItem}
@@ -150,7 +174,7 @@ export default function Gallery() {
                 >
                   <img src={src} alt={alt} loading="lazy" />
                   <div className={styles.galleryOverlay}>
-                    <span className={styles.viewLabel}>Zobacz</span>
+                    <span className={styles.viewLabel}>{t.view}</span>
                   </div>
                 </div>
               ))}
@@ -164,7 +188,7 @@ export default function Gallery() {
                 key={i}
                 className={`${styles.dot} ${i === currentPage ? styles.active : ''}`}
                 onClick={() => goToPage(i)}
-                aria-label={`Strona ${i + 1}`}
+                aria-label={t.page(i + 1)}
               />
             ))}
           </div>
@@ -181,8 +205,8 @@ export default function Gallery() {
 
             <div className={styles.modalImageWrap}>
               <img
-                src={images[modalIndex].src}
-                alt={images[modalIndex].alt}
+                src={galleryImages[modalIndex].src}
+                alt={galleryImages[modalIndex].alt}
                 className={styles.modalImage}
               />
             </div>
@@ -192,7 +216,7 @@ export default function Gallery() {
                 <ChevronLeft size={20} />
               </button>
               <span className={styles.modalCounter}>
-                {modalIndex + 1} / {images.length}
+                {modalIndex + 1} / {galleryImages.length}
               </span>
               <button className={styles.modalNavBtn} onClick={modalNext}>
                 <ChevronRight size={20} />

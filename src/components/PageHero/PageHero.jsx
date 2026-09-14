@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PageHero.module.css';
 
-export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo, photoPosition = 'center' }) {
+export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo, photoPosition = 'center', homePath = '/', homeLabel = 'Strona główna' }) {
   const contentRef = useRef();
   const [photoVisible, setPhotoVisible] = useState(false);
 
@@ -38,7 +38,7 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, photo, 
         <div className={styles.heroInner} ref={contentRef}>
           {breadcrumb && (
             <nav className={styles.breadcrumb}>
-              <Link to="/" className={styles.breadcrumbLink}>Strona główna</Link>
+              <Link to={homePath} className={styles.breadcrumbLink}>{homeLabel}</Link>
               <span className={styles.breadcrumbSep}>—</span>
               <span className={styles.breadcrumbCurrent}>{breadcrumb}</span>
             </nav>

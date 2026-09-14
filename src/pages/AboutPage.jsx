@@ -11,43 +11,118 @@ import beforeAfter2 from '../assets/images/before-after-2.webp';
 import beforeAfter3 from '../assets/images/before-after-3.webp';
 import styles from './AboutPage.module.css';
 
-const team = [
-  {
-    photo: photoDasha,
-    name: 'Dasha',
-    fullName: 'Daryna Saiko',
-    role: 'Współzałożycielka & Technik dentystyczny, Higienistka stomatologiczna',
-    bio: 'Tworzy estetyczne i funkcjonalne rozwiązania protetyczne. Łączy cyfrową precyzję z indywidualnym podejściem do każdego przypadku.',
+const CONTENT = {
+  pl: {
+    seoTitle: 'O nas — Laboratorium Protetyczne Słubice | D&M Laboratorium',
+    seoDescription: 'Poznaj D&M Laboratorium — pracownię protetyczną w Słubicach prowadzoną przez Darynę i Marię Saiko. Protetyk Słubice z doświadczeniem w CAD/CAM, ceramice i protetyce implantologicznej.',
+    path: '/o-nas',
+    heroEyebrow: 'Kim jesteśmy',
+    heroTitle: 'O nas',
+    heroSubtitle: 'D&M Laboratorium to nowoczesna pracownia protetyczna prowadzona przez dwie pasjonatki — Darynę i Marię Saiko.',
+    breadcrumb: 'O nas',
+    homePath: '/',
+    homeLabel: 'Strona główna',
+    teamEyebrow: 'POZNAJ NAS',
+    teamTitle: <>Nasz <em>zespół</em></>,
+    team: [
+      {
+        photo: photoDasha,
+        name: 'Dasha',
+        fullName: 'Daryna Saiko',
+        role: 'Współzałożycielka & Technik dentystyczny, Higienistka stomatologiczna',
+        bio: 'Tworzy estetyczne i funkcjonalne rozwiązania protetyczne. Łączy cyfrową precyzję z indywidualnym podejściem do każdego przypadku.',
+      },
+      {
+        photo: photoMariya,
+        name: 'Mariya',
+        fullName: 'Mariia Saiko',
+        role: 'Współzałożycielka & Technik dentystyczny',
+        bio: 'Specjalistka w zakresie protetyki stałej i ceramiki. Pasjonatka estetyki i precyzji — każdą pracę traktuje jak dzieło sztuki.',
+      },
+    ],
+    baEyebrow: 'Efekty naszej pracy',
+    baTitle: <>Jak zmieniamy <em>uśmiechy</em></>,
+    baBefore: 'Przed',
+    baAfter: 'Po',
+    baAlt: (n) => `Transformacja protetyczna przed i po ${n} — D&M Laboratorium Słubice`,
+    valuesEyebrow: 'Nasze wartości',
+    valuesTitle: <>Na czym <em>stoimy</em></>,
+    values: [
+      { title: 'Precyzja', desc: 'Każda praca wykonywana jest z najwyższą dokładnością przy użyciu technologii CAD/CAM.' },
+      { title: 'Estetyka', desc: 'Dbamy o to, aby każda realizacja spełniała najwyższe standardy estetyczne.' },
+      { title: 'Niezawodność', desc: 'Terminowość i pełne zaangażowanie na każdym etapie współpracy.' },
+      { title: 'Partnerstwo', desc: 'Stała komunikacja i wsparcie dla gabinetów stomatologicznych.' },
+    ],
   },
-  {
-    photo: photoMariya,
-    name: 'Mariya',
-    fullName: 'Mariia Saiko',
-    role: 'Współzałożycielka & Technik dentystyczny',
-    bio: 'Specjalistka w zakresie protetyki stałej i ceramiki. Pasjonatka estetyki i precyzji — każdą pracę traktuje jak dzieło sztuki.',
+  de: {
+    seoTitle: 'Über uns — Dentallabor Słubice | D&M Laboratorium',
+    seoDescription: 'Lernen Sie D&M Laboratorium kennen — ein modernes Dentallabor in Słubice, geleitet von Daryna und Mariia Saiko. Zahntechnik-Expertise in CAD/CAM, Keramik und Implantatprothetik, nur wenige Minuten von Frankfurt (Oder).',
+    path: '/de/ueber-uns',
+    heroEyebrow: 'Wer wir sind',
+    heroTitle: 'Über uns',
+    heroSubtitle: 'D&M Laboratorium ist ein modernes Dentallabor, geführt von zwei leidenschaftlichen Zahntechnikerinnen — Daryna und Mariia Saiko.',
+    breadcrumb: 'Über uns',
+    homePath: '/de',
+    homeLabel: 'Startseite',
+    teamEyebrow: 'LERNEN SIE UNS KENNEN',
+    teamTitle: <>Unser <em>Team</em></>,
+    team: [
+      {
+        photo: photoDasha,
+        name: 'Dasha',
+        fullName: 'Daryna Saiko',
+        role: 'Mitgründerin & Zahntechnikerin, Dentalhygienikerin',
+        bio: 'Entwickelt ästhetische und funktionale prothetische Lösungen. Verbindet digitale Präzision mit einem individuellen Ansatz für jeden Fall.',
+      },
+      {
+        photo: photoMariya,
+        name: 'Mariya',
+        fullName: 'Mariia Saiko',
+        role: 'Mitgründerin & Zahntechnikerin',
+        bio: 'Spezialistin für festsitzenden Zahnersatz und Keramik. Leidenschaft für Ästhetik und Präzision — jede Arbeit wird wie ein Kunstwerk behandelt.',
+      },
+    ],
+    baEyebrow: 'Ergebnisse unserer Arbeit',
+    baTitle: <>Wie wir <em>Lächeln</em> verändern</>,
+    baBefore: 'Vorher',
+    baAfter: 'Nachher',
+    baAlt: (n) => `Prothetische Transformation vorher-nachher ${n} — D&M Laboratorium Słubice`,
+    valuesEyebrow: 'Unsere Werte',
+    valuesTitle: <>Wofür wir <em>stehen</em></>,
+    values: [
+      { title: 'Präzision', desc: 'Jede Arbeit wird mit höchster Genauigkeit unter Einsatz von CAD/CAM-Technologie ausgeführt.' },
+      { title: 'Ästhetik', desc: 'Wir achten darauf, dass jede Arbeit höchste ästhetische Standards erfüllt.' },
+      { title: 'Zuverlässigkeit', desc: 'Termintreue und volles Engagement in jeder Phase der Zusammenarbeit.' },
+      { title: 'Partnerschaft', desc: 'Ständige Kommunikation und Unterstützung für Zahnarztpraxen.' },
+    ],
   },
+};
+
+const ALTERNATES = [
+  { lang: 'pl', path: '/o-nas' },
+  { lang: 'de', path: '/de/ueber-uns' },
+  { lang: 'x-default', path: '/o-nas' },
 ];
 
-const values = [
-  { title: 'Precyzja', desc: 'Każda praca wykonywana jest z najwyższą dokładnością przy użyciu technologii CAD/CAM.' },
-  { title: 'Estetyka', desc: 'Dbamy o to, aby każda realizacja spełniała najwyższe standardy estetyczne.' },
-  { title: 'Niezawodność', desc: 'Terminowość i pełne zaangażowanie na każdym etapie współpracy.' },
-  { title: 'Partnerstwo', desc: 'Stała komunikacja i wsparcie dla gabinetów stomatologicznych.' },
-];
+export default function AboutPage({ lang = 'pl' }) {
+  const c = CONTENT[lang] ?? CONTENT.pl;
 
-
-export default function AboutPage() {
   return (
-    <PageLayout>
+    <PageLayout lang={lang}>
       <Seo
-        title="O nas — Laboratorium Protetyczne Słubice | D&M Laboratorium"
-        description="Poznaj D&M Laboratorium — pracownię protetyczną w Słubicach prowadzoną przez Darynę i Marię Saiko. Protetyk Słubice z doświadczeniem w CAD/CAM, ceramice i protetyce implantologicznej."
-        path="/o-nas"
+        title={c.seoTitle}
+        description={c.seoDescription}
+        path={c.path}
+        lang={lang}
+        alternates={ALTERNATES}
       />
       <PageHero
-        eyebrow="Kim jesteśmy"
-        title="O nas"
-        subtitle="D&M Laboratorium to nowoczesna pracownia protetyczna prowadzona przez dwie pasjonatki — Darynę i Marię Saiko."
+        eyebrow={c.heroEyebrow}
+        title={c.heroTitle}
+        subtitle={c.heroSubtitle}
+        breadcrumb={c.breadcrumb}
+        homePath={c.homePath}
+        homeLabel={c.homeLabel}
         photo={heroPhoto}
         photoPosition="center 25%"
       />
@@ -55,12 +130,12 @@ export default function AboutPage() {
       {/* Team */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.sectionEyebrow}>POZNAJ NAS</div>
-          <h2 className={styles.sectionTitle}>Nasz <em>zespół</em></h2>
+          <div className={styles.sectionEyebrow}>{c.teamEyebrow}</div>
+          <h2 className={styles.sectionTitle}>{c.teamTitle}</h2>
           <div className={styles.sectionDivider} />
 
           <div className={styles.teamGrid}>
-            {team.map((member, i) => (
+            {c.team.map((member, i) => (
               <motion.div
                 key={i}
                 className={styles.teamCard}
@@ -92,8 +167,8 @@ export default function AboutPage() {
       {/* Before / After */}
       <section className={`${styles.section} ${styles.sectionDark}`}>
         <div className={styles.container}>
-          <div className={styles.sectionEyebrow}>Efekty naszej pracy</div>
-          <h2 className={styles.sectionTitle}>Jak zmieniamy <em>uśmiechy</em></h2>
+          <div className={styles.sectionEyebrow}>{c.baEyebrow}</div>
+          <h2 className={styles.sectionTitle}>{c.baTitle}</h2>
           <div className={styles.sectionDivider} />
           <div className={styles.beforeAfterGrid}>
             {[1, 2, 3].map((n) => (
@@ -108,15 +183,15 @@ export default function AboutPage() {
                 <div className={styles.beforeAfterImgWrap}>
                   <img
                     src={[beforeAfter1, beforeAfter2, beforeAfter3][n - 1]}
-                    alt={`Transformacja protetyczna przed i po ${n} — D&M Laboratorium Słubice`}
+                    alt={c.baAlt(n)}
                     className={styles.beforeAfterImg}
                     loading="lazy"
                   />
                 </div>
                 <div className={styles.beforeAfterLabel}>
-                  <span>Przed</span>
+                  <span>{c.baBefore}</span>
                   <span className={styles.labelDivider} />
-                  <span>Po</span>
+                  <span>{c.baAfter}</span>
                 </div>
               </motion.div>
             ))}
@@ -127,11 +202,11 @@ export default function AboutPage() {
       {/* Values */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.sectionEyebrow}>Nasze wartości</div>
-          <h2 className={styles.sectionTitle}>Na czym <em>stoimy</em></h2>
+          <div className={styles.sectionEyebrow}>{c.valuesEyebrow}</div>
+          <h2 className={styles.sectionTitle}>{c.valuesTitle}</h2>
           <div className={styles.sectionDivider} />
           <div className={styles.valuesGrid}>
-            {values.map((v, i) => (
+            {c.values.map((v, i) => (
               <motion.div
                 key={i}
                 className={styles.valueCard}

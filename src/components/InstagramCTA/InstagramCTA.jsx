@@ -2,7 +2,12 @@ import React from 'react';
 import { Instagram } from 'lucide-react';
 import styles from './InstagramCTA.module.css';
 
-export default function InstagramCTA() {
+const LABEL = {
+  pl: 'Śledź nas na Instagramie',
+  de: 'Folge uns auf Instagram',
+};
+
+export default function InstagramCTA({ lang = 'pl' }) {
   return (
     <section className={styles.section}>
       <a
@@ -12,7 +17,7 @@ export default function InstagramCTA() {
         className={styles.btn}
       >
         <Instagram size={18} strokeWidth={1.4} />
-        Śledź nas na Instagramie
+        {LABEL[lang] ?? LABEL.pl}
       </a>
     </section>
   );

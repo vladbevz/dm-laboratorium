@@ -3,8 +3,37 @@ import { Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
-export default function Footer() {
+const STRINGS = {
+  pl: {
+    links: [
+      { to: '/uslugi', label: 'Usługi' },
+      { to: '/o-nas', label: 'O nas' },
+      { to: '/galeria', label: 'Galeria' },
+      { to: '/kontakt', label: 'Kontakt' },
+    ],
+    rights: 'Wszelkie prawa zastrzeżone',
+    tagline: 'dla perfekcyjnych uśmiechów',
+    taglinePrefix: 'Stworzone z',
+    legal: 'Polityka Prywatności',
+    legalPath: '/polityka-prywatnosci',
+  },
+  de: {
+    links: [
+      { to: '/de/leistungen', label: 'Leistungen' },
+      { to: '/de/ueber-uns', label: 'Über uns' },
+      { to: '/de/kontakt', label: 'Kontakt' },
+    ],
+    rights: 'Alle Rechte vorbehalten',
+    tagline: 'für perfekte Lächeln',
+    taglinePrefix: 'Erstellt mit',
+    legal: 'Datenschutzerklärung',
+    legalPath: '/polityka-prywatnosci',
+  },
+};
+
+export default function Footer({ lang = 'pl' }) {
   const currentYear = new Date().getFullYear();
+  const t = STRINGS[lang] ?? STRINGS.pl;
 
   return (
     <footer className={styles.footer}>
@@ -19,24 +48,23 @@ export default function Footer() {
           <div className={styles.footerDivider} />
 
           <nav className={styles.links}>
-            <Link to="/uslugi" className={styles.link}>Usługi</Link>
-            <span className={styles.separator}>◆</span>
-            <Link to="/o-nas" className={styles.link}>O nas</Link>
-            <span className={styles.separator}>◆</span>
-            <Link to="/galeria" className={styles.link}>Galeria</Link>
-            <span className={styles.separator}>◆</span>
-            <Link to="/kontakt" className={styles.link}>Kontakt</Link>
+            {t.links.map(({ to, label }, i) => (
+              <React.Fragment key={to}>
+                {i > 0 && <span className={styles.separator}>◆</span>}
+                <Link to={to} className={styles.link}>{label}</Link>
+              </React.Fragment>
+            ))}
           </nav>
 
           <div className={styles.copyright}>
             <p className={styles.copyrightText}>
-              © {currentYear} D&M Laboratorium — Wszelkie prawa zastrzeżone
+              © {currentYear} D&M Laboratorium — {t.rights}
             </p>
             <p className={styles.note}>
-              Stworzone z <Heart size={12} className={styles.heartIcon} /> dla perfekcyjnych uśmiechów
+              {t.taglinePrefix} <Heart size={12} className={styles.heartIcon} /> {t.tagline}
             </p>
             <p className={styles.legal}>
-              <Link to="/polityka-prywatnosci" className={styles.legalLink}>Polityka Prywatności</Link>
+              <Link to={t.legalPath} className={styles.legalLink}>{t.legal}</Link>
             </p>
           </div>
 

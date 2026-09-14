@@ -8,11 +8,25 @@ function setMetaContent(selector, attr, value) {
   if (el) el.setAttribute(attr, value);
 }
 
-export default function Seo({ title, description, path = '/', ogImage = DEFAULT_OG_IMAGE, noindex = false }) {
+function setAlternateLinks(alternates) {
+  document.querySelectorAll('link[data-hreflang]').forEach((el) => el.remove());
+  if (!alternates || alternates.length === 0) return;
+  alternates.forEach(({ lang, path }) => {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = lang;
+    link.href = `${SITE_URL}${path}`;
+    link.setAttribute('data-hreflang', '1');
+    document.head.appendChild(link);
+  });
+}
+
+export default function Seo({ title, description, path = '/', ogImage = DEFAULT_OG_IMAGE, noindex = false, lang = 'pl', alternates = null }) {
   useEffect(() => {
     const url = `${SITE_URL}${path}`;
 
     document.title = title;
+    document.documentElement.lang = lang;
     setMetaContent('meta[name="description"]', 'content', description);
     setMetaContent('link[rel="canonical"]', 'href', url);
     setMetaContent('meta[name="robots"]', 'content', noindex ? 'noindex, follow' : 'index, follow');
@@ -21,11 +35,14 @@ export default function Seo({ title, description, path = '/', ogImage = DEFAULT_
     setMetaContent('meta[property="og:description"]', 'content', description);
     setMetaContent('meta[property="og:url"]', 'content', url);
     setMetaContent('meta[property="og:image"]', 'content', ogImage);
+    setMetaContent('meta[property="og:locale"]', 'content', lang === 'de' ? 'de_DE' : 'pl_PL');
 
     setMetaContent('meta[name="twitter:title"]', 'content', title);
     setMetaContent('meta[name="twitter:description"]', 'content', description);
     setMetaContent('meta[name="twitter:image"]', 'content', ogImage);
-  }, [title, description, path, ogImage, noindex]);
+
+    setAlternateLinks(alternates);
+  }, [title, description, path, ogImage, noindex, lang, alternates]);
 
   return null;
 }

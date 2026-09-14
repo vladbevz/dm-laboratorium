@@ -2,7 +2,34 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
-export default function Header() {
+const NAV_LINKS = {
+  pl: [
+    { to: '/uslugi', label: 'Usługi' },
+    { to: '/o-nas', label: 'O nas' },
+    { to: '/galeria', label: 'Galeria' },
+    { to: '/kontakt', label: 'Kontakt' },
+  ],
+  de: [
+    { to: '/de/leistungen', label: 'Leistungen' },
+    { to: '/de/ueber-uns', label: 'Über uns' },
+    { to: '/de/kontakt', label: 'Kontakt' },
+  ],
+};
+
+const STRINGS = {
+  pl: { contact: 'Skontaktuj się', contactPath: '/kontakt', home: '/' },
+  de: { contact: 'Kontakt aufnehmen', contactPath: '/de/kontakt', home: '/de' },
+};
+
+const PL_TO_DE = { '/': '/de', '/uslugi': '/de/leistungen', '/o-nas': '/de/ueber-uns', '/kontakt': '/de/kontakt' };
+const DE_TO_PL = { '/de': '/', '/de/leistungen': '/uslugi', '/de/ueber-uns': '/o-nas', '/de/kontakt': '/kontakt' };
+
+function otherLangPath(pathname, lang) {
+  if (lang === 'de') return DE_TO_PL[pathname] ?? '/';
+  return PL_TO_DE[pathname] ?? '/de';
+}
+
+export default function Header({ lang = 'pl' }) {
   const headerRef = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -40,12 +67,10 @@ export default function Header() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const navLinks = [
-    { to: '/uslugi', label: 'Usługi' },
-    { to: '/o-nas', label: 'O nas' },
-    { to: '/galeria', label: 'Galeria' },
-    { to: '/kontakt', label: 'Kontakt' },
-  ];
+  const navLinks = NAV_LINKS[lang] ?? NAV_LINKS.pl;
+  const t = STRINGS[lang] ?? STRINGS.pl;
+  const switchTo = lang === 'de' ? 'pl' : 'de';
+  const switchPath = otherLangPath(location.pathname, lang);
 
   return (
     <header ref={headerRef} className={styles.header}>
@@ -53,7 +78,7 @@ export default function Header() {
         <div className={styles.headerInner}>
 
           {/* Logo */}
-          <Link className={styles.logoText} to="/" onClick={() => { closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <Link className={styles.logoText} to={t.home} onClick={() => { closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             <span className={styles.logoPart}>D&M</span>
             <span className={styles.logoPartSub}>Laboratorium</span>
           </Link>
@@ -81,22 +106,25 @@ export default function Header() {
                 {label}
               </Link>
             ))}
+            <Link to={switchPath} onClick={closeMenu} lang={switchTo} aria-label={switchTo === 'de' ? 'Auf Deutsch anzeigen' : 'Przełącz na polski'}>
+              {switchTo.toUpperCase()}
+            </Link>
             <Link
               className={`${styles.contactBtn} ${styles.mobileContact}`}
-              to="/kontakt"
+              to={t.contactPath}
               onClick={closeMenu}
             >
-              Skontaktuj się
+              {t.contact}
             </Link>
           </nav>
 
           {/* Desktop contact button */}
           <Link
             className={`${styles.contactBtn} ${styles.desktopContact}`}
-            to="/kontakt"
+            to={t.contactPath}
             onClick={closeMenu}
           >
-            Skontaktuj się
+            {t.contact}
           </Link>
 
         </div>

@@ -25,6 +25,11 @@ export default function App() {
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/polityka-prywatnosci" element={<PrivacyPage />} />
+
+        <Route path="/de" element={<HomePage lang="de" />} />
+        <Route path="/de/leistungen" element={<ServicesPage lang="de" />} />
+        <Route path="/de/ueber-uns" element={<AboutPage lang="de" />} />
+        <Route path="/de/kontakt" element={<ContactPage lang="de" />} />
       </Routes>
     </BrowserRouter>
   );

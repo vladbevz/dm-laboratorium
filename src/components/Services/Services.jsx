@@ -3,9 +3,31 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Services.module.css';
 import { services } from '../../data/services';
+import { servicesDe } from '../../data/services.de';
 
-export default function Services() {
+const STRINGS = {
+  pl: {
+    eyebrow: 'Co oferujemy',
+    titlePrefix: 'Usługi',
+    titleStrong: 'Protetyczne',
+    description: 'Kompleksowe rozwiązania w nowoczesnym laboratorium stomatologicznym',
+    cta: 'Pełna oferta usług →',
+    basePath: '/uslugi',
+  },
+  de: {
+    eyebrow: 'Unser Angebot',
+    titlePrefix: 'Zahntechnische',
+    titleStrong: 'Leistungen',
+    description: 'Umfassende Lösungen aus einem modernen Dentallabor',
+    cta: 'Vollständiges Leistungsangebot →',
+    basePath: '/de/leistungen',
+  },
+};
+
+export default function Services({ lang = 'pl' }) {
   const [openItems, setOpenItems] = useState({});
+  const t = STRINGS[lang] ?? STRINGS.pl;
+  const list = lang === 'de' ? servicesDe : services;
 
   const toggle = (slug) => {
     setOpenItems((prev) => ({ ...prev, [slug]: !prev[slug] }));
@@ -16,18 +38,18 @@ export default function Services() {
       <div className={styles.container}>
 
         <div className={styles.sectionHeader}>
-          <div className={styles.sectionEyebrow}>Co oferujemy</div>
+          <div className={styles.sectionEyebrow}>{t.eyebrow}</div>
           <h2 className={styles.sectionTitle}>
-            Usługi <strong>Protetyczne</strong>
+            {t.titlePrefix} <strong>{t.titleStrong}</strong>
           </h2>
           <div className={styles.sectionDivider} />
           <p className={styles.sectionDescription}>
-            Kompleksowe rozwiązania w nowoczesnym laboratorium stomatologicznym
+            {t.description}
           </p>
         </div>
 
         <div className={styles.accordionList}>
-          {services.map((category, i) => {
+          {list.map((category, i) => {
             const isOpen = !!openItems[category.slug];
             return (
               <motion.div
@@ -44,7 +66,7 @@ export default function Services() {
                   aria-expanded={isOpen}
                 >
                   <Link
-                    to={category.dedicatedPage ?? `/uslugi#${category.slug}`}
+                    to={lang === 'de' ? `${t.basePath}#${category.slug}` : (category.dedicatedPage ?? `${t.basePath}#${category.slug}`)}
                     className={styles.accordionTitleLink}
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -85,8 +107,8 @@ export default function Services() {
         </div>
 
         <div className={styles.ctaWrap}>
-          <Link to="/uslugi" className={styles.ctaBtn}>
-            Pełna oferta usług →
+          <Link to={t.basePath} className={styles.ctaBtn}>
+            {t.cta}
           </Link>
         </div>
 

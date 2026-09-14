@@ -6,11 +6,47 @@ import PageHero from '../components/PageHero/PageHero.jsx';
 import Seo from '../components/Seo/Seo.jsx';
 import heroPhoto from '../assets/images/uslugi-hero.webp';
 import { services } from '../data/services';
+import { servicesDe } from '../data/services.de';
 import styles from './ServicesPage.module.css';
 
-export default function ServicesPage() {
+const CONTENT = {
+  pl: {
+    seoTitle: 'Usługi Protetyczne Słubice — Korony, Protezy, Naprawa Protez | D&M Laboratorium',
+    seoDescription: 'Pełna oferta pracowni protetycznej D&M Laboratorium Słubice: korony i mosty CAD/CAM, protezy całkowite, implantoprotetyka, naprawa protez. Współpraca z gabinetami w regionie lubuskim i całej Polsce.',
+    path: '/uslugi',
+    eyebrow: 'Co oferujemy',
+    title: 'Usługi Protetyczne',
+    subtitle: 'Kompleksowe rozwiązania protetyczne wykonywane z najwyższą precyzją. Wybierz kategorię, aby poznać szczegółową ofertę.',
+    breadcrumb: 'Usługi',
+    homePath: '/',
+    homeLabel: 'Strona główna',
+    dedicatedLink: 'Zobacz szczegółową ofertę →',
+  },
+  de: {
+    seoTitle: 'Zahntechnische Leistungen Słubice — Kronen, Prothesen, Reparaturen | D&M Laboratorium',
+    seoDescription: 'Vollständiges Leistungsangebot des Dentallabors D&M Laboratorium in Słubice: CAD/CAM-Kronen und -Brücken, Vollprothesen, Implantatprothetik, Prothesenreparatur. Nur wenige Minuten von Frankfurt (Oder) — Zusammenarbeit mit Zahnarztpraxen in Deutschland und Polen.',
+    path: '/de/leistungen',
+    eyebrow: 'Unser Angebot',
+    title: 'Zahntechnische Leistungen',
+    subtitle: 'Umfassende zahntechnische Lösungen mit höchster Präzision. Wählen Sie eine Kategorie, um das vollständige Angebot zu sehen.',
+    breadcrumb: 'Leistungen',
+    homePath: '/de',
+    homeLabel: 'Startseite',
+    dedicatedLink: 'Mehr erfahren →',
+  },
+};
+
+const ALTERNATES = [
+  { lang: 'pl', path: '/uslugi' },
+  { lang: 'de', path: '/de/leistungen' },
+  { lang: 'x-default', path: '/uslugi' },
+];
+
+export default function ServicesPage({ lang = 'pl' }) {
   const location = useLocation();
   const [openItems, setOpenItems] = useState({});
+  const c = CONTENT[lang] ?? CONTENT.pl;
+  const list = lang === 'de' ? servicesDe : services;
 
   const toggle = (slug) => {
     setOpenItems((prev) => ({ ...prev, [slug]: !prev[slug] }));
@@ -27,16 +63,21 @@ export default function ServicesPage() {
   }, [location.hash]);
 
   return (
-    <PageLayout>
+    <PageLayout lang={lang}>
       <Seo
-        title="Usługi Protetyczne Słubice — Korony, Protezy, Naprawa Protez | D&M Laboratorium"
-        description="Pełna oferta pracowni protetycznej D&M Laboratorium Słubice: korony i mosty CAD/CAM, protezy całkowite, implantoprotetyka, naprawa protez. Współpraca z gabinetami w regionie lubuskim i całej Polsce."
-        path="/uslugi"
+        title={c.seoTitle}
+        description={c.seoDescription}
+        path={c.path}
+        lang={lang}
+        alternates={ALTERNATES}
       />
       <PageHero
-        eyebrow="Co oferujemy"
-        title="Usługi Protetyczne"
-        subtitle="Kompleksowe rozwiązania protetyczne wykonywane z najwyższą precyzją. Wybierz kategorię, aby poznać szczegółową ofertę."
+        eyebrow={c.eyebrow}
+        title={c.title}
+        subtitle={c.subtitle}
+        breadcrumb={c.breadcrumb}
+        homePath={c.homePath}
+        homeLabel={c.homeLabel}
         photo={heroPhoto}
         photoPosition="center 20%"
       />
@@ -44,7 +85,7 @@ export default function ServicesPage() {
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.accordionList}>
-            {services.map((category, i) => {
+            {list.map((category, i) => {
               const isOpen = !!openItems[category.slug];
               return (
                 <motion.div
@@ -89,9 +130,9 @@ export default function ServicesPage() {
                               </li>
                             ))}
                           </ul>
-                          {category.dedicatedPage && (
+                          {category.dedicatedPage && lang === 'pl' && (
                             <Link to={category.dedicatedPage} className={styles.dedicatedLink}>
-                              Zobacz szczegółową ofertę →
+                              {c.dedicatedLink}
                             </Link>
                           )}
                         </div>
