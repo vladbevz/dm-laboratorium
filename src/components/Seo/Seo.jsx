@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://dm-lab.pl';
+const SITE_URL = 'https://www.dm-lab.pl';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 function setMetaContent(selector, attr, value) {
