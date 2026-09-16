@@ -20,8 +20,8 @@ const NAV_LINKS = {
 };
 
 const STRINGS = {
-  pl: { contact: 'Skontaktuj się', contactPath: '/kontakt', home: '/' },
-  de: { contact: 'Kontakt aufnehmen', contactPath: '/de/kontakt', home: '/de' },
+  pl: { contact: 'Wyślij przypadek', contactPath: '/kontakt', home: '/' },
+  de: { contact: 'Fall einsenden', contactPath: '/de/kontakt', home: '/de' },
 };
 
 const PL_TO_DE = { '/': '/de', '/uslugi': '/de/leistungen', '/o-nas': '/de/ueber-uns', '/galeria': '/de/galerie', '/kontakt': '/de/kontakt' };

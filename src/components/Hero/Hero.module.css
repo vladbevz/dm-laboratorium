@@ -240,16 +240,18 @@
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: auto; padding-top: 72px; display: block; }
-  .container { padding: 0 28px; }
-  .heroInner { max-width: 100%; padding: 40px 0 48px; }
-  /* Photo: back to normal flow, full width, fixed height above text */
+  .hero { min-height: auto; padding-top: 72px; display: flex; flex-direction: column; }
+  /* Headline + CTA must be visible without scrolling — text first, photo after */
+  .container { padding: 0 28px; order: 1; }
+  .heroInner { max-width: 100%; padding: 28px 0 32px; }
+  /* Photo: back to normal flow, full width, fixed height, after the text */
   .heroPhotoWrap {
     position: relative;
     top: auto; right: auto;
     width: 100%;
-    height: clamp(360px, 70vw, 520px);
+    height: clamp(280px, 60vw, 420px);
     transform: translateY(-16px);
+    order: 2;
   }
   .heroPhotoWrap.photoVisible { transform: translateY(0); }
   .photoFade {

@@ -5,15 +5,15 @@ import styles from './Hero.module.css';
 const STRINGS = {
   pl: {
     alt: 'Dasha i Mariya — założycielki D&M Laboratorium',
-    title: <>Nowoczesne <em>cyfrowe</em><br />laboratorium protetyczne w Słubicach</>,
-    text: 'Protezy, korony i mosty łączące funkcję, estetykę i niezawodność. Precyzja CAD/CAM w każdej pracy — zaufany protetyk w Słubicach, współpraca z gabinetami w całej Polsce.',
-    cta: 'Skontaktuj się',
+    title: <>Cyfrowe laboratorium protetyczne <em>w Słubicach</em><br />dla gabinetów w całej Polsce</>,
+    text: 'Precyzyjne korony, mosty i prace implantoprotetyczne CAD/CAM. Jasna komunikacja, kontrola każdego etapu i terminowa realizacja.',
+    cta: 'Wyślij przypadek do konsultacji',
   },
   de: {
     alt: 'Dasha und Mariya — Gründerinnen von D&M Laboratorium',
-    title: <>Modernes <em>digitales</em><br />Dentallabor in Słubice, direkt an der deutschen Grenze</>,
-    text: 'Prothesen, Kronen und Brücken, die Funktion, Ästhetik und Zuverlässigkeit vereinen. CAD/CAM-Präzision in jeder Arbeit — Ihr zuverlässiger Zahntechnik-Partner nur wenige Minuten von Frankfurt (Oder) entfernt.',
-    cta: 'Kontakt aufnehmen',
+    title: <>Digitales Dentallabor <em>in Słubice</em><br />für Zahnarztpraxen in Polen und Deutschland</>,
+    text: 'Präzise Kronen, Brücken und Implantatarbeiten aus CAD/CAM-Fertigung. Klare Kommunikation, Kontrolle in jeder Phase und termingerechte Lieferung.',
+    cta: 'Fall zur Beratung senden',
   },
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header.jsx';
 import Hero from '../components/Hero/Hero.jsx';
+import HowItWorks from '../components/HowItWorks/HowItWorks.jsx';
 import Services from '../components/Services/Services.jsx';
 import About from '../components/About/About.jsx';
 import Reviews from '../components/Reviews/Reviews.jsx';
@@ -52,6 +53,7 @@ export default function HomePage({ lang = 'pl' }) {
       <Header lang={lang} />
       <main>
         <Hero lang={lang} />
+        <HowItWorks lang={lang} />
         <Services lang={lang} />
         <About lang={lang} />
         <Reviews lang={lang} />
