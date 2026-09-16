@@ -6,7 +6,7 @@ const CONTENT = {
   pl: {
     eyebrow: 'Proces współpracy',
     title: <>Jak rozpocząć <em>współpracę</em></>,
-    description: 'Cztery proste kroki od zgłoszenia przypadku do gotowej pracy w gabinecie',
+    description: 'Od zgłoszenia przypadku do gotowej pracy w gabinecie',
     steps: [
       { title: 'Wyślij skan lub wycisk', desc: 'Prześlij cyfrowy skan (STL) lub tradycyjny wycisk wraz z opisem przypadku przez formularz lub email.' },
       { title: 'Przygotowujemy projekt', desc: 'Analizujemy przypadek i przygotowujemy plan pracy w technologii CAD/CAM.' },
@@ -17,7 +17,7 @@ const CONTENT = {
   de: {
     eyebrow: 'Ablauf der Zusammenarbeit',
     title: <>So starten wir die <em>Zusammenarbeit</em></>,
-    description: 'Vier einfache Schritte — vom eingesendeten Fall bis zur fertigen Arbeit in Ihrer Praxis',
+    description: 'Vom eingesendeten Fall bis zur fertigen Arbeit in Ihrer Praxis',
     steps: [
       { title: 'Scan oder Abdruck senden', desc: 'Senden Sie uns einen digitalen Scan (STL) oder einen klassischen Abdruck mit Fallbeschreibung — per Formular oder E-Mail.' },
       { title: 'Wir erstellen den Plan', desc: 'Wir analysieren den Fall und erstellen einen Arbeitsplan in CAD/CAM-Technologie.' },
@@ -41,23 +41,21 @@ export default function HowItWorks({ lang = 'pl' }) {
           <p className={styles.sectionDescription}>{c.description}</p>
         </div>
 
-        <div className={styles.stepsGrid}>
+        <motion.div
+          className={styles.stepsGrid}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+        >
           {c.steps.map((step, i) => (
-            <motion.div
-              key={i}
-              className={styles.step}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }}
-              viewport={{ once: true }}
-            >
-              <div className={styles.stepNumber}>{String(i + 1).padStart(2, '0')}</div>
+            <div key={i} className={styles.step}>
+              <div className={styles.stepAccent} />
               <h3 className={styles.stepTitle}>{step.title}</h3>
               <p className={styles.stepDesc}>{step.desc}</p>
-              {i < c.steps.length - 1 && <div className={styles.stepConnector} />}
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>
