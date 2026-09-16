@@ -30,14 +30,36 @@ const ALTERNATES = [
   { lang: 'x-default', path: '/' },
 ];
 
+const PRELOADER_KEY = 'dm_preloader_shown';
+
+function hasShownPreloader() {
+  try {
+    return sessionStorage.getItem(PRELOADER_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markPreloaderShown() {
+  try {
+    sessionStorage.setItem(PRELOADER_KEY, '1');
+  } catch {
+    // ignore — worst case the preloader shows again
+  }
+}
+
 export default function HomePage({ lang = 'pl' }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => !hasShownPreloader());
   const seo = SEO[lang] ?? SEO.pl;
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3500);
+    if (!isLoading) return;
+    const timer = setTimeout(() => {
+      markPreloaderShown();
+      setIsLoading(false);
+    }, 3500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isLoading]);
 
   if (isLoading) return <Preloader />;
 
