@@ -12,6 +12,7 @@ const NAV_LINKS = {
   de: [
     { to: '/de/leistungen', label: 'Leistungen' },
     { to: '/de/ueber-uns', label: 'Über uns' },
+    { to: '/de/galerie', label: 'Galerie' },
     { to: '/de/kontakt', label: 'Kontakt' },
   ],
 };
@@ -21,8 +22,8 @@ const STRINGS = {
   de: { contact: 'Kontakt aufnehmen', contactPath: '/de/kontakt', home: '/de' },
 };
 
-const PL_TO_DE = { '/': '/de', '/uslugi': '/de/leistungen', '/o-nas': '/de/ueber-uns', '/kontakt': '/de/kontakt' };
-const DE_TO_PL = { '/de': '/', '/de/leistungen': '/uslugi', '/de/ueber-uns': '/o-nas', '/de/kontakt': '/kontakt' };
+const PL_TO_DE = { '/': '/de', '/uslugi': '/de/leistungen', '/o-nas': '/de/ueber-uns', '/galeria': '/de/galerie', '/kontakt': '/de/kontakt' };
+const DE_TO_PL = { '/de': '/', '/de/leistungen': '/uslugi', '/de/ueber-uns': '/o-nas', '/de/galerie': '/galeria', '/de/kontakt': '/kontakt' };
 
 function otherLangPath(pathname, lang) {
   if (lang === 'de') return DE_TO_PL[pathname] ?? '/';
@@ -106,7 +107,13 @@ export default function Header({ lang = 'pl' }) {
                 {label}
               </Link>
             ))}
-            <Link to={switchPath} onClick={closeMenu} lang={switchTo} aria-label={switchTo === 'de' ? 'Auf Deutsch anzeigen' : 'Przełącz na polski'}>
+            <Link
+              to={switchPath}
+              onClick={closeMenu}
+              lang={switchTo}
+              aria-label={switchTo === 'de' ? 'Auf Deutsch anzeigen' : 'Przełącz na polski'}
+              className={`${styles.langSwitch} ${styles.mobileLangSwitch}`}
+            >
               {switchTo.toUpperCase()}
             </Link>
             <Link
@@ -117,6 +124,16 @@ export default function Header({ lang = 'pl' }) {
               {t.contact}
             </Link>
           </nav>
+
+          {/* Language switch (desktop) */}
+          <Link
+            to={switchPath}
+            lang={switchTo}
+            aria-label={switchTo === 'de' ? 'Auf Deutsch anzeigen' : 'Przełącz na polski'}
+            className={`${styles.langSwitch} ${styles.desktopLangSwitch}`}
+          >
+            {switchTo.toUpperCase()}
+          </Link>
 
           {/* Desktop contact button */}
           <Link

@@ -21,6 +21,7 @@ const STRINGS = {
     links: [
       { to: '/de/leistungen', label: 'Leistungen' },
       { to: '/de/ueber-uns', label: 'Über uns' },
+      { to: '/de/galerie', label: 'Galerie' },
       { to: '/de/kontakt', label: 'Kontakt' },
     ],
     rights: 'Alle Rechte vorbehalten',

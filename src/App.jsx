@@ -29,6 +29,7 @@ export default function App() {
         <Route path="/de" element={<HomePage lang="de" />} />
         <Route path="/de/leistungen" element={<ServicesPage lang="de" />} />
         <Route path="/de/ueber-uns" element={<AboutPage lang="de" />} />
+        <Route path="/de/galerie" element={<GalleryPage lang="de" />} />
         <Route path="/de/kontakt" element={<ContactPage lang="de" />} />
       </Routes>
     </BrowserRouter>

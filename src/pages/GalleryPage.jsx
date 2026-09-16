@@ -32,20 +32,65 @@ const images = imageOrder
   .map(name => imageModules[`../assets/images/${name}`]?.default)
   .filter(Boolean);
 
-export default function GalleryPage() {
+const CONTENT = {
+  pl: {
+    seoTitle: 'Galeria Realizacji Protetycznych Słubice | D&M Laboratorium',
+    seoDescription: 'Zobacz realizacje pracowni protetycznej D&M Laboratorium w Słubicach — korony, mosty, protezy i prace implantoprotetyczne wykonane z precyzją CAD/CAM.',
+    path: '/galeria',
+    eyebrow: 'Nasze realizacje',
+    title: 'Galeria',
+    subtitle: 'Wybrane prace wykonane w D&M Laboratorium. Każda realizacja to połączenie precyzji technicznej i estetyki.',
+    breadcrumb: 'Galeria',
+    homePath: '/',
+    homeLabel: 'Strona główna',
+    imgAlt: (i) => `Realizacja protetyczna ${i} — D&M Laboratorium Słubice`,
+    close: 'Zamknij',
+    prev: 'Poprzednie',
+    next: 'Następne',
+  },
+  de: {
+    seoTitle: 'Galerie unserer zahntechnischen Arbeiten Słubice | D&M Laboratorium',
+    seoDescription: 'Sehen Sie Arbeiten des Dentallabors D&M Laboratorium in Słubice — Kronen, Brücken, Prothesen und Implantatprothetik, gefertigt mit CAD/CAM-Präzision.',
+    path: '/de/galerie',
+    eyebrow: 'Unsere Arbeiten',
+    title: 'Galerie',
+    subtitle: 'Ausgewählte Arbeiten aus D&M Laboratorium. Jede Arbeit verbindet technische Präzision mit Ästhetik.',
+    breadcrumb: 'Galerie',
+    homePath: '/de',
+    homeLabel: 'Startseite',
+    imgAlt: (i) => `Zahntechnische Arbeit ${i} — D&M Laboratorium Słubice`,
+    close: 'Schließen',
+    prev: 'Zurück',
+    next: 'Weiter',
+  },
+};
+
+const ALTERNATES = [
+  { lang: 'pl', path: '/galeria' },
+  { lang: 'de', path: '/de/galerie' },
+  { lang: 'x-default', path: '/galeria' },
+];
+
+export default function GalleryPage({ lang = 'pl' }) {
   const [lightbox, setLightbox] = useState(null);
+  const c = CONTENT[lang] ?? CONTENT.pl;
 
   return (
-    <PageLayout>
+    <PageLayout lang={lang}>
       <Seo
-        title="Galeria Realizacji Protetycznych Słubice | D&M Laboratorium"
-        description="Zobacz realizacje pracowni protetycznej D&M Laboratorium w Słubicach — korony, mosty, protezy i prace implantoprotetyczne wykonane z precyzją CAD/CAM."
-        path="/galeria"
+        title={c.seoTitle}
+        description={c.seoDescription}
+        path={c.path}
+        lang={lang}
+        alternates={ALTERNATES}
       />
       <PageHero
-        eyebrow="Nasze realizacje"
-        title="Galeria"
-        subtitle="Wybrane prace wykonane w D&M Laboratorium. Każda realizacja to połączenie precyzji technicznej i estetyki."
+        eyebrow={c.eyebrow}
+        title={c.title}
+        subtitle={c.subtitle}
+        breadcrumb={c.breadcrumb}
+        homePath={c.homePath}
+        homeLabel={c.homeLabel}
         photo={heroPhoto}
       />
 
@@ -64,7 +109,7 @@ export default function GalleryPage() {
               >
                 <img
                   src={img}
-                  alt={`Realizacja protetyczna ${i + 1} — D&M Laboratorium Słubice`}
+                  alt={c.imgAlt(i + 1)}
                   className={styles.img}
                   loading="lazy"
                 />
@@ -81,7 +126,7 @@ export default function GalleryPage() {
       {/* Lightbox */}
       {lightbox !== null && (
         <div className={styles.lightbox} onClick={() => setLightbox(null)}>
-          <button className={styles.lightboxClose} onClick={() => setLightbox(null)}>✕</button>
+          <button className={styles.lightboxClose} onClick={() => setLightbox(null)} aria-label={c.close}>✕</button>
           <img
             src={images[lightbox]}
             alt=""
@@ -89,9 +134,9 @@ export default function GalleryPage() {
             onClick={(e) => e.stopPropagation()}
           />
           <div className={styles.lightboxNav}>
-            <button onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + images.length) % images.length); }}>←</button>
+            <button onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + images.length) % images.length); }} aria-label={c.prev}>←</button>
             <span>{lightbox + 1} / {images.length}</span>
-            <button onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length); }}>→</button>
+            <button onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length); }} aria-label={c.next}>→</button>
           </div>
         </div>
       )}
