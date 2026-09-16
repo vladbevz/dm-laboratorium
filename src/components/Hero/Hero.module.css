@@ -47,7 +47,7 @@
 /* ── TEXT ── */
 .heroInner {
   max-width: 580px;
-  padding: 80px 0;
+  padding: 40px 0;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 1s ease, transform 1s ease;
@@ -61,9 +61,9 @@
 /* Heading */
 .hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 4.5vw, 4.4rem);
-  line-height: 1.08;
-  margin: 0 0 24px;
+  font-size: clamp(2.4rem, 3.8vw, 3.8rem);
+  line-height: 1.1;
+  margin: 0 0 20px;
   font-weight: 300;
   color: var(--cream);
   letter-spacing: 1px;
@@ -87,8 +87,8 @@
 .hero p {
   font-family: var(--font-serif);
   font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-  line-height: 1.85;
-  margin: 0 0 48px;
+  line-height: 1.75;
+  margin: 0 0 32px;
   color: var(--cream-50);
   font-weight: 300;
   letter-spacing: 0.5px;
