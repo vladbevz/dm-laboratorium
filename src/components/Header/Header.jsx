@@ -4,12 +4,14 @@ import styles from './Header.module.css';
 
 const NAV_LINKS = {
   pl: [
+    { to: '/', label: 'Główna' },
     { to: '/uslugi', label: 'Usługi' },
     { to: '/o-nas', label: 'O nas' },
     { to: '/galeria', label: 'Galeria' },
     { to: '/kontakt', label: 'Kontakt' },
   ],
   de: [
+    { to: '/de', label: 'Startseite' },
     { to: '/de/leistungen', label: 'Leistungen' },
     { to: '/de/ueber-uns', label: 'Über uns' },
     { to: '/de/galerie', label: 'Galerie' },

@@ -6,6 +6,7 @@ import styles from './Footer.module.css';
 const STRINGS = {
   pl: {
     links: [
+      { to: '/', label: 'Główna' },
       { to: '/uslugi', label: 'Usługi' },
       { to: '/o-nas', label: 'O nas' },
       { to: '/galeria', label: 'Galeria' },
@@ -19,6 +20,7 @@ const STRINGS = {
   },
   de: {
     links: [
+      { to: '/de', label: 'Startseite' },
       { to: '/de/leistungen', label: 'Leistungen' },
       { to: '/de/ueber-uns', label: 'Über uns' },
       { to: '/de/galerie', label: 'Galerie' },
