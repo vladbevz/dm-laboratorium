@@ -44,8 +44,10 @@ export default async function handler(req, res) {
         author: r.authorAttribution?.displayName ?? '',
         authorPhoto: r.authorAttribution?.photoUri ?? null,
         rating: r.rating ?? null,
-        text: r.text?.text ?? '',
-        languageCode: r.text?.languageCode ?? null,
+        // originalText is the review exactly as the author wrote it;
+        // text is Google's auto-translation — prefer the original.
+        text: r.originalText?.text ?? r.text?.text ?? '',
+        languageCode: r.originalText?.languageCode ?? r.text?.languageCode ?? null,
         relativeTime: r.relativePublishTimeDescription ?? '',
         publishTime: r.publishTime ?? null,
       })),
