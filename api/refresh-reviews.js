@@ -18,7 +18,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+    // languageCode=pl asks Google for the original review text (the reviews
+    // are written in Polish) instead of its default auto-translation.
+    const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}?languageCode=pl`, {
       headers: {
         'X-Goog-Api-Key': apiKey,
         'X-Goog-FieldMask': PLACES_FIELD_MASK,
