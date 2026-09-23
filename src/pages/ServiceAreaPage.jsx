@@ -8,6 +8,11 @@ import styles from './LandingPage.module.css';
 
 const areas = [
   {
+    city: 'Słubice',
+    distance: 'Siedziba pracowni',
+    desc: 'Tu mieści się D&M Laboratorium — bezpośredni kontakt i odbiór prac bez pośredników.',
+  },
+  {
     city: 'Kostrzyn nad Odrą',
     distance: '33 km · ok. 30 min',
     desc: 'Najbliższa lokalizacja od naszej pracowni — sprawny odbiór i dostawa prac dla tamtejszych gabinetów.',
@@ -50,14 +55,14 @@ export default function ServiceAreaPage() {
   return (
     <PageLayout>
       <Seo
-        title="Obszar Działania — Laboratorium Protetyczne dla Regionu | D&M Laboratorium"
-        description="D&M Laboratorium ze Słubic współpracuje z gabinetami stomatologicznymi w całym regionie: Kostrzyn nad Odrą, Sulęcin, Dębno, Gorzów Wielkopolski, Świebodzin, Zielona Góra i Poznań."
+        title="Obszar Działania — Laboratorium Protetyczne w Całej Polsce | D&M Laboratorium"
+        description="D&M Laboratorium ze Słubic współpracuje z gabinetami stomatologicznymi w całej Polsce — z priorytetowo szybką obsługą regionu: Kostrzyn nad Odrą, Sulęcin, Dębno, Gorzów Wielkopolski, Świebodzin, Zielona Góra i Poznań."
         path="/obszar-dzialania"
       />
       <PageHero
         eyebrow="Zasięg współpracy"
         title="Obszar Działania"
-        subtitle="Szybka i sprawna dostawa prac protetycznych dla gabinetów stomatologicznych w całym regionie — od Słubic po Poznań."
+        subtitle="Współpracujemy z gabinetami stomatologicznymi w całej Polsce — a w regionie wokół Słubic zapewniamy dodatkowo najszybszy odbiór i dostawę."
         photo={heroPhoto}
         photoPosition="center 20%"
         breadcrumb="Obszar działania"
@@ -67,13 +72,14 @@ export default function ServiceAreaPage() {
         <div className={styles.container}>
           <div className={styles.contentWrap}>
             <div className={styles.sectionEyebrow}>Gdzie pracujemy</div>
-            <h2 className={styles.sectionTitle}>Współpracujemy <em>z całym regionem</em></h2>
+            <h2 className={styles.sectionTitle}>Cała Polska, <em>priorytetowo region</em></h2>
             <div className={styles.sectionDivider} />
             <p className={styles.intro}>
-              Nasza pracownia mieści się w Słubicach, ale dzięki sprawnej organizacji odbioru
-              i dostawy współpracujemy z gabinetami stomatologicznymi w całym województwie
-              lubuskim i poza nim. Poniżej lista głównych kierunków — z orientacyjną odległością
-              i czasem dojazdu od naszej siedziby.
+              Prace protetyczne wysyłamy kurierem do gabinetów stomatologicznych w{' '}
+              <strong>całej Polsce</strong> — niezależnie od odległości. Dodatkowo, dla gabinetów
+              położonych bliżej naszej pracowni w Słubicach, zapewniamy najszybszą ścieżkę
+              odbioru i dostawy. Poniżej lista głównych kierunków w tym regionie — z orientacyjną
+              odległością i czasem dojazdu od naszej siedziby.
             </p>
           </div>
 
@@ -93,9 +99,16 @@ export default function ServiceAreaPage() {
             ))}
           </div>
 
-          <p className={styles.localNote}>
-            Nie widzisz swojej miejscowości? Napisz do nas — najprawdopodobniej też ją obsługujemy.
-          </p>
+          <div className={styles.contentWrap} style={{ marginTop: '64px', marginBottom: 0 }}>
+            <div className={styles.sectionEyebrow}>Poza regionem</div>
+            <h2 className={styles.sectionTitle}>Wysyłka kurierska <em>w całej Polsce</em></h2>
+            <div className={styles.sectionDivider} />
+            <p className={styles.intro}>
+              Nie widzisz swojego miasta na liście? To nie problem — obsługujemy gabinety
+              stomatologiczne w całej Polsce. Skany i wyciski przyjmujemy zdalnie, a gotowe
+              prace wysyłamy kurierem bezpośrednio do gabinetu, niezależnie od lokalizacji.
+            </p>
+          </div>
 
           <div className={styles.ctaWrap}>
             <Link to="/kontakt" className={styles.ctaBtn}>
