@@ -8,6 +8,8 @@ import ContactPage from './pages/ContactPage.jsx';
 import PrivacyPage from './pages/PrivacyPage.jsx';
 import DenturesPage from './pages/DenturesPage.jsx';
 import DentureRepairPage from './pages/DentureRepairPage.jsx';
+import ServiceAreaPage from './pages/ServiceAreaPage.jsx';
+import CityPage from './pages/CityPage.jsx';
 import CookieBanner from './components/CookieBanner/CookieBanner.jsx';
 import ScrollTop from './components/ScrollTop/ScrollTop.jsx';
 
@@ -24,6 +26,9 @@ export default function App() {
         <Route path="/o-nas" element={<AboutPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
+        <Route path="/obszar-dzialania" element={<ServiceAreaPage />} />
+        <Route path="/zielona-gora" element={<CityPage city="zielona-gora" />} />
+        <Route path="/gorzow-wielkopolski" element={<CityPage city="gorzow-wielkopolski" />} />
         <Route path="/polityka-prywatnosci" element={<PrivacyPage />} />
 
         <Route path="/de" element={<HomePage lang="de" />} />

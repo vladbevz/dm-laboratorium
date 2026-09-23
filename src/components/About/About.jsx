@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import styles from './About.module.css';
 import photoMariya from '../../assets/images/mariya.webp';
 import photoDasha from '../../assets/images/dasha.webp';
@@ -16,6 +17,7 @@ const CONTENT = {
       </>
     ),
     description: 'Tworzymy prace protetyczne oparte na doświadczeniu, nowoczesnej technologii i dbałości o każdy detal. Wspieramy gabinety stomatologiczne w realizacji nawet najbardziej wymagających przypadków, oferując terminowość i pełne zaangażowanie.',
+    areaLink: { to: '/obszar-dzialania', label: 'Zobacz obszar działania →' },
     teamEyebrow: 'Nasz zespół',
     team: [
       {
@@ -43,6 +45,7 @@ const CONTENT = {
       </>
     ),
     description: 'Wir fertigen zahntechnische Arbeiten auf Basis von Erfahrung, moderner Technologie und Liebe zum Detail. Wir unterstützen Zahnarztpraxen bei der Umsetzung auch anspruchsvollster Fälle — mit Termintreue und vollem Engagement.',
+    areaLink: null,
     teamEyebrow: 'Unser Team',
     team: [
       {
@@ -88,6 +91,12 @@ export default function About({ lang = 'pl' }) {
               <p className={styles.description}>
                 {c.description}
               </p>
+
+              {c.areaLink && (
+                <Link to={c.areaLink.to} className={styles.areaLink}>
+                  {c.areaLink.label}
+                </Link>
+              )}
             </div>
           </motion.div>
         </div>
