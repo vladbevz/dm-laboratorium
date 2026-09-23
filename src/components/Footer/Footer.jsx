@@ -10,6 +10,7 @@ const STRINGS = {
       { to: '/uslugi', label: 'Usługi' },
       { to: '/o-nas', label: 'O nas' },
       { to: '/galeria', label: 'Galeria' },
+      { to: '/obszar-dzialania', label: 'Obszar działania' },
       { to: '/kontakt', label: 'Kontakt' },
     ],
     rights: 'Wszelkie prawa zastrzeżone',

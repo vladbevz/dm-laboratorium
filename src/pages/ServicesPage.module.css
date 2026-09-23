@@ -119,6 +119,11 @@
   border-color: var(--gold);
 }
 
+.areaLinkWrap {
+  text-align: center;
+  margin-top: 48px;
+}
+
 /* Photo placeholder */
 .photoPlaceholder {
   height: 220px;

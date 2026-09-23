@@ -143,6 +143,14 @@ export default function ServicesPage({ lang = 'pl' }) {
               );
             })}
           </div>
+
+          {lang === 'pl' && (
+            <div className={styles.areaLinkWrap}>
+              <Link to="/obszar-dzialania" className={styles.dedicatedLink}>
+                Zobacz obszar działania →
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </PageLayout>
