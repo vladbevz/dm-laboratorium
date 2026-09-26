@@ -5,24 +5,64 @@ import styles from './HowItWorks.module.css';
 const CONTENT = {
   pl: {
     eyebrow: 'Proces współpracy',
-    title: <>Jak rozpocząć <em>współpracę</em></>,
-    description: 'Od zgłoszenia przypadku do gotowej pracy w gabinecie',
+    title: <>Jak <em>pracujemy</em>?</>,
+    description: 'Od zgłoszenia do dostawy gotowej pracy — sześć prostych kroków.',
     steps: [
-      { title: 'Wyślij skan lub wycisk', desc: 'Prześlij cyfrowy skan (STL) lub tradycyjny wycisk wraz z opisem przypadku przez formularz lub email.' },
-      { title: 'Przygotowujemy projekt', desc: 'Analizujemy przypadek i przygotowujemy plan pracy w technologii CAD/CAM.' },
-      { title: 'Akceptacja projektu', desc: 'Konsultujemy szczegóły i uzyskujemy Twoją akceptację przed rozpoczęciem produkcji.' },
-      { title: 'Realizacja i dostawa', desc: 'Wykonujemy pracę z najwyższą precyzją i dostarczamy ją bezpośrednio do gabinetu.' },
+      {
+        title: 'Zgłoszenie i konsultacja',
+        desc: 'Kontaktują się Państwo z nami telefonicznie, mailowo lub przez formularz. Omawiamy zakres współpracy, przesyłamy cennik oraz karty zleceń, odpowiadamy na pytania i — w razie potrzeby — przygotowujemy wstępną wycenę pracy.',
+      },
+      {
+        title: 'Przekazanie materiałów',
+        desc: 'Przekazują Państwo wyciski, modele lub skany wewnątrzustne (STL) wraz z wypełnioną kartą zlecenia. Doprecyzowujemy szczegóły pracy: kolor, materiał, oczekiwania pacjenta oraz termin.',
+      },
+      {
+        title: 'Analiza i planowanie',
+        desc: 'Analizujemy otrzymane materiały i proponujemy optymalne rozwiązanie. Potwierdzamy termin realizacji i koszt, a przy pracach estetycznych możemy przygotować projekt cyfrowy lub wax-up do akceptacji.',
+      },
+      {
+        title: 'Wykonanie pracy',
+        desc: 'Realizujemy zlecenie w technologii CAD/CAM lub metodą tradycyjną, zgodnie ze standardami technologicznymi. Przy protezach ruchomych prowadzimy kolejne etapy: łyżka indywidualna, wzornik zwarciowy, przymiarka na wosku.',
+      },
+      {
+        title: 'Kontrola jakości',
+        desc: 'Przed wydaniem każda praca przechodzi końcową kontrolę: dopasowanie, szczelność brzeżna, punkty styczne, zwarcie, kolor i zgodność ze zleceniem.',
+      },
+      {
+        title: 'Dostawa i wsparcie',
+        desc: 'Gotową pracę przekazujemy w uzgodniony sposób i w ustalonym terminie. Po oddaniu pozostajemy do Państwa dyspozycji — ewentualne korekty omawiamy i realizujemy bez zbędnej zwłoki.',
+      },
     ],
   },
   de: {
     eyebrow: 'Ablauf der Zusammenarbeit',
-    title: <>So starten wir die <em>Zusammenarbeit</em></>,
-    description: 'Vom eingesendeten Fall bis zur fertigen Arbeit in Ihrer Praxis',
+    title: <>So <em>arbeiten</em> wir</>,
+    description: 'Vom Auftrag bis zur Lieferung — sechs einfache Schritte.',
     steps: [
-      { title: 'Scan oder Abdruck senden', desc: 'Senden Sie uns einen digitalen Scan (STL) oder einen klassischen Abdruck mit Fallbeschreibung — per Formular oder E-Mail.' },
-      { title: 'Wir erstellen den Plan', desc: 'Wir analysieren den Fall und erstellen einen Arbeitsplan in CAD/CAM-Technologie.' },
-      { title: 'Freigabe des Projekts', desc: 'Wir besprechen die Details und holen Ihre Freigabe ein, bevor die Fertigung beginnt.' },
-      { title: 'Fertigung und Lieferung', desc: 'Wir fertigen die Arbeit mit höchster Präzision und liefern sie direkt an Ihre Praxis.' },
+      {
+        title: 'Anfrage und Beratung',
+        desc: 'Sie kontaktieren uns telefonisch, per E-Mail oder über das Kontaktformular. Wir besprechen den Umfang der Zusammenarbeit, senden Ihnen unsere Preisliste und Auftragsformulare, beantworten Ihre Fragen und erstellen bei Bedarf einen Kostenvoranschlag.',
+      },
+      {
+        title: 'Übermittlung der Unterlagen',
+        desc: 'Sie senden uns Abformungen, Modelle oder Intraoralscans (STL) zusammen mit dem ausgefüllten Auftragsformular. Wir klären alle Details: Farbe, Material, Wünsche des Patienten und Termin.',
+      },
+      {
+        title: 'Analyse und Planung',
+        desc: 'Wir analysieren die Unterlagen und schlagen die optimale Lösung vor. Termin und Kosten werden bestätigt; bei ästhetischen Arbeiten erstellen wir auf Wunsch ein digitales Design oder Wax-up zur Freigabe.',
+      },
+      {
+        title: 'Herstellung',
+        desc: 'Die Arbeit wird in CAD/CAM-Technologie oder konventionell gefertigt — nach aktuellen technischen Standards. Bei herausnehmbarem Zahnersatz folgen die Etappen: individueller Löffel, Bissschablone, Wachsanprobe.',
+      },
+      {
+        title: 'Qualitätskontrolle',
+        desc: 'Vor der Auslieferung prüfen wir jede Arbeit: Passung, Randschluss, Kontaktpunkte, Okklusion, Farbe und Übereinstimmung mit dem Auftrag.',
+      },
+      {
+        title: 'Lieferung und Betreuung',
+        desc: 'Die fertige Arbeit liefern wir auf dem vereinbarten Weg und zum vereinbarten Termin. Auch danach sind wir für Sie da — eventuelle Korrekturen besprechen und erledigen wir zeitnah.',
+      },
     ],
   },
 };

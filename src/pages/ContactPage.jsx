@@ -2,6 +2,7 @@ import React from 'react';
 import PageLayout from '../components/Layout/PageLayout.jsx';
 import PageHero from '../components/PageHero/PageHero.jsx';
 import Contact from '../components/Contact/Contact.jsx';
+import OrderForms from '../components/OrderForms/OrderForms.jsx';
 import Seo from '../components/Seo/Seo.jsx';
 import heroPhoto from '../assets/images/kontakt-hero.webp';
 
@@ -57,6 +58,7 @@ export default function ContactPage({ lang = 'pl' }) {
         homeLabel={c.homeLabel}
         photo={heroPhoto}
       />
+      <OrderForms lang={lang} />
       <Contact lang={lang} />
     </PageLayout>
   );
