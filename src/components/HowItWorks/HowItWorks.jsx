@@ -91,7 +91,10 @@ export default function HowItWorks({ lang = 'pl' }) {
           {c.steps.map((step, i) => (
             <div key={i} className={styles.step}>
               <div className={styles.stepAccent} />
-              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <div className={styles.stepTop}>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <span className={styles.stepHint} aria-hidden="true">+</span>
+              </div>
               <p className={styles.stepDesc}>{step.desc}</p>
             </div>
           ))}
