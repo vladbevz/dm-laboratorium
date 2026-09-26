@@ -88,7 +88,7 @@ export default function Reviews({ lang = 'pl' }) {
         </div>
 
         <div className={styles.grid}>
-          {data.reviews.slice(0, 6).map((review, i) => (
+          {data.reviews.slice(0, 5).map((review, i) => (
             <div key={i} className={styles.card}>
               <div className={styles.cardHeader}>
                 {review.authorPhoto ? (
@@ -105,12 +105,16 @@ export default function Reviews({ lang = 'pl' }) {
               {review.relativeTime && <span className={styles.reviewTime}>{review.relativeTime}</span>}
             </div>
           ))}
-        </div>
 
-        <div className={styles.ctaWrap}>
-          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
-            {t.cta}
-            <ExternalLink size={13} />
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.card} ${styles.ctaCard}`}
+          >
+            <div className={styles.ctaCardIcon}><ExternalLink size={20} /></div>
+            <h3 className={styles.ctaCardTitle}>{t.cta}</h3>
+            <span className={styles.ctaCardSub}>Google Maps</span>
           </a>
         </div>
 
