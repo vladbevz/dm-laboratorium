@@ -1,6 +1,9 @@
 import React from 'react';
-import { FileText, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import styles from './OrderForms.module.css';
+import previewPraceStale from '../../assets/images/dm-lab-zlecenie-prace-stale.webp';
+import previewProtezy from '../../assets/images/dm-lab-zlecenie-protezy.webp';
+import previewOrtodoncja from '../../assets/images/dm-lab-karta-ortodontyczna.webp';
 
 const CONTENT = {
   pl: {
@@ -11,16 +14,19 @@ const CONTENT = {
     forms: [
       {
         file: 'dm-lab-zlecenie-prace-stale.pdf',
+        preview: previewPraceStale,
         title: 'Zlecenie — prace stałe',
         desc: 'Korony, mosty, licówki, CAD/CAM, prace na implantach',
       },
       {
         file: 'dm-lab-zlecenie-protezy.pdf',
+        preview: previewProtezy,
         title: 'Zlecenie — protezy ruchome',
         desc: 'Protezy akrylowe, szkieletowe, elastyczne, naprawy',
       },
       {
         file: 'dm-lab-karta-ortodontyczna.pdf',
+        preview: previewOrtodoncja,
         title: 'Karta ortodontyczna',
         desc: 'Aparaty zdejmowane, szyny, retainery',
       },
@@ -35,16 +41,19 @@ const CONTENT = {
     forms: [
       {
         file: 'dm-lab-zlecenie-prace-stale.pdf',
+        preview: previewPraceStale,
         title: 'Auftrag — festsitzender Zahnersatz',
         desc: 'Kronen, Brücken, Veneers, CAD/CAM, Implantatarbeiten',
       },
       {
         file: 'dm-lab-zlecenie-protezy.pdf',
+        preview: previewProtezy,
         title: 'Auftrag — herausnehmbarer Zahnersatz',
         desc: 'Acryl- und Modellgussprothesen, flexible Prothesen, Reparaturen',
       },
       {
         file: 'dm-lab-karta-ortodontyczna.pdf',
+        preview: previewOrtodoncja,
         title: 'Kieferorthopädische Karte',
         desc: 'Herausnehmbare Apparaturen, Schienen, Retainer',
       },
@@ -69,15 +78,24 @@ export default function OrderForms({ lang = 'pl' }) {
 
         <div className={styles.grid}>
           {c.forms.map((form) => (
-            <div key={form.file} className={styles.card}>
-              <div className={styles.icon}><FileText size={20} /></div>
+            <a
+              key={form.file}
+              href={`/${form.file}`}
+              download
+              className={styles.card}
+            >
+              <div className={styles.previewFrame}>
+                <img src={form.preview} alt={form.title} className={styles.previewImg} loading="lazy" />
+                <div className={styles.previewOverlay}>
+                  <span className={styles.previewOverlayBtn}>
+                    <Download size={14} />
+                    {c.downloadLabel}
+                  </span>
+                </div>
+              </div>
               <h3 className={styles.cardTitle}>{form.title}</h3>
               <p className={styles.cardDesc}>{form.desc}</p>
-              <a href={`/${form.file}`} download className={styles.downloadBtn}>
-                <Download size={13} />
-                {c.downloadLabel}
-              </a>
-            </div>
+            </a>
           ))}
         </div>
 
