@@ -26,11 +26,11 @@ const CONTENT = {
       },
       {
         title: 'Kontrola jakości',
-        desc: 'Przed wydaniem każda praca przechodzi końcową kontrolę: dopasowanie, szczelność brzeżna, punkty styczne, zwarcie, kolor i zgodność ze zleceniem.',
+        desc: 'Przed wydaniem każda praca przechodzi końcową kontrolę: dopasowanie, punkty styczne, zwarcie, kolor i zgodność ze zleceniem.',
       },
       {
         title: 'Dostawa i wsparcie',
-        desc: 'Gotową pracę przekazujemy w uzgodniony sposób i w ustalonym terminie. Po oddaniu pozostajemy do Państwa dyspozycji — ewentualne korekty omawiamy i realizujemy bez zbędnej zwłoki.',
+        desc: 'Gotową pracę przekazujemy w uzgodniony sposób i w ustalonym terminie. Po oddaniu pozostajemy do Państwa dyspozycji.',
       },
     ],
   },
