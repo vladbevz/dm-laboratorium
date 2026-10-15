@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ ssrBuild }) => ({
   plugins: [react()],
   base: "/",
   assetsInclude: ["**/*.JPG", "**/*.JPEG"],
@@ -11,13 +11,17 @@ export default defineConfig({
     assetsDir: "assets",
     sourcemap: false,
     rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          "framer-motion": ["framer-motion"],
-          "lucide-react": ["lucide-react"],
-        },
-      },
+      // Chunk splitting is for the browser bundle only; the prerender (SSR)
+      // build keeps dependencies external.
+      output: ssrBuild
+        ? {}
+        : {
+            manualChunks: {
+              vendor: ["react", "react-dom"],
+              "framer-motion": ["framer-motion"],
+              "lucide-react": ["lucide-react"],
+            },
+          },
       // Явно укажите резолвер для lucide-react
       external: [],
     },
@@ -37,4 +41,4 @@ export default defineConfig({
     host: true,
     port: 3000,
   },
-});
+}));

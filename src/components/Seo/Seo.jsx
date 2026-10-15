@@ -21,7 +21,15 @@ function setAlternateLinks(alternates) {
   });
 }
 
+// Filled during build-time prerendering (see src/entry-server.jsx and
+// scripts/prerender.mjs) so each route's static HTML gets its own <head>.
+export const ssrSeo = { current: null };
+
 export default function Seo({ title, description, path = '/', ogImage = DEFAULT_OG_IMAGE, noindex = false, lang = 'pl', alternates = null }) {
+  if (import.meta.env.SSR) {
+    ssrSeo.current = { siteUrl: SITE_URL, title, description, path, ogImage, noindex, lang, alternates };
+  }
+
   useEffect(() => {
     const url = `${SITE_URL}${path}`;
 

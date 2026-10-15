@@ -61,9 +61,7 @@ export default function HomePage({ lang = 'pl' }) {
     return () => clearTimeout(timer);
   }, [isLoading]);
 
-  if (isLoading) return <Preloader />;
-
-  return (
+  const page = (
     <div>
       <Seo
         title={seo.title}
@@ -85,4 +83,21 @@ export default function HomePage({ lang = 'pl' }) {
       <Footer lang={lang} />
     </div>
   );
+
+  if (isLoading) {
+    // At build time (prerender) the page content is emitted under the
+    // full-screen preloader, so crawlers get the real text while visitors
+    // still see the preloader first. In the browser behaviour is unchanged.
+    if (import.meta.env.SSR) {
+      return (
+        <>
+          <Preloader />
+          {page}
+        </>
+      );
+    }
+    return <Preloader />;
+  }
+
+  return page;
 }
