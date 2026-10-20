@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { LogIn } from 'lucide-react';
 import styles from './Header.module.css';
 
 const NAV_LINKS = {
@@ -19,9 +20,11 @@ const NAV_LINKS = {
   ],
 };
 
+const PANEL_URL = 'https://panel.dm-lab.pl';
+
 const STRINGS = {
-  pl: { contact: 'Wyślij przypadek', contactPath: '/kontakt', home: '/' },
-  de: { contact: 'Fall einsenden', contactPath: '/de/kontakt', home: '/de' },
+  pl: { contact: 'Wyślij przypadek', contactPath: '/kontakt', home: '/', panel: 'Panel lekarza', panelTitle: 'Panel lekarza — logowanie' },
+  de: { contact: 'Fall einsenden', contactPath: '/de/kontakt', home: '/de', panel: 'Praxis-Login', panelTitle: 'Praxis-Login (Panel auf Polnisch)' },
 };
 
 const PL_TO_DE = { '/': '/de', '/uslugi': '/de/leistungen', '/o-nas': '/de/ueber-uns', '/galeria': '/de/galerie', '/kontakt': '/de/kontakt' };
@@ -118,6 +121,15 @@ export default function Header({ lang = 'pl' }) {
             >
               {switchTo.toUpperCase()}
             </Link>
+            <a
+              className={`${styles.panelBtn} ${styles.mobilePanel}`}
+              href={PANEL_URL}
+              title={t.panelTitle}
+              onClick={closeMenu}
+            >
+              <LogIn size={18} aria-hidden="true" />
+              {t.panel}
+            </a>
             <Link
               className={`${styles.contactBtn} ${styles.mobileContact}`}
               to={t.contactPath}
@@ -136,6 +148,17 @@ export default function Header({ lang = 'pl' }) {
           >
             {switchTo.toUpperCase()}
           </Link>
+
+          {/* Doctor panel (desktop) */}
+          <a
+            className={`${styles.panelBtn} ${styles.desktopPanel}`}
+            href={PANEL_URL}
+            title={t.panelTitle}
+            aria-label={t.panelTitle}
+          >
+            <LogIn size={15} aria-hidden="true" />
+            <span className={styles.panelLabel}>{t.panel}</span>
+          </a>
 
           {/* Desktop contact button */}
           <Link
