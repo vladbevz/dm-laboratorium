@@ -9,7 +9,13 @@ import photoMariya from '../assets/images/mariya.webp';
 import beforeAfter1 from '../assets/images/before-after-1.webp';
 import beforeAfter2 from '../assets/images/before-after-2.webp';
 import beforeAfter3 from '../assets/images/before-after-3.webp';
+import beforeAfter4 from '../assets/images/before-after-4.webp';
+import beforeAfter5 from '../assets/images/before-after-5.webp';
+import beforeAfter6 from '../assets/images/before-after-6.webp';
+import beforeAfter7 from '../assets/images/before-after-7.webp';
 import styles from './AboutPage.module.css';
+
+const BEFORE_AFTER = [beforeAfter1, beforeAfter2, beforeAfter3, beforeAfter4, beforeAfter5, beforeAfter6, beforeAfter7];
 
 const CONTENT = {
   pl: {
@@ -171,19 +177,19 @@ export default function AboutPage({ lang = 'pl' }) {
           <h2 className={styles.sectionTitle}>{c.baTitle}</h2>
           <div className={styles.sectionDivider} />
           <div className={styles.beforeAfterGrid}>
-            {[1, 2, 3].map((n) => (
+            {BEFORE_AFTER.map((src, i) => (
               <motion.div
-                key={n}
+                key={i}
                 className={styles.beforeAfterCard}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: n * 0.1, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.7, delay: (i % 3 + 1) * 0.1, ease: [0.4, 0, 0.2, 1] }}
                 viewport={{ once: true }}
               >
                 <div className={styles.beforeAfterImgWrap}>
                   <img
-                    src={[beforeAfter1, beforeAfter2, beforeAfter3][n - 1]}
-                    alt={c.baAlt(n)}
+                    src={src}
+                    alt={c.baAlt(i + 1)}
                     className={styles.beforeAfterImg}
                     loading="lazy"
                   />

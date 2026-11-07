@@ -9,10 +9,18 @@ import styles from './GalleryPage.module.css';
 const imageModules = import.meta.glob('../assets/images/*Projekt*.webp', { eager: true });
 
 const imageOrder = [
+  '20_Projekt bez nazwy.webp',
+  '21_Projekt bez nazwy.webp',
+  '22_Projekt bez nazwy.webp',
+  '23_Projekt bez nazwy.webp',
+  '24_Projekt bez nazwy.webp',
+  '25_Projekt bez nazwy.webp',
+  '26_Projekt bez nazwy.webp',
+  '27_Projekt bez nazwy.webp',
+  '28_Projekt bez nazwy.webp',
   '4_Projekt bez nazwy.webp',
   '7_Projekt bez nazwy.webp',
   '6_Projekt bez nazwy.webp',
-  '12_Projekt bez nazwy.webp',
   '5_Projekt bez nazwy.webp',
   '8_Projekt bez nazwy.webp',
   '3_Projekt bez nazwy.webp',

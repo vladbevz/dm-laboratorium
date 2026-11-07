@@ -9,7 +9,6 @@ import g7  from '../../assets/images/7_Projekt bez nazwy.webp';
 import g8  from '../../assets/images/8_Projekt bez nazwy.webp';
 import g9  from '../../assets/images/9_Projekt bez nazwy.webp';
 import g10 from '../../assets/images/10_Projekt bez nazwy.webp';
-import g11 from '../../assets/images/12_Projekt bez nazwy.webp';
 import g12 from '../../assets/images/13_Projekt bez nazwy.webp';
 import g13 from '../../assets/images/15_Projekt bez nazwy.webp';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -27,7 +26,6 @@ const images = {
     { src: g8,  alt: 'Mosty cyrkonowe — nowoczesna protetyka D&M Laboratorium' },
     { src: g9,  alt: 'Proteza całkowita akrylowa — D&M Laboratorium Słubice' },
     { src: g10, alt: 'Licówka ceramiczna — estetyczne uzupełnienie protetyczne' },
-    { src: g11, alt: 'Korony teleskopowe — precyzyjna protetyka D&M Słubice' },
     { src: g12, alt: 'Uzupełnienie implantoprotetyczne — D&M Laboratorium' },
     { src: g13, alt: 'Indywidualne łączniki implantologiczne — D&M Laboratorium Słubice' },
   ],
@@ -42,7 +40,6 @@ const images = {
     { src: g8,  alt: 'Zirkonbrücken — moderne Zahntechnik von D&M Laboratorium' },
     { src: g9,  alt: 'Acryl-Vollprothese — D&M Laboratorium Słubice' },
     { src: g10, alt: 'Keramikveneer — ästhetischer Zahnersatz' },
-    { src: g11, alt: 'Teleskopkronen — präzise Zahntechnik von D&M Słubice' },
     { src: g12, alt: 'Implantatprothetischer Zahnersatz — D&M Laboratorium' },
     { src: g13, alt: 'Individuelle Implantat-Abutments — D&M Laboratorium Słubice' },
   ],
